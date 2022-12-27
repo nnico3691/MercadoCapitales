@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Precios.Aplicacion;
 using MercadoCapitales.API.Precios.Persistencia;
@@ -34,6 +35,7 @@ namespace MercadoCapitales.API.Precios
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
             services.AddMediatR(typeof(NuevoAccion.Manejador).Assembly);
+            services.AddAutoMapper(typeof(ConsultaAccion.Manejador));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

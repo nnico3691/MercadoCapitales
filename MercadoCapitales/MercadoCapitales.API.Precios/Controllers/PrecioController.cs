@@ -1,7 +1,9 @@
 ﻿using MediatR;
 using MercadoCapitales.API.Precios.Aplicacion;
+using MercadoCapitales.API.Precios.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MercadoCapitales.API.Precios.Controllers
@@ -18,6 +20,9 @@ namespace MercadoCapitales.API.Precios.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpGet]
+        public async Task<ActionResult<List<CotizacionAccionDto>>> GetAcciones() => await _mediator.Send(new ConsultaAccion.ListaCotizacionAccion());
 
         [HttpPost]
         public async Task<ActionResult<Unit>> CrearAccion(NuevoAccion.Ejecuta data)

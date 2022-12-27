@@ -68,7 +68,7 @@ namespace MercadoCapitales.API.Precios.Aplicacion
                     return Unit.Value;
                 }
 
-                throw new Exception("Errores en la inserción del carrito de compras");
+                throw new Exception("Errores en la inserción del Acción");
                 
 
 
