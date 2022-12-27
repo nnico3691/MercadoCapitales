@@ -21,10 +21,8 @@
 	</ItemGroup>
 
 	<ItemGroup>
-    <Folder Include="Aplicacion\" />
-    <Folder Include="Modelo\" />
-    <Folder Include="Persistencia\" />
-  </ItemGroup>
+	  <Folder Include="Migrations\" />
+	</ItemGroup>
     
 
 </Project>

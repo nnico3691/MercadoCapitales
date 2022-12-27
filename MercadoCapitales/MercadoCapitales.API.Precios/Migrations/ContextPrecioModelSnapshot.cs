@@ -25,6 +25,9 @@ namespace MercadoCapitales.API.Precios.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<string>("Ajuste")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<float?>("CCompra")
                         .HasColumnType("real");
 
@@ -47,6 +50,9 @@ namespace MercadoCapitales.API.Precios.Migrations
                         .HasColumnType("int");
 
                     b.Property<float?>("PCompra")
+                        .HasColumnType("real");
+
+                    b.Property<float?>("PVenta")
                         .HasColumnType("real");
 
                     b.Property<float?>("Precio")

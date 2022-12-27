@@ -1,3 +1,5 @@
+using MediatR;
+using MercadoCapitales.API.Precios.Aplicacion;
 using MercadoCapitales.API.Precios.Persistencia;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -31,6 +33,7 @@ namespace MercadoCapitales.API.Precios
             services.AddDbContext<ContextPrecio>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
+            services.AddMediatR(typeof(NuevoAccion.Manejador).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
