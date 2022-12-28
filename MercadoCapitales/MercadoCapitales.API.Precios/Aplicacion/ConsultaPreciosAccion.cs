@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace MercadoCapitales.API.Precios.Aplicacion
 {
-    public class ConsultaAccion
+    public class ConsultaPreciosAccion
     {
         public class ListaCotizacionAccion : IRequest<List<CotizacionAccionDto>> { }
 

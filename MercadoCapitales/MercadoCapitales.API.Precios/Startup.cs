@@ -34,8 +34,8 @@ namespace MercadoCapitales.API.Precios
             services.AddDbContext<ContextPrecio>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
-            services.AddMediatR(typeof(NuevoAccion.Manejador).Assembly);
-            services.AddAutoMapper(typeof(ConsultaAccion.Manejador));
+            services.AddMediatR(typeof(CrearPrecioAccion.Manejador).Assembly);
+            services.AddAutoMapper(typeof(ConsultaPreciosAccion.Manejador));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

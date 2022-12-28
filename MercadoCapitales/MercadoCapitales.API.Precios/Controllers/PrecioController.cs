@@ -22,10 +22,10 @@ namespace MercadoCapitales.API.Precios.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<CotizacionAccionDto>>> GetAcciones() => await _mediator.Send(new ConsultaAccion.ListaCotizacionAccion());
+        public async Task<ActionResult<List<CotizacionAccionDto>>> GetPreciosAccion() => await _mediator.Send(new ConsultaPreciosAccion.ListaCotizacionAccion());
 
         [HttpPost]
-        public async Task<ActionResult<Unit>> CrearAccion(NuevoAccion.Ejecuta data)
+        public async Task<ActionResult<Unit>> CrearPrecioAccion(CrearPrecioAccion.Ejecuta data)
         {
             return await _mediator.Send(data);
         }

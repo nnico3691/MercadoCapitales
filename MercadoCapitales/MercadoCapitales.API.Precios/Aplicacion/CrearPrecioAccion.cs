@@ -8,7 +8,7 @@ using MercadoCapitales.API.Precios.Modelo;
 
 namespace MercadoCapitales.API.Precios.Aplicacion
 {
-    public class NuevoAccion
+    public class CrearPrecioAccion
     {
         public class Ejecuta : IRequest
         {

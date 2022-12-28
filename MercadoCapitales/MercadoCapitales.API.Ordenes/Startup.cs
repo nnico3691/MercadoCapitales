@@ -1,6 +1,10 @@
+using MediatR;
+using MercadoCapitales.API.Ordenes.Aplicacion;
+using MercadoCapitales.API.Ordenes.Persistencia;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +29,10 @@ namespace MercadoCapitales.API.Ordenes
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<ContextOrden>(opt => {
+                opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
+            });
+            services.AddMediatR(typeof(CrearOrden.Manejador).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
