@@ -1,3 +1,5 @@
+using MediatR;
+using MercadoCapitales.API.Clientes.Aplicacion;
 using MercadoCapitales.API.Clientes.Persistencia;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,6 +32,7 @@ namespace MercadoCapitales.API.Clientes
             services.AddDbContext<ContextCliente>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
+            services.AddMediatR(typeof(CrearRegistro.Manejador).Assembly);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

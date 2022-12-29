@@ -45,6 +45,8 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
 
                 _contexto.Cliente.Add(cliente);
 
+                var value = await _contexto.SaveChangesAsync();
+
                 var login = new Login
                 {
                     Usuario = request.Usuario,
@@ -52,7 +54,9 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                     Cliente = cliente.ClienteId
                 };
 
-                var value = await _contexto.SaveChangesAsync();
+                _contexto.Login.Add(login);
+
+                value = await _contexto.SaveChangesAsync();
 
                 if (value > 0)
                 {

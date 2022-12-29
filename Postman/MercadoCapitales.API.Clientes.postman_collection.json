@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "997ec55d-4606-4e74-9799-cdfdfd383724",
+		"name": "MercadoCapitales.API.Clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "CrearRegistro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearRegistro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearRegistro"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
