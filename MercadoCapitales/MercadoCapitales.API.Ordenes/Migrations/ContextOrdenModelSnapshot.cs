@@ -21,7 +21,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
             modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Orden", b =>
                 {
-                    b.Property<Guid?>("PrecioId")
+                    b.Property<Guid?>("OrdenId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -67,7 +67,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                     b.Property<int>("ValidezOferta")
                         .HasColumnType("int");
 
-                    b.HasKey("PrecioId");
+                    b.HasKey("OrdenId");
 
                     b.ToTable("Orden");
                 });

@@ -11,7 +11,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                 name: "Orden",
                 columns: table => new
                 {
-                    PrecioId = table.Column<Guid>(nullable: false),
+                    OrdenId = table.Column<Guid>(nullable: false),
                     OrdenCodigo = table.Column<string>(nullable: true),
                     TipoCompraVenta = table.Column<string>(nullable: true),
                     Comitente = table.Column<string>(nullable: true),
@@ -29,7 +29,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Orden", x => x.PrecioId);
+                    table.PrimaryKey("PK_Orden", x => x.OrdenId);
                 });
         }
 

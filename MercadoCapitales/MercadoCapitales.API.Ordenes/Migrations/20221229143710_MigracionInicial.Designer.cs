@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    [Migration("20221228231044_MigracionInicial")]
+    [Migration("20221229143710_MigracionInicial")]
     partial class MigracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,7 +23,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
             modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Orden", b =>
                 {
-                    b.Property<Guid?>("PrecioId")
+                    b.Property<Guid?>("OrdenId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
@@ -69,7 +69,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                     b.Property<int>("ValidezOferta")
                         .HasColumnType("int");
 
-                    b.HasKey("PrecioId");
+                    b.HasKey("OrdenId");
 
                     b.ToTable("Orden");
                 });

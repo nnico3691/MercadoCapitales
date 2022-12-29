@@ -6,7 +6,7 @@ namespace MercadoCapitales.API.Ordenes.Modelo
     public class Orden
     {
         [Key]
-        public Guid? PrecioId { get; set; }
+        public Guid? OrdenId { get; set; }
         public string OrdenCodigo { get; set; } /*BYMA, FCI, LICITACIONES, ROFEX, CAUCION*/
         public string TipoCompraVenta { get; set; } /*COMPRA, VENTA*/
 

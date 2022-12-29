@@ -5,7 +5,9 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Precios", "MercadoCapitales.API.Precios\MercadoCapitales.API.Precios.csproj", "{1C76958E-42A3-492F-8B2A-E7F29DA964A3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoCapitales.API.Ordenes", "MercadoCapitales.API.Ordenes\MercadoCapitales.API.Ordenes.csproj", "{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Ordenes", "MercadoCapitales.API.Ordenes\MercadoCapitales.API.Ordenes.csproj", "{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MercadoCapitales.API.Clientes", "MercadoCapitales.API.Clientes\MercadoCapitales.API.Clientes.csproj", "{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
