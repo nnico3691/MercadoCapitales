@@ -18,6 +18,7 @@ namespace MercadoCapitales.API.Ordenes.Controllers
         }
 
         [HttpPost]
+        [Route("CrearOrden")]
         public async Task<ActionResult<Unit>> CrearOrden(CrearOrden.Ejecuta data)
         {
             return await _mediator.Send(data);

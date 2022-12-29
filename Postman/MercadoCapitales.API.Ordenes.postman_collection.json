@@ -1,0 +1,40 @@
+{
+	"info": {
+		"_postman_id": "2c3f71f9-9d91-498d-b8c4-c488c29df701",
+		"name": "MercadoCapitales.API.Ordenes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "CrearOrden",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"OrdenCodigo\": \"Byma\",\r\n    \"TipoCompraVenta\": \"COMPRA\",\r\n    \"Comitente\": \"30640 Marcelo Nicolas Messa\",\r\n    \"Cliente\": \"Marcelo Nicolas Messa\",\r\n    \"ComitenteId\": 1,\r\n    \"ClienteId\": 1,\r\n    \"Ticker\": \"YPFD\",\r\n    \"Cantidad\": 1,\r\n    \"TipoDeOrden\": \"Limite\",\r\n    \"Precio\": 1054.32,\r\n    \"Importe\": 1054.32,\r\n    \"ValidezOferta\": 0,\r\n    \"FechaVencimiento\": \"2022-12-28\",\r\n    \"Plazo\": 0\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/CrearOrden",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"CrearOrden"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "ac429042-3e16-45a1-9c5d-b401b25c0176",
-		"name": "MercadoCapitales.API.Precio",
+		"name": "MercadoCapitales.API.Precios",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "18441826"
 	},
@@ -41,7 +41,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:22684/api/Precio",
+					"raw": "http://localhost:22684/api/Precio/GetPreciosAccion",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -49,7 +49,8 @@
 					"port": "22684",
 					"path": [
 						"api",
-						"Precio"
+						"Precio",
+						"GetPreciosAccion"
 					]
 				}
 			},
