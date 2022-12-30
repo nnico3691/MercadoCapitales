@@ -64,7 +64,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n     \"Usuario\": \"Nico1234\",\r\n     \"Clave\": \"123456\"\r\n}",
+					"raw": "{\r\n     \"Usuario\": \"Nico1234\",\r\n     \"Clave\": \"1234568\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -72,7 +72,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:51736/api/Cliente/CrearRegistro/Login",
+					"raw": "http://localhost:51736/api/Cliente/Login",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -81,7 +81,6 @@
 					"path": [
 						"api",
 						"Cliente",
-						"CrearRegistro",
 						"Login"
 					]
 				}
