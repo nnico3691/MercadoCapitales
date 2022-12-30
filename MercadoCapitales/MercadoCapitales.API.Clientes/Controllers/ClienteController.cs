@@ -24,7 +24,14 @@ namespace MercadoCapitales.API.Clientes.Controllers
 
         [HttpPost]
         [Route("CrearRegistro")]
-        public async Task<ActionResult<Unit>> CrearOrden(CrearRegistro.Ejecuta data)
+        public async Task<ActionResult<Unit>> CrearRegistro(CrearRegistro.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
+
+        [HttpPost]
+        [Route("Login")]
+        public async Task<ActionResult<Unit>> Login(LoginCliente.Ejecuta data)
         {
             return await _mediator.Send(data);
         }

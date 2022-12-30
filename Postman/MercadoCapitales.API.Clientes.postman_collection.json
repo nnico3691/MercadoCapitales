@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\"\r\n\r\n}",
+					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"DNI\": \"35726794\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\"\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -31,6 +31,58 @@
 						"api",
 						"Cliente",
 						"CrearRegistro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/GetClientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"GetClientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"Usuario\": \"Nico1234\",\r\n     \"Clave\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearRegistro/Login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearRegistro",
+						"Login"
 					]
 				}
 			},
