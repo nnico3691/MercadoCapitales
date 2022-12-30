@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion;
+using MercadoCapitales.API.Clientes.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace MercadoCapitales.API.Clientes.Controllers
@@ -15,6 +17,10 @@ namespace MercadoCapitales.API.Clientes.Controllers
         {
             _mediator = mediator;
         }
+
+        [HttpGet]
+        [Route("GetClientes")]
+        public async Task<ActionResult<List<ClienteDto>>> GetPreciosAccion() => await _mediator.Send(new ConsultaClientes.ListaClientes());
 
         [HttpPost]
         [Route("CrearRegistro")]

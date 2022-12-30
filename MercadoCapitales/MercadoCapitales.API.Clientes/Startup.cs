@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion;
 using MercadoCapitales.API.Clientes.Persistencia;
@@ -33,6 +34,7 @@ namespace MercadoCapitales.API.Clientes
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
             services.AddMediatR(typeof(CrearRegistro.Manejador).Assembly);
+            services.AddAutoMapper(typeof(ConsultaClientes.Manejador));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
