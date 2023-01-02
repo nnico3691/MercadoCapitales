@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewData["Title"] = "Confirmacion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model DatosCliente
+
+<h2>Confirmación de mis datos</h2>
+<div style="width:100%;border-style: double;">
+       <b>DNI:</b>
+        <br/>
+            @Html.DisplayFor(model => model.TipoDNI)
+        <br/>
+    
+       <b>Nombre:</b>
+       <br/>
+            @Html.DisplayFor(model => model.Nombre)
+       <br/>
+       <b>Apellido:</b>
+        <br /> 
+            @Html.DisplayFor(model => model.Apellido)
+        <br/>
+       <b>Teléfono:</b><br /> 
+        @Html.DisplayFor(model => model.Telefono)
+    
+</div>

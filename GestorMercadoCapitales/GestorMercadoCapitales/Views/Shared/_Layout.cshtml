@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GestorMercadoCapitales</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+
+
+    </environment>
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+   <div style="width:100%;">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">GestorMercadoCapitales</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <div class="navbar-nav">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                ACCIONES
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Lideres Merval</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Panel General</a>
+                            </div>
+                        </li>
+
+
+                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" asp-controller="Home" asp-action="#">OPCIONES</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                BONOS
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Todos</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Soberanos</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Soberanos Linked</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Provinciales</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Provinciales Linked</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Cupones PBI $/USD</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Fija</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Variable</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos Ajust.CER</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Fija/Var.</a>
+                            </div>
+                        </li>
+                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">CDEARS</a></li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                ROFEX
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Futuro</a><br>
+                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Opciones</a>
+                            </div>
+                        </li>
+                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">FONDOS</a></li>
+                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Login" asp-action="Login">LOGIN</a></li>
+
+                    </ul>
+                </div>
+            </div>
+       </div>
+    </nav>
+</div>
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2022 - Gestor de Mercados de Capitales</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
