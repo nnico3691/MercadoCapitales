@@ -62,6 +62,8 @@ namespace Primary.Examples
                 var bidSize = default(decimal);
                 var offerSize = default(decimal);
 
+                var nominalVolume = default(decimal?);
+
                 foreach (var trade in marketData.Data.Bids)
                 {
                     bid = trade.Price;
@@ -74,10 +76,12 @@ namespace Primary.Examples
                     offerSize = trade.Size;
                 }
 
-                if(bid > 0 || offer > 0)
+                nominalVolume = marketData.Data.NominalVolume;
+
+                if (bid > 0 || offer > 0)
                     Console.WriteLine($"({marketData.Timestamp}) " +    
                                       $"{marketData.InstrumentId.Symbol} -> " +
-                                      $"Vol.C {bid} == Compra {bidSize} == Venta {offerSize} == Vol.V {offer}"
+                                      $"Vol.C: {bidSize} ; Compra: {bid} ; Venta: {offer} ; Vol.V: {offerSize}; Vol. Operado: nominalVolume;"
                     );
 
             } catch { }
