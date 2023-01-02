@@ -12901,11 +12901,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\proyectos\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
+      "projectUniqueName": "C:\\proyectos\\MercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
       "projectName": "GestorMercadoCapitales",
-      "projectPath": "C:\\proyectos\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
+      "projectPath": "C:\\proyectos\\MercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
       "packagesPath": "C:\\Users\\Konecta\\.nuget\\packages\\",
-      "outputPath": "C:\\proyectos\\GestorMercadoCapitales\\GestorMercadoCapitales\\obj\\",
+      "outputPath": "C:\\proyectos\\MercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

@@ -1,0 +1,53 @@
+﻿
+@{
+    ViewData["Title"] = "Menu Principal";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model List<CotizacionAccion>
+
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Ticker</th>
+            <th scope="col">Precio</th>
+            <th scope="col">Var.%</th>
+            <th scope="col">Precio A</th>
+            <th scope="col">C. Compra</th>
+            <th scope="col">P. Compra</th>
+            <th scope="col">P. Venta</th>
+            <th scope="col">C. Venta</th>
+            <th scope="col">Min-Max</th>
+            <th scope="col">Vol. Num.</th>
+            <th scope="col">Monto</th>
+            <th scope="col">Oper</th>
+            <th scope="col">Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @try
+        {
+            @foreach (var datos in Model)
+            {
+                <tr>
+                    <td scope="row">@datos.ticker</td>
+                    <td>@datos.precio</td>
+                    <td>@datos.varPorcentual %</td>
+                    <td>@datos.precioA</td>
+                    <td>@datos.cCompra</td>
+                    <td>@datos.pCompra</td>
+                    <td>@datos.pVenta</td>
+                    <td>@datos.cVenta</td>
+                    <td>@datos.min <input type="range" min="@datos.min" max="@datos.max" disabled> @datos.max</td>
+                    <td>@datos.volNom</td>
+                    <td>@datos.ajuste</td>
+                    <td>@datos.oper</td>
+                    <td>@datos.hora</td>
+                </tr>
+            }
+        }
+        catch { }
+    </tbody>
+</table>
+

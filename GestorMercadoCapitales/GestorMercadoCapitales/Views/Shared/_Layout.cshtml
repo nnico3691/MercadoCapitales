@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿
+@using Microsoft.AspNetCore.Http;
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -29,55 +31,57 @@
             <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <div class="navbar-nav">
-                    <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                                ACCIONES
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Lideres Merval</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Panel General</a>
-                            </div>
-                        </li>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    ACCIONES
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Lideres Merval</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Panel General</a>
+                                </div>
+                            </li>
 
 
-                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" asp-controller="Home" asp-action="#">OPCIONES</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                                BONOS
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Todos</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Soberanos</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Soberanos Linked</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Provinciales</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">USD Provinciales Linked</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Cupones PBI $/USD</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Fija</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Variable</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos Ajust.CER</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">$ Soberanos T.Fija/Var.</a>
-                            </div>
-                        </li>
-                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">CDEARS</a></li>
-                        <li class="dropdown">
-                            <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                                ROFEX
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Futuro</a><br>
-                                <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Index">Opciones</a>
-                            </div>
-                        </li>
-                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">FONDOS</a></li>
-                        <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Login" asp-action="Login">LOGIN</a></li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" asp-controller="Home" asp-action="#">OPCIONES</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    BONOS
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Todos</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Soberanos</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Soberanos Linked</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Provinciales</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Provinciales Linked</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Cupones PBI $/USD</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Fija</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Variable</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos Ajust.CER</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Fija/Var.</a>
+                                </div>
+                            </li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">CDEARS</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    ROFEX
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Futuro</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Opciones</a>
+                                </div>
+                            </li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Home" asp-action="#">FONDOS</a></li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:black;" class="nav-link" asp-controller="Login" asp-action="Login">LOGIN</a></li>
 
-                    </ul>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-       </div>
+
+        </div>
     </nav>
 </div>
     <partial name="_CookieConsentPartial" />

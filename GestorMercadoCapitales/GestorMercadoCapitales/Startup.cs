@@ -60,7 +60,8 @@ namespace GestorMercadoCapitales
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "{controller}/{action}/{id?}",
+                    defaults: new { controller = "Login", action = "Login" });
             });
         }
     }
