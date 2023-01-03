@@ -8,6 +8,7 @@ using GestorMercadoCapitales.Models;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using Newtonsoft.Json;
+using Microsoft.AspNetCore.Http;
 
 namespace GestorMercadoCapitales.Controllers
 {
@@ -15,13 +16,28 @@ namespace GestorMercadoCapitales.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Message"] = "Menu Principal";
-            List<CotizacionAccion> cotizacionAccion = new List<CotizacionAccion>();
 
-            cotizacionAccion = GetCotizaciones();
+            HttpContext.Session.SetString("Login", "Inicio");
+            return RedirectToAction("Login", "Login");
+        }
+
+        public IActionResult Inicio()
+        {
+            if (HttpContext.Session.GetString("Login") != "Inicio")
+            {
+                ViewData["Message"] = "Menu Principal";
+                List<CotizacionAccion> cotizacionAccion = new List<CotizacionAccion>();
+
+                cotizacionAccion = GetCotizaciones();
 
 
-            return View(cotizacionAccion);
+                return View(cotizacionAccion);
+            }
+            else
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            
         }
 
         public IActionResult About()
