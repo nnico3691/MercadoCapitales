@@ -12,3 +12,11 @@ GestorMercadoCapitales/.vs/GestorMercadoCapitales/DesignTimeBuild
 GestorMercadoCapitales/.vs/GestorMercadoCapitales/config/applicationhost.config
 GestorMercadoCapitales/GestorMercadoCapitales/obj
 GestorMercadoCapitales/.vs/GestorMercadoCapitales/v15/Server/sqlite3/db.lock
+GestorMercadoCapitales/.vs
+GestorMercadoCapitales/GestorMercadoCapitales/bin
+GestorMercadoCapitales/GestorMercadoCapitales/obj
+MercadoCapitales/.vs
+MercadoCapitales/MercadoCapitales.API.Clientes/obj
+MercadoCapitales/MercadoCapitales.API.Ordenes/obj
+MercadoCapitales/MercadoCapitales.API.Precios/obj
+MercadoCapitales/MercadoCapitales.API.Clientes/appsettings.json

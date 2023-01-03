@@ -8,6 +8,12 @@
     <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="Primary">
+      <HintPath>bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 
 
 </Project>
