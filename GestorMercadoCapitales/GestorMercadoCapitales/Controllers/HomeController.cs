@@ -37,24 +37,10 @@ namespace GestorMercadoCapitales.Controllers
             {
                 return RedirectToAction("Login", "Login");
             }
-            
+
         }
 
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Privacy()
+        public IActionResult Dashboard()
         {
             return View();
         }

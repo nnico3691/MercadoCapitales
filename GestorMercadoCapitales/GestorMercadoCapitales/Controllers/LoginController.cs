@@ -40,7 +40,7 @@ namespace GestorMercadoCapitales.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     HttpContext.Session.SetString("Login", "");
-                    return RedirectToAction("Inicio","Home");//mandamos al inicio
+                    return RedirectToAction("Dashboard","Home");
                 }
                 else
                 {

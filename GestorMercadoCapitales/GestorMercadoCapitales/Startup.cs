@@ -51,18 +51,28 @@ namespace GestorMercadoCapitales
             }
 
             app.UseSession();
-            app.UseMvcWithDefaultRoute();
+           // app.UseMvcWithDefaultRoute();
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 
-            app.UseMvc(routes =>
+            app.UseStaticFiles();
+            app.UseRouting();
+            app.UseCors();
+
+
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller}/{action}/{id?}",
-                    defaults: new { controller = "Login", action = "Login" });
+                endpoints.MapControllerRoute("default", "{controller=Login}/{action=Login}");
             });
+
+            //app.UseMvc(routes =>
+            //{
+            //    routes.MapRoute(
+            //        name: "default",
+            //        template: "{controller}/{action}/{id?}",
+            //        defaults: new { controller = "Login", action = "Login" });
+            //});
         }
     }
 }
