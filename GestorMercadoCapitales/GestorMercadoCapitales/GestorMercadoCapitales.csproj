@@ -10,7 +10,7 @@
 
   <ItemGroup>
     <Reference Include="Primary">
-      <HintPath>bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
+      <HintPath>..\..\Primary.Net-master\Primary\bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

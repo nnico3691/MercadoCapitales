@@ -1,0 +1,54 @@
+﻿@{
+    ViewData["Title"] = "Menu principal";
+}
+@model List<Byma>
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Instrumento</th>
+            <th scope="col">Vol. C</th>
+            <th scope="col">Compra</th>
+            <th scope="col">Venta</th>
+            <th scope="col">Vol. V</th>
+            <th scope="col">Ult</th>
+            <th scope="col">Var</th>
+            <th scope="col">Var%</th>
+            <th scope="col">Vol. Nominal</th>
+            <th scope="col">Vol. Operado</th>
+            <th scope="col">Cierre</th>
+            <th scope="col">Min</th>
+            <th scope="col">Max</th>
+            <th scope="col">Range</th>
+            <th scope="col">Hora</th>
+        </tr>
+    </thead>
+    <tbody>
+        @try
+        {
+            @foreach (var datos in Model)
+            {
+                <tr>
+                    <td scope="row">@datos.Instrumento</td>
+                    <td>@datos.VolC</td>
+                    <td>@datos.Compra</td>
+                    <td>@datos.Venta</td>
+                    <td>@datos.VolV</td>
+                    <td>@datos.Ult</td>
+                    <td>@datos.Var</td>
+                    <td>@datos.VarPorcentaje %</td>
+                    <td>@datos.VolNominal</td>
+                    <td>@datos.VolOpe</td>
+                    <td>@datos.Cierre</td>
+                    <td>@datos.Min</td>
+                    <td>@datos.Max</td>
+                    <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
+                    <td>@datos.hora</td>
+                </tr>
+            }
+        }
+        catch { }
+
+    </tbody>
+</table>
+

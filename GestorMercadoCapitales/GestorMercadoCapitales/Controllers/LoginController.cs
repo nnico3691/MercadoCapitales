@@ -39,7 +39,7 @@ namespace GestorMercadoCapitales.Controllers
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    HttpContext.Session.SetString("Login", "");
+                    HttpContext.Session.SetString("Login", "Logueado");
                     return RedirectToAction("Dashboard","Home");
                 }
                 else

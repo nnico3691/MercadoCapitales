@@ -1,0 +1,90 @@
+﻿@{
+    ViewData["Title"] = "Futuros Financieros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model List<MtbaRfx>
+
+ <div id="TablaPrincipal">
+    <table class="table">
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">Instrumento</th>
+                <th scope="col">Vol. C</th>
+                <th scope="col">Compra</th>
+                <th scope="col">Venta</th>
+                <th scope="col">Vol. V</th>
+                <th scope="col">Ult</th>
+                <th scope="col">Var</th>
+                <th scope="col">Var%</th>
+                <th scope="col">Vol. Operado</th>
+                <th scope="col">Ajuste</th>
+                <th scope="col">Min</th>
+                <th scope="col">Max</th>
+                <th scope="col">Range</th>
+                <th scope="col">Int. Abierto</th>
+                <th scope="col">Hora</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @try
+            {
+                @foreach (var datos in Model)
+                {
+                    <tr>
+                        <td>@datos.Instrumento</td>
+                        <td>@datos.VolC</td>
+                        <td style="background-color:@datos.ColorCompra;">@datos.Compra</td>
+                        <td style="background-color:@datos.ColorVenta;">@datos.Venta</td>
+                        <td>@datos.VolV</td>
+                        <td>@datos.Ult</td>
+                        <td>@datos.Var</td>
+                        <td>@datos.VarPorcentaje %</td>
+                        <td>@datos.VolOpe</td>
+                        <td>@datos.Ajuste</td>
+                        <td>@datos.Min</td>
+                        <td>@datos.Max</td>
+                        <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
+                        <td>@datos.intAbierto</td>
+                        <td>@datos.hora</td>
+                    </tr>
+                }
+            }
+            catch { }
+
+
+        </tbody>
+    </table>
+
+
+
+ </div>
+
+<script>
+    setInterval('contador()', 1000);
+
+    //$(document).ready(function () {
+    //    var refreshId = setInterval(function () {
+    //        $('#TablaPrincipal').load('contador()');//actualizas el div automaticamente
+    //    }, 1000);
+    //});
+
+
+    function contador() {
+
+        jQuery.ajax({
+            url: '@Url.Action("Futuros_Financieros", "MtbaRfx")',
+            type: "POST",
+            dataType: "json",
+            data: {},
+            success: function (result) {
+               // window.location.reload()
+              
+            }
+        });
+        $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
+    }
+
+
+</script>
