@@ -9,5 +9,9 @@ namespace MercadoCapitales.API.Clientes.Persistencia
         public ContextCliente(DbContextOptions<ContextCliente> options) : base(options) { }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<Cliente> Cliente { get; set; }
+
+        public virtual DbSet<ClienteEncuestas> ClienteEncuestas { get; set; }
+        public virtual DbSet<EncuestaPregunta> EncuestaPregunta { get; set; }
+        public virtual DbSet<EncuestaRespuesta> EncuestaRespuesta { get; set; }
     }
 }

@@ -35,5 +35,19 @@ namespace MercadoCapitales.API.Clientes.Controllers
         {
             return await _mediator.Send(data);
         }
+
+        [HttpPost]
+        [Route("CrearEncuestaPregunta")]
+        public async Task<ActionResult<Unit>> CrearEncuestaPregunta(CrearEncuestaPregunta.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
+
+        [HttpPost]
+        [Route("CrearClienteEncuestas")]
+        public async Task<ActionResult<Unit>> CrearClienteEncuestas(CrearClienteEncuestas.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
     }
 }
