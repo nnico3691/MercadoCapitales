@@ -1,11 +1,19 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "kWCJvbdECvTlNIOR6OcaeFTQiF2VYjrwm+RQ6UrO2DwU5zQW8gi7RExTHmV5Uoy5M0C3Isoe6r4vJYVdRtUF8w==",
   "success": true,
   "projectFilePath": "C:\\proyectos\\MercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Konecta\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512",
     "C:\\Users\\Konecta\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.32\\microsoft.netcore.app.host.win-x64.3.1.32.nupkg.sha512"
+=======
+  "dgSpecHash": "oSb5EEMek8mh2YkxFeU8V8uKoluOR4dbrQWNLBFtoorRU1tRZiq1L0W2nw4m8OLk5NSySmhGvRFO4sBfkGPchw==",
+  "success": true,
+  "projectFilePath": "E:\\Proyectos\\.NET\\MercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales\\GestorMercadoCapitales.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Acer\\.nuget\\packages\\newtonsoft.json\\13.0.2\\newtonsoft.json.13.0.2.nupkg.sha512"
+>>>>>>> 6423495ae6c08d305c69a8af76e0d2fe7c30e0f2
   ],
   "logs": []
 }
