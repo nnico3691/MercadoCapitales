@@ -5,25 +5,47 @@ using System.Linq;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using Microsoft.Extensions.Configuration;
 
 namespace GestorMercadoCapitales.Models
 {
     public class Socket
     {
+
+        private IConfiguration _configuration;
+        public Socket(IConfiguration iconfig)
+        {
+            _configuration = iconfig;
+        }
+
         public async void RunSocket(object state)
         {
-            Console.WriteLine("Connecting to ReMarkets...");
+            HorarioMercado hora = new HorarioMercado();
 
-            var api = new Api(Api.DemoEndpoint);
-            await api.Login(Api.DemoUsername, Api.DemoPassword);
-
-            // Get a all dollar futures
-            Console.WriteLine("Getting available instruments...");
-
-            var allIInstruments = await api.GetAllInstruments();
-
-            var symbols = new[]
+            try
             {
+                hora.Horario_Mercado = int.Parse(_configuration.GetValue<string>("HorarioMercado:hora"));
+            }
+            catch
+            { hora.Horario_Mercado = 0; }
+           
+
+            int hora_actual = DateTime.Now.Hour;
+
+            if (hora_actual >= hora.Horario_Mercado)
+            {
+                Console.WriteLine("Connecting to ReMarkets...");
+
+                var api = new Api(Api.DemoEndpoint);
+                await api.Login(Api.DemoUsername, Api.DemoPassword);
+
+                // Get a all dollar futures
+                Console.WriteLine("Getting available instruments...");
+
+                var allIInstruments = await api.GetAllInstruments();
+
+                var symbols = new[]
+                {
                 "DLR/ENE23",
                 "ORO/ENE23",
                 "ORO/MAR23",
@@ -37,22 +59,23 @@ namespace GestorMercadoCapitales.Models
 
 
             };
-            var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
+                var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
 
-            // Subscribe to bids and offers
-            var entries = new[] { Entry.Offers, Entry.Close, Entry.EffectiveVolume, Entry.NominalVolume, Entry.Bids };
+                // Subscribe to bids and offers
+                var entries = new[] { Entry.Offers, Entry.Close, Entry.EffectiveVolume, Entry.NominalVolume, Entry.Bids };
 
-            Console.WriteLine("Connecting to market data...");
+                Console.WriteLine("Connecting to market data...");
 
-            var socket = api.CreateMarketDataSocket(dollarFuture, entries, 1, 2);
-            socket.OnData = OnMarketData;
+                var socket = api.CreateMarketDataSocket(dollarFuture, entries, 1, 2);
+                socket.OnData = OnMarketData;
 
-            Console.WriteLine("Start Socket...");
+                Console.WriteLine("Start Socket...");
 
-            var socketTask = await socket.Start();
+                var socketTask = await socket.Start();
 
-            socketTask.Wait();
-            await socketTask;
+                socketTask.Wait();
+                await socketTask;
+            }
 
 
         }

@@ -12,18 +12,20 @@ using Microsoft.AspNetCore.Http;
 using Primary.Data;
 using Primary;
 using System.Threading;
+using Microsoft.Extensions.Configuration;
 
 namespace GestorMercadoCapitales.Controllers
 {
     public class HomeController : Controller
     {
-        
 
+        private IConfiguration _configuration;
         public IActionResult Index()
         {
-
-            HttpContext.Session.SetString("Login", "Inicio");
-            return RedirectToAction("Login", "Login");
+            GetCotizaciones();
+            return View();
+            //HttpContext.Session.SetString("Login", "Inicio");
+            //return RedirectToAction("Login", "Login");
         }
 
         public IActionResult Inicio()
@@ -58,7 +60,7 @@ namespace GestorMercadoCapitales.Controllers
 
         private List<CotizacionAccion> GetCotizaciones()
         {
-            Socket Socket = new Socket();
+            Socket Socket = new Socket(_configuration);
             try
             {
                 ThreadPool.QueueUserWorkItem(Socket.RunSocket, new object[] { });
