@@ -45,6 +45,66 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("Cliente");
                 });
 
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.ClienteEncuestas", b =>
+                {
+                    b.Property<Guid?>("ClienteEncuestasId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ClieKey")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("EncuestaRespuesta")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("ClienteEncuestasId");
+
+                    b.ToTable("ClienteEncuestas");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", b =>
+                {
+                    b.Property<Guid?>("EncuestaPreguntaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Pregunta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Titulo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EncuestaPreguntaId");
+
+                    b.ToTable("EncuestaPregunta");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
+                {
+                    b.Property<Guid?>("EncuestaRespuestaId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid?>("EncuestaPregunta")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("NameInput")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Puntos")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Respuesta")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TipoInput")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("EncuestaRespuestaId");
+
+                    b.ToTable("EncuestaRespuesta");
+                });
+
             modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Login", b =>
                 {
                     b.Property<Guid?>("LoginId")
