@@ -49,7 +49,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                             Puntos = subob.Puntos,
                             NameInput = subob.NameInput,
                             TipoInput = subob.TipoInput ,
-                            EncuestaPregunta = ep.EncuestaPreguntaId
+                            EncuestaPreguntaId = ep.EncuestaPreguntaId
                         };
 
                         _contexto.EncuestaRespuesta.Add(er);

@@ -85,7 +85,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("EncuestaPregunta")
+                    b.Property<Guid?>("EncuestaPreguntaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NameInput")
@@ -101,6 +101,8 @@ namespace MercadoCapitales.API.Clientes.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EncuestaRespuestaId");
+
+                    b.HasIndex("EncuestaPreguntaId");
 
                     b.ToTable("EncuestaRespuesta");
                 });
@@ -123,6 +125,13 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.HasKey("LoginId");
 
                     b.ToTable("Login");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", null)
+                        .WithMany("encuestaRespuestas")
+                        .HasForeignKey("EncuestaPreguntaId");
                 });
 #pragma warning restore 612, 618
         }

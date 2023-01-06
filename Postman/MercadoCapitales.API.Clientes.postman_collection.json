@@ -116,6 +116,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetEncuestaPreguntasRespuestas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/GetEncuestaPreguntasRespuestas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"GetEncuestaPreguntasRespuestas"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

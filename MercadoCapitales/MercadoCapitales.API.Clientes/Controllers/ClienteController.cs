@@ -49,5 +49,9 @@ namespace MercadoCapitales.API.Clientes.Controllers
         {
             return await _mediator.Send(data);
         }
+
+        [HttpGet]
+        [Route("GetEncuestaPreguntasRespuestas")]
+        public async Task<ActionResult<List<EncuestaPreguntaDto>>> GetEncuestaPreguntasRespuestas() => await _mediator.Send(new ConsultaEncuestaPreguntasRespuestas.ListaEncuestaPreguntasRespuestas());
     }
 }
