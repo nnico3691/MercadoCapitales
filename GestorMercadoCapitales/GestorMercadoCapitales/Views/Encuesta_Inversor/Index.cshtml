@@ -1,0 +1,206 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .perfil-inversor-pregunta {
+        font-family: Arial !important;
+        font-weight: 700 !important;
+        font-size: 24px !important;
+        color: #231D19 !important;
+    }
+
+    .perfil-inversor-opcion {
+        font-family: Arial !important;
+        font-weight: 400 !important;
+        font-size: 16px !important;
+        color: #231D19 !important;
+    }
+
+</style>
+
+<div style="padding-top: 24px; padding-bottom: 32px;">
+    <h1>perfil del inversor</h1>
+</div>
+
+@using (Html.BeginForm())
+{
+    <div id="part1">
+        <span class="perfil-inversor-opcion">parte 1 de 3</span>
+
+        <div style="padding-top: 15px; padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[0].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+            @{
+                int valor = 0;
+            }
+            
+        </div>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[1].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+
+           
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row" style="padding-bottom: 48px;">
+            <div class="col-sm-5">
+                @Html.ActionLink("volver", "PerfilInicio", "ConfigAcceso", new { }, new { @class = "btn btn-default" })
+            </div>
+            <div class="col-sm-2">
+                <input type="button" value="confirmar respuesta" class="btn btn-success" onclick="ShowPart2();" />
+            </div>
+        </div>
+    </div>
+
+    <div id="part2">
+        <span class="perfil-inversor-opcion">parte 2 de 3</span>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[2].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+
+           
+        </div>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[3].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+           
+        </div>
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row" style="padding-bottom: 48px;">
+            <div class="col-sm-5">
+                @Html.ActionLink("volver", "PerfilInicio", "ConfigAcceso", new { }, new { @class = "btn btn-default" })
+            </div>
+            <div class="col-sm-2">
+                <input type="button" value="confirmar respuesta" class="btn btn-success" onclick="ShowPart3();" />
+            </div>
+        </div>
+    </div>
+
+
+    <div id="part3">
+        <span class="perfil-inversor-opcion">parte 3 de 3</span>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[4].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+           
+        </div>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[5].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+           
+        </div>
+
+        <div style="padding-bottom: 32px;">
+            <span class="perfil-inversor-pregunta">@EncuestaInversorPreg.ListaEncuesta.ToArray()[6].preguntas</span>
+        </div>
+        <div style="padding-bottom: 56px; padding-left: 30px;">
+           
+        </div>
+
+
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <div class="row" style="padding-bottom: 48px;">
+            <div class="col-sm-5">
+                @Html.ActionLink("volver", "PerfilInicio", "ConfigAcceso", new { }, new { @class = "btn btn-default" })
+            </div>
+            <div class="col-sm-2">
+                <input type="submit" value="confirmar respuesta" class="btn btn-success" />
+            </div>
+        </div>
+    </div>
+}
+
+
+
+
+<script type="text/javascript">
+
+
+    function ShowPart1() {
+
+        $("#part1").show();
+        $("#part2").hide();
+        $("#part3").hide();
+
+    }
+
+    function ShowPart2() {
+
+        var isChecked0 = document.getElementById('Valor_0').checked;
+        var isChecked1 = document.getElementById('Valor_1').checked;
+        var isChecked2 = document.getElementById('Valor_2').checked;
+        var isChecked4 = document.getElementById('Valor_4').checked;
+        var isChecked5 = document.getElementById('Valor_5').checked;
+        var isChecked6 = document.getElementById('Valor_6').checked;
+
+        if (!isChecked0 && !isChecked1 && !isChecked2 || !isChecked4 && !isChecked5 && !isChecked6) {
+            alert('Debe seleccionar al menos una opción');
+        }
+        else {
+            $("#part1").hide();
+            $("#part2").show();
+            $("#part3").hide();
+        }
+    }
+
+    function ShowPart3() {
+
+        var isChecked0 = document.getElementById('Valor_7').checked;
+        var isChecked1 = document.getElementById('Valor_8').checked;
+        var isChecked2 = document.getElementById('Valor_9').checked;
+        var isChecked4 = document.getElementById('Valor_10').checked;
+        var isChecked5 = document.getElementById('Valor_11').checked;
+        var isChecked6 = document.getElementById('Valor_12').checked;
+
+        if (!isChecked0 && !isChecked1 && !isChecked2 || !isChecked4 && !isChecked5 && !isChecked6) {
+            alert('Debe seleccionar al menos una opción');
+        }
+        else {
+            $("#part1").hide();
+            $("#part2").hide();
+            $("#part3").show();
+        }
+    }
+
+    $(document).ready(function () {
+        ShowPart1();
+    });
+
+    $(document).ready(function () {
+        $('input[type=checkbox]').prettyCheckboxes({
+            checkboxWidth: 17,
+            checkboxHeight: 17,
+            className: 'prettyCheckbox',
+            display: 'list'
+        });
+    });
+
+
+</script>
