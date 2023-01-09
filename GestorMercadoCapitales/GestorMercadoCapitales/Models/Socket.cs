@@ -24,7 +24,8 @@ namespace GestorMercadoCapitales.Models
 
             try
             {
-                hora.Horario_Mercado = int.Parse(_configuration.GetValue<string>("HorarioMercado:hora"));
+                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
+
             }
             catch
             { hora.Horario_Mercado = 0; }

@@ -20,12 +20,16 @@ namespace GestorMercadoCapitales.Controllers
     {
 
         private IConfiguration _configuration;
+
+        public HomeController(IConfiguration iconfig)
+        {
+            _configuration = iconfig;
+        }
+
         public IActionResult Index()
         {
-            GetCotizaciones();
-            return View();
-            //HttpContext.Session.SetString("Login", "Inicio");
-            //return RedirectToAction("Login", "Login");
+            HttpContext.Session.SetString("Login", "Inicio");
+            return RedirectToAction("Login", "Login");
         }
 
         public IActionResult Inicio()
