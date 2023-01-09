@@ -137,6 +137,36 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "CrearClientePerfilInversor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Volumen_ingre\":\"71dbc765-991e-4323-8011-08daf23f86c0\",\r\n    \"Obj_renta\":\"3f532b99-a77a-4342-8014-08daf23f86c0\",\r\n    \"tol_riesgo\":\"0def9095-6b49-462b-8017-08daf23f86c0\",\r\n    \"hor_inv\":\"eb81050b-8335-496f-801a-08daf23f86c0\",\r\n    \"entend_merc\":\"0ca929c3-67a0-4b20-801d-08daf23f86c0\",\r\n    \"exp_inversion_1\":\"cd78ff81-252e-4965-8020-08daf23f86c0\",\r\n    \"exp_inversion_2\":\"32232bc1-5cb4-44dc-8021-08daf23f86c0\",\r\n    \"exp_inversion_3\":null,\r\n    \"exp_inversion_4\":null,\r\n    \"exp_inversion_5\":null,\r\n    \"exp_inversion_6\":null,\r\n    \"ClienteId\":\"81306C64-74FD-46D9-4F82-08DAF23F840F\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearClientePerfilInversor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearClientePerfilInversor"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
