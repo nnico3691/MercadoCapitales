@@ -5,19 +5,20 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using System.Linq;
+using MercadoCapitales.API.Clientes.Dto;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {
     public class LoginCliente
     {
-        public class Ejecuta : IRequest
+        public class Ejecuta : IRequest<Login>
         {
             public string Usuario { get; set; }
             public string Clave { get; set; }
 
         }
 
-        public class Manejador : IRequestHandler<Ejecuta>
+        public class Manejador : IRequestHandler<Ejecuta,Login>
         {
             private readonly ContextCliente _contexto;
 
@@ -26,14 +27,14 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                 _contexto = contexto;
             }
 
-            public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
+            public async Task<Login> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 try
                 {
                     var usuario = _contexto.Login.Where(x => request.Usuario == x.Usuario && request.Clave == x.Clave).FirstOrDefault();
 
                     if (usuario != null)
-                        return Unit.Value;
+                        return usuario;
 
                 }
                 catch(Exception ex)
