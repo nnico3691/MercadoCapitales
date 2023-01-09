@@ -1,4 +1,5 @@
-﻿@{
+﻿@using Microsoft.AspNetCore.Http;
+@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -26,6 +27,24 @@
     <h1>perfil del inversor</h1>
 </div>
 
+@try
+{
+    @foreach (var mens in Model)
+    {
+        if (mens.MensajeRetorno.cod_mensaje == 100)
+        {
+            <div class="alert alert-danger">
+                <strong>Atención!</strong>  @mens.MensajeRetorno.mensaje
+            </div>
+        }    
+    
+    }
+    
+}
+catch { }
+
+
+
 @using (Html.BeginForm("Resultado","Encuesta_Inversor"))
 {
   
@@ -33,20 +52,24 @@
             
         @foreach (var pregunta in Model)
         {
-            
-              <div style="padding-top: 15px; padding-bottom: 32px;">
-                <span class="perfil-inversor-pregunta">@pregunta.pregunta</span>
+            if (pregunta.encuestaPreguntaID != null)
+            {
+              <div style="padding-top: 15px; padding-bottom: 32px;color:white !important;">
+                <b> <span style=" color:white !important;font-family:Calibri;">@pregunta.pregunta</span></b>
               </div>
-                 <div style="padding-bottom: 56px; padding-left: 30px;">
+              <div style="padding-bottom: 56px; padding-left: 30px;">
                        @foreach(var respuestas in @pregunta.encuestaRespuestas)
                        {
                           <div style="padding-bottom: 15px;">
                              <input type="@respuestas.TipoInput" name="@respuestas.NameInput" id="Valor_@valor" value="@respuestas.encuestaRespuestaId" style="margin-right: 16px;">
-                             <span class="perfil-inversor-opcion">@respuestas.Respuesta</span>
+                            <span style=" color:white !important;font-family:Calibri;">@respuestas.Respuesta</span>
                              <br style="padding-bottom: 16px;" />
                           </div>
                        }      
-                 </div>
+              </div>    
+
+            }
+       
         }
 
         <br />

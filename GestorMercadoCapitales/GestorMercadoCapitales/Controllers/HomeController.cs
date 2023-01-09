@@ -34,8 +34,9 @@ namespace GestorMercadoCapitales.Controllers
 
         public IActionResult Inicio()
         {
-            if (HttpContext.Session.GetString("Login") != "Inicio")
+            if (HttpContext.Session.GetString("Login") == "Logueado")
             {
+
                 ViewData["Message"] = "Menu Principal";
                 List<CotizacionAccion> cotizacionAccion = new List<CotizacionAccion>();
 

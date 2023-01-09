@@ -22,6 +22,12 @@ namespace GestorMercadoCapitales.Models
                 retorno.mensaje = "Usuario y/o clave incorrectos";
             }
 
+            if (tipo == "ErrEncuesta")
+            {
+                retorno.cod_mensaje = 100;
+                retorno.mensaje = "Ocurrio un error al cargar la encuesta";
+            }
+
             return retorno;
         }
 

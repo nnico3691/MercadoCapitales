@@ -19,12 +19,12 @@ namespace GestorMercadoCapitales.Controllers
 
         public ActionResult Futuros_Financieros()
         {
-            if (HttpContext.Session.GetString("Login") == "Inicio")
+            if (HttpContext.Session.GetString("Login") != "Logueado")
             {
                 return RedirectToAction("Login", "Login");
             }
 
-            if (HttpContext.Session.GetString("Socket") != "Iniciado")
+            if (HttpContext.Session.GetString("Login") == "Logueado")
             {
                 try
                 {
