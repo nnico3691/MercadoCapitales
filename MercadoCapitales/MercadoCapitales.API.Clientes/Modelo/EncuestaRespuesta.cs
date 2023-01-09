@@ -11,6 +11,6 @@ namespace MercadoCapitales.API.Clientes.Modelo
         public int Puntos { get; set; }
         public string NameInput { get; set; }
         public string TipoInput { get; set; }
-        public Guid? EncuestaPregunta { get; set; }
+        public Guid? EncuestaPreguntaId { get; set; }
     }
 }

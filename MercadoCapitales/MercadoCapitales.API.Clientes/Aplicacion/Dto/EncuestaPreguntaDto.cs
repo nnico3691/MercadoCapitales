@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MercadoCapitales.API.Clientes.Modelo;
 using System;
 using System.Collections.Generic;
 
-namespace MercadoCapitales.API.Clientes.Modelo
+namespace MercadoCapitales.API.Clientes.Dto
 {
-    public class EncuestaPregunta
+    public class EncuestaPreguntaDto
     {
-        [Key]
         public Guid? EncuestaPreguntaId { get; set; }
         public string Titulo { get; set; }
         public string Pregunta { get; set; }

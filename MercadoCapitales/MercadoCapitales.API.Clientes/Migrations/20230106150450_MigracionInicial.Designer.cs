@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoCapitales.API.Clientes.Migrations
 {
     [DbContext(typeof(ContextCliente))]
-    [Migration("20230105203518_MigracionInicial")]
+    [Migration("20230106150450_MigracionInicial")]
     partial class MigracionInicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -87,7 +87,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid?>("EncuestaPregunta")
+                    b.Property<Guid?>("EncuestaPreguntaId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("NameInput")
@@ -103,6 +103,8 @@ namespace MercadoCapitales.API.Clientes.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("EncuestaRespuestaId");
+
+                    b.HasIndex("EncuestaPreguntaId");
 
                     b.ToTable("EncuestaRespuesta");
                 });
@@ -125,6 +127,13 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.HasKey("LoginId");
 
                     b.ToTable("Login");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", null)
+                        .WithMany("encuestaRespuestas")
+                        .HasForeignKey("EncuestaPreguntaId");
                 });
 #pragma warning restore 612, 618
         }

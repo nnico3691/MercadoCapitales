@@ -50,22 +50,6 @@ namespace MercadoCapitales.API.Clientes.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "EncuestaRespuesta",
-                columns: table => new
-                {
-                    EncuestaRespuestaId = table.Column<Guid>(nullable: false),
-                    Respuesta = table.Column<string>(nullable: true),
-                    Puntos = table.Column<int>(nullable: false),
-                    NameInput = table.Column<string>(nullable: true),
-                    TipoInput = table.Column<string>(nullable: true),
-                    EncuestaPregunta = table.Column<Guid>(nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_EncuestaRespuesta", x => x.EncuestaRespuestaId);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Login",
                 columns: table => new
                 {
@@ -78,6 +62,33 @@ namespace MercadoCapitales.API.Clientes.Migrations
                 {
                     table.PrimaryKey("PK_Login", x => x.LoginId);
                 });
+
+            migrationBuilder.CreateTable(
+                name: "EncuestaRespuesta",
+                columns: table => new
+                {
+                    EncuestaRespuestaId = table.Column<Guid>(nullable: false),
+                    Respuesta = table.Column<string>(nullable: true),
+                    Puntos = table.Column<int>(nullable: false),
+                    NameInput = table.Column<string>(nullable: true),
+                    TipoInput = table.Column<string>(nullable: true),
+                    EncuestaPreguntaId = table.Column<Guid>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_EncuestaRespuesta", x => x.EncuestaRespuestaId);
+                    table.ForeignKey(
+                        name: "FK_EncuestaRespuesta_EncuestaPregunta_EncuestaPreguntaId",
+                        column: x => x.EncuestaPreguntaId,
+                        principalTable: "EncuestaPregunta",
+                        principalColumn: "EncuestaPreguntaId",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_EncuestaRespuesta_EncuestaPreguntaId",
+                table: "EncuestaRespuesta",
+                column: "EncuestaPreguntaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -89,13 +100,13 @@ namespace MercadoCapitales.API.Clientes.Migrations
                 name: "ClienteEncuestas");
 
             migrationBuilder.DropTable(
-                name: "EncuestaPregunta");
-
-            migrationBuilder.DropTable(
                 name: "EncuestaRespuesta");
 
             migrationBuilder.DropTable(
                 name: "Login");
+
+            migrationBuilder.DropTable(
+                name: "EncuestaPregunta");
         }
     }
 }
