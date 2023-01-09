@@ -32,6 +32,7 @@ namespace GestorMercadoCapitales.Controllers
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
             var data = new List<CotizacionAccion>();
+            var responseDataLogin = new LoginResponse();
 
             using (HttpClient client = new HttpClient(clientHandler))
             {
@@ -40,6 +41,12 @@ namespace GestorMercadoCapitales.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     HttpContext.Session.SetString("Login", "Logueado");
+    
+                    var responseText = response.Content.ReadAsStringAsync().Result;
+                    responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
+
+                    HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
+
                     return RedirectToAction("Dashboard","Home");
                 }
                 else

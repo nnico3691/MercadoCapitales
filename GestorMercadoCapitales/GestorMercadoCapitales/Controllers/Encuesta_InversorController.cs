@@ -29,7 +29,7 @@ namespace GestorMercadoCapitales.Controllers
 
         public ActionResult Resultado(RequetsParamEncuesta req)
         {
-            req.ClienteId = "81306C64-74FD-46D9-4F82-08DAF23F840F";
+            //req.ClienteId = "81306C64-74FD-46D9-4F82-08DAF23F840F";
             var data = JsonConvert.SerializeObject(req);
             return View();
         }
