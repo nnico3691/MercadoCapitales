@@ -54,5 +54,13 @@ namespace MercadoCapitales.API.Clientes.Controllers
         [HttpGet]
         [Route("GetEncuestaPreguntasRespuestas")]
         public async Task<ActionResult<List<EncuestaPreguntaDto>>> GetEncuestaPreguntasRespuestas() => await _mediator.Send(new ConsultaEncuestaPreguntasRespuestas.ListaEncuestaPreguntasRespuestas());
+
+        [HttpPost]
+        [Route("CrearClientePerfilInversor")]
+        public async Task<ActionResult<Unit>> CrearClientePerfilInversor(CrearClientePerfilInversor.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
+
     }
 }
