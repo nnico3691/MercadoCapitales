@@ -12,10 +12,17 @@ namespace GestorMercadoCapitales.Controllers
     public class MtbaRfxController : Controller
     {
         private IConfiguration _configuration;
+        public MtbaRfxController(IConfiguration iconfig)
+        {
+            _configuration = iconfig;
+        }
+
         public ActionResult Futuros_Financieros()
         {
-
-           
+            if (HttpContext.Session.GetString("Login") == "Inicio")
+            {
+                return RedirectToAction("Login", "Login");
+            }
 
             if (HttpContext.Session.GetString("Socket") != "Iniciado")
             {
@@ -28,6 +35,7 @@ namespace GestorMercadoCapitales.Controllers
                 }
                 catch { }
             }
+
 
             return View(RofexList.rfxlist);
         }
