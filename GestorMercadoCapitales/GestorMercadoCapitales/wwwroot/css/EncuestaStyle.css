@@ -1,0 +1,25 @@
+﻿.Encuesta-pregunta {
+    color: white !important;
+    font-family: Calibri;
+    font-size:15pt;
+}
+
+.Encuesta-titulo {
+    color: white !important;
+    font-family: Calibri;
+    padding-top: 24px;
+    padding-bottom: 32px;
+}
+
+.Encuesta-respuesta {
+    color: white !important;
+    font-family: Calibri;
+    font-size: 13pt;
+}
+
+.Encuesta-btn-volver {
+}
+
+.Encuesta-btn-confirmar {
+
+}
