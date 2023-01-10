@@ -150,17 +150,25 @@ namespace GestorMercadoCapitales.Models
                             ColorVenta = "#C70039";
                         }
 
-                        RofexList.rfxlist.Remove(list);
+                        //RofexList.rfxlist.Remove(list);
+                        foreach (var item in RofexList.rfxlist)
+                        {
+                            if (item.Instrumento == marketData.InstrumentId.Symbol)
+                            {
+                                item.Instrumento = marketData.InstrumentId.Symbol;
+                                item.VolC = bidSize;
+                                item.Compra = bid;
+                                item.Venta = offer;
+                                item.VolV = offerSize;
+                                item.VolOpe = nominalVolume;
+                                item.ColorCompra = ColorCompra;
+                                item.ColorVenta = ColorVenta;
+                                break;
+                            }
 
-                        rfx.Instrumento = marketData.InstrumentId.Symbol;
-                        rfx.VolC = bidSize;
-                        rfx.Compra = bid;
-                        rfx.Venta = offer;
-                        rfx.VolV = offerSize;
-                        rfx.VolOpe = nominalVolume;
-                        rfx.ColorCompra = ColorCompra;
-                        rfx.ColorVenta = ColorVenta;
-                        RofexList.rfxlist.Add(rfx);
+                        }
+                      
+                       // RofexList.rfxlist.Add(rfx);
 
                     }
 
