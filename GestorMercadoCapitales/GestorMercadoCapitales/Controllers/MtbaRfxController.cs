@@ -24,7 +24,7 @@ namespace GestorMercadoCapitales.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (HttpContext.Session.GetString("Login") == "Logueado")
+            if (HttpContext.Session.GetString("Socket") != "Iniciado")
             {
                 try
                 {
