@@ -21,7 +21,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Controllers\" />
+	  <Reference Include="Newtonsoft.Json">
+	    <HintPath>bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll</HintPath>
+	  </Reference>
+	  <Reference Include="Primary">
+	    <HintPath>bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
+	  </Reference>
 	</ItemGroup>
 
 </Project>

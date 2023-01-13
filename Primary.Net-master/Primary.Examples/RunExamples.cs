@@ -8,9 +8,9 @@ namespace Primary.Examples
         private static async Task Main()
         {
             Console.WriteLine("Conectando Sistema Mercado Capitales...");
-            //await GetInstrumentsAndDataExample.Run();
+            await GetInstrumentsAndDataExample.Run();
             //await OrderExample.Run();
-            await WebSocketExample.Run();
+            //await WebSocketExample.Run();
         }
     }
 }

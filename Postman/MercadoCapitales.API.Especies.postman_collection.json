@@ -1,0 +1,31 @@
+{
+	"info": {
+		"_postman_id": "df7c424a-b97c-42ca-a5cf-8d37cb370dd1",
+		"name": "MercadoCapitales.API.Especies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "CrearAllInstruments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearAllInstruments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearAllInstruments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

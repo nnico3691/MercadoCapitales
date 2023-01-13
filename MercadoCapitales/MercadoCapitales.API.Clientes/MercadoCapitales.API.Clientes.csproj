@@ -24,6 +24,12 @@
 	  <Folder Include="Migrations\" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Reference Include="Primary">
+	    <HintPath>..\MercadoCapitales.API.Especies\bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
+	  </Reference>
+	</ItemGroup>
+
 	<ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 
 </Project>
