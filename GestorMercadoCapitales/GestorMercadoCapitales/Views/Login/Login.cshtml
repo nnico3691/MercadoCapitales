@@ -6,14 +6,16 @@
 
 @model MensajeRetorno
 
+
 <section class="vh-100">
+
     <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
             <div class="col-md-9 col-lg-6 col-xl-5">
                 @*<img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/draw2.webp"
         class="img-fluid" alt="Sample image">*@
 
-                <img src="~/images/613699321_209261023_1024x576.webp" class="img-fluid" alt="Sample image" />
+                <img src="~/images/613699321_209261023_1024x576.webp" class="img-fluid" alt="" style="box-shadow: 4px 5px 2px black;" />
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
@@ -35,14 +37,14 @@
                     <!-- Email input -->
                     <div class="form-outline mb-4">
                         <input type="text" id="form3Example3" class="form-control form-control-lg"
-                               placeholder="Ingresa tu usuario aquí" name="usuario" required />
+                               placeholder="Ingresa tu usuario aquí" name="usuario" required autocomplete="off" />
                         <label class="form-label" for="form3Example3">Usuario o DNI</label>
                     </div>
 
                     <!-- Password input -->
                     <div class="form-outline mb-3">
                         <input type="password" id="form3Example4" class="form-control form-control-lg"
-                               placeholder="Ingresa tu clave aquí" name="clave" required />
+                               placeholder="Ingresa tu clave aquí" name="clave" required autocomplete="off" />
                         <label class="form-label" for="form3Example4">Clave</label>
                     </div>
 
