@@ -24,7 +24,8 @@
     <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
     <link href="~/css/EncuestaStyle.css" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-
+    <link href="~/css/registrostyle.css" rel="stylesheet" />
+    <link href="~/css/loaderstyle.css" rel="stylesheet" />
     <style>
        
         .nav > li > a:hover {
@@ -35,19 +36,13 @@
             margin-left: auto;
         }
 
-        .loader {
-            position: fixed;
-            left: 0px;
-            top: 0px;
-            width: 100%;
-            height: 100%;
-            z-index: 9999;
-            background: url('../images/loader3.gif') 50% 50% no-repeat rgb(249,249,249);
-            /*background: url('images/pageLoader.gif');*/
-            opacity: .8;
+        .nav-link.active {
+            color: blue;
         }
 
+
     </style>
+
 
 </head>
 <body style="background:linear-gradient(#3498DB 10%, 30%, #1B4F72 90%);color:white">
@@ -149,9 +144,29 @@
 
 
     <script type="text/javascript">
+       
+        
         $(window).load(function () {
             $(".loader").fadeOut("slow");
         });
+
+
+        const links = document.querySelectorAll('.nav-link');
+
+        if (links.length) {
+            links.forEach((link) => {
+                link.addEventListener('click', (e) => {
+                    links.forEach((link) => {
+                        link.classList.remove('active');
+                    });
+                    e.preventDefault();
+                    link.classList.add('active');
+                });
+            });
+        }
+       
+
+
     </script>
 
 

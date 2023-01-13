@@ -8,12 +8,22 @@ using System.Threading.Tasks;
 using GestorMercadoCapitales.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace GestorMercadoCapitales.Controllers
 {
     public class LoginController : Controller
     {
+
+        private IConfiguration _configuration;
+
+        public LoginController(IConfiguration iconfig)
+        {
+            _configuration = iconfig;
+        }
+
+
         // GET: Index
         public ActionResult Index(string usuario, string clave)
         {
@@ -23,7 +33,7 @@ namespace GestorMercadoCapitales.Controllers
             datoslogin.Usuario = usuario.Trim();
             datoslogin.Clave = clave;
 
-            string url = "http://localhost:51736/api/Cliente/Login";
+            string url = _configuration.GetSection("API:Login").Value; //"http://localhost:51736/api/Cliente/Login";
 
             var json = JsonConvert.SerializeObject(datoslogin);
 
@@ -89,13 +99,14 @@ namespace GestorMercadoCapitales.Controllers
             DatosCliente datoCliente = new DatosCliente();
 
             datoCliente.TipoDNI = "DNI";
+            datoCliente.DNI = DNI.Trim();
             datoCliente.Nombre = Nombre.Trim();
             datoCliente.Apellido = Apellido.Trim();
             datoCliente.Usuario = DNI.Trim();
             datoCliente.Telefono = Telefono.Trim();
             datoCliente.Clave = clave.Trim();
 
-            string url = "http://localhost:51736/api/Cliente/CrearRegistro";
+            string url = _configuration.GetSection("API:Registrarme").Value; //"http://localhost:51736/api/Cliente/CrearRegistro";
 
             var json = JsonConvert.SerializeObject(datoCliente);
 

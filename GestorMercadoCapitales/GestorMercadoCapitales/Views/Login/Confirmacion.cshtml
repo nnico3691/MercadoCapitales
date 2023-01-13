@@ -6,10 +6,10 @@
 @model DatosCliente
 
 <h2>Confirmación de mis datos</h2>
-<div style="width:100%;border-style: double;">
+<div class="Registro-confirmacion">
        <b>DNI:</b>
         <br/>
-            @Html.DisplayFor(model => model.TipoDNI)
+            @Html.DisplayFor(model => model.DNI)
         <br/>
     
        <b>Nombre:</b>
@@ -17,10 +17,14 @@
             @Html.DisplayFor(model => model.Nombre)
        <br/>
        <b>Apellido:</b>
-        <br /> 
+        <br />
             @Html.DisplayFor(model => model.Apellido)
         <br/>
        <b>Teléfono:</b><br /> 
         @Html.DisplayFor(model => model.Telefono)
-    
+
+        <br/>
+    <center>
+        <a asp-area="" style="color:white;" class="btn btn-primary btn-lg" asp-controller="Login" asp-action="Login">Volver al Inicio</a>
+    </center>
 </div>

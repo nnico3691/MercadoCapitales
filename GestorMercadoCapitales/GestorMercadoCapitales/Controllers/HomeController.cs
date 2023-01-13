@@ -72,7 +72,7 @@ namespace GestorMercadoCapitales.Controllers
             }
             catch { }
 
-            string url = "http://localhost:22684/api/Precio/GetPreciosAccion";
+            string url = _configuration.GetSection("API:PreciosAccion").Value; //"http://localhost:22684/api/Precio/GetPreciosAccion";
             var parames = new Dictionary<string, string>();
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };

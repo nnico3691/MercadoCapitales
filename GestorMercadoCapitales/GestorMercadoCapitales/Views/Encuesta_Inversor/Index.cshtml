@@ -41,7 +41,7 @@ catch { }
                 <div style="padding-top: 15px;padding-bottom: 32px;">
                      <b> <span class="Encuesta-pregunta">@pregunta.pregunta</span></b>
                 </div>
-              <div style="padding-bottom: 56px; padding-left: 30px;">
+                <div style="padding-bottom: 56px; padding-left: 30px;">
                        @foreach(var respuestas in @pregunta.encuestaRespuestas)
                        {
                           <div style="padding-bottom: 15px;">
@@ -50,23 +50,36 @@ catch { }
                              <br style="padding-bottom: 16px;" />
                           </div>
                        }      
-              </div>    
+                </div>
 
             }
-       
+            valor++;
+
         }
 
-        <br />
-        <br />
-        <br />
-        <br />
+    <br />
+    <br />
+    <br />
+    <br />
 
+    @if (valor > 0)
+    {
         <div class="row" style="padding-bottom: 48px;">
             <div class="col-lg-5">
-            @Html.ActionLink("Volver", "Dashboard", "Home", new {}, new { @class = "btn btn-danger btn-lg" })
+                @Html.ActionLink("Volver", "Dashboard", "Home", new {}, new { @class = "btn btn-danger btn-lg" })
             </div>
             <div class="col-lg-5">
-            <input type="submit" value="Confirmar Respuesta" class="btn btn-primary btn-lg" />
+                <input type="submit" value="Confirmar Respuesta" class="btn btn-primary btn-lg" />
             </div>
         </div>
+    }
+    else
+    {
+        <div class="alert alert-info" style="width:100%;">
+            <strong>Atención!</strong>  La encuesta aun no se encuentra disponible
+            <a asp-area="" style="color:white;" class="btn btn-primary btn-lg" asp-controller="Home" asp-action="Dashboard">Volver al Inicio</a>
+        </div>
+        
+    }
+
 }

@@ -26,7 +26,7 @@ namespace GestorMercadoCapitales.Controllers
 
             //validamos primero que ya se ejecuto el socket
             //Luego, validamos que inicie solo cuando este logueado
-            if (HttpContext.Session.GetString("Socket") != "Iniciado" 
+            if (HttpContext.Session.GetString("Socket") != "Iniciado"
                 && HttpContext.Session.GetString("Login") == "Logueado")
             {
                 try
@@ -41,6 +41,12 @@ namespace GestorMercadoCapitales.Controllers
 
 
             return View(RofexList.rfxlist);
+        }
+
+
+        public ActionResult opciones_financieras()
+        {
+            return View();
         }
 
 
