@@ -24,7 +24,10 @@ namespace GestorMercadoCapitales.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            if (HttpContext.Session.GetString("Socket") != "Iniciado")
+            //validamos primero que ya se ejecuto el socket
+            //Luego, validamos que inicie solo cuando este logueado
+            if (HttpContext.Session.GetString("Socket") != "Iniciado" 
+                && HttpContext.Session.GetString("Login") == "Logueado")
             {
                 try
                 {

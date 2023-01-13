@@ -41,8 +41,10 @@ namespace GestorMercadoCapitales.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     HttpContext.Session.SetString("Login", "Logueado");
-    
-                    var responseText = response.Content.ReadAsStringAsync().Result;
+
+                    
+
+                     var responseText = response.Content.ReadAsStringAsync().Result;
                     responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
                     HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
@@ -113,6 +115,12 @@ namespace GestorMercadoCapitales.Controllers
 
             return View(datoCliente);
            
+        }
+
+        public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Login");
         }
 
     }
