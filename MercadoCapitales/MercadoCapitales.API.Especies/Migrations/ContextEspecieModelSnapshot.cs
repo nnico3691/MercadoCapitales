@@ -65,6 +65,9 @@ namespace MercadoCapitales.API.Especies.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("FechaAlta")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Market")
                         .HasColumnType("nvarchar(max)");
 
@@ -128,12 +131,26 @@ namespace MercadoCapitales.API.Especies.Migrations
                     b.Property<float>("tickSize")
                         .HasColumnType("real");
 
-                    b.Property<string>("timesInForce")
-                        .HasColumnType("nvarchar(max)");
-
                     b.HasKey("InstrumentoId");
 
                     b.ToTable("Instrumento");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.ProductGroup", b =>
+                {
+                    b.Property<Guid?>("ProductGroupId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Descripcion")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Mercado")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("ProductGroupId");
+
+                    b.ToTable("ProductGroup");
                 });
 #pragma warning restore 612, 618
         }

@@ -25,6 +25,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\MercadoCapitales.API.Especies\MercadoCapitales.API.Especies.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <Reference Include="Primary">
 	    <HintPath>..\MercadoCapitales.API.Especies\bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
 	  </Reference>

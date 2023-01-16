@@ -13,7 +13,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
     {
         public class Ejecuta : IRequest
         {
-            public List<CrearEncuestaPreguntaRequest> ListadoPreguntasRespuestas { get; set; }
+            public List<EncuestaPreguntaRequest> ListadoPreguntasRespuestas { get; set; }
 
         }
 
@@ -64,8 +64,6 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                 }
 
                 throw new Exception("Errores en la inserción de la Encuesta Pregunta");
-
-
 
             }
         }

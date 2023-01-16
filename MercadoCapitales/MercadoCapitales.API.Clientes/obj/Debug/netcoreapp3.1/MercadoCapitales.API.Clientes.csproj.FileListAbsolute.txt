@@ -60,3 +60,9 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Cliente
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Clientes.genruntimeconfig.cache
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Primary.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.deps.json
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.runtimeconfig.json
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.runtimeconfig.dev.json
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.exe
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.pdb

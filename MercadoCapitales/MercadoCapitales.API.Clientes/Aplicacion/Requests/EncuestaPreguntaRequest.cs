@@ -2,7 +2,7 @@
 
 namespace MercadoCapitales.API.Clientes.Aplicacion.Requests
 {
-    public class CrearEncuestaPreguntaRequest
+    public class EncuestaPreguntaRequest
     {
         public string Titulo { get; set; }
         public string Pregunta { get; set; }
