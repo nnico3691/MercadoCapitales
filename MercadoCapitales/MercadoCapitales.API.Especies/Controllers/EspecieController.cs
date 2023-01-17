@@ -1,5 +1,6 @@
 ﻿    using MediatR;
 using MercadoCapitales.API.Especies.Aplicacion;
+using MercadoCapitales.API.Especies.Aplicacion.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Primary.Data;
 using System.Collections.Generic;
@@ -30,6 +31,15 @@ namespace MercadoCapitales.API.Especies.Controllers
             return await _mediator.Send(data);
         }
 
+        [HttpPost]
+        [Route("CrearTipoPanelPrecio")]
+        public async Task<ActionResult<Unit>> CrearTipoPanelPrecio(CrearTipoPanelPrecio.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
+        [HttpGet]
+        [Route("GetPanelFuturosFinancieros")]
+        public async Task<ActionResult<List<InstrumentoDto>>> GetPanelFuturosFinancieros() => await _mediator.Send(new ConsultaFuturosFinancieros.ListaInstrumentos());
     }
 
 }

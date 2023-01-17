@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Especies.Aplicacion;
 using MercadoCapitales.API.Especies.Persistencia;
@@ -33,6 +34,7 @@ namespace MercadoCapitales.API.Especies
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
             services.AddMediatR(typeof(CrearAllInstruments.Manejador).Assembly);
+            services.AddAutoMapper(typeof(ConsultaFuturosFinancieros.Manejador));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

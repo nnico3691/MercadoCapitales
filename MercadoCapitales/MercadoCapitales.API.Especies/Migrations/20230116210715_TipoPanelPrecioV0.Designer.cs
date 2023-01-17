@@ -4,14 +4,16 @@ using MercadoCapitales.API.Especies.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Especies.Migrations
 {
     [DbContext(typeof(ContextEspecie))]
-    partial class ContextEspecieModelSnapshot : ModelSnapshot
+    [Migration("20230116210715_TipoPanelPrecioV0")]
+    partial class TipoPanelPrecioV0
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -158,9 +160,6 @@ namespace MercadoCapitales.API.Especies.Migrations
                     b.Property<Guid?>("TipoPanelPrecioId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Mercado")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Tipo")
                         .HasColumnType("nvarchar(max)");

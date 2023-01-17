@@ -7,12 +7,12 @@
 	},
 	"item": [
 		{
-			"name": "CrearAllInstruments",
+			"name": "GetPanelFuturosFinancieros",
 			"request": {
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:9542/api/Especie/CrearAllInstruments",
+					"raw": "http://localhost:9542/api/Especie/GetPanelFuturosFinancieros",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -21,7 +21,7 @@
 					"path": [
 						"api",
 						"Especie",
-						"CrearAllInstruments"
+						"GetPanelFuturosFinancieros"
 					]
 				}
 			},
@@ -52,6 +52,36 @@
 						"api",
 						"Especie",
 						"CrearProductGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearTipoPanelPrecio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Lista\": [\r\n        {\r\n            \"cficode\": \"FXXXXX\",\r\n            \"marketSegmentId\": \"DDF\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXXX\",\r\n            \"marketSegmentId\": \"DUAL\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXSX\",\r\n            \"marketSegmentId\": \"DDF\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXSX\",\r\n            \"marketSegmentId\": \"DUAL\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        }\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearTipoPanelPrecio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearTipoPanelPrecio"
 					]
 				}
 			},
