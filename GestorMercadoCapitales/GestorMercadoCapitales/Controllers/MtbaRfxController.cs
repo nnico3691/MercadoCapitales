@@ -3,8 +3,10 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -25,38 +27,71 @@ namespace GestorMercadoCapitales.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            int hora_actual = DateTime.Now.Hour;
 
-            HorarioMercado hora = new HorarioMercado();
-
-            try
+            if (1 == 0)
             {
-                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
+                int hora_actual = DateTime.Now.Hour;
 
-            }
-            catch
-            { hora.Horario_Mercado = 0; }
+                HorarioMercado hora = new HorarioMercado();
 
-            if (hora.Horario_Mercado >= hora_actual)
-            {
-                //validamos primero que ya se ejecuto el socket
-                //Luego, validamos que inicie solo cuando este logueado
-                if (HttpContext.Session.GetString("Socket") != "Iniciado"
-                    && HttpContext.Session.GetString("Login") == "Logueado")
+                try
                 {
-                    try
-                    {
-                        Socket socket = new Socket(_configuration);
+                    hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
 
-                        ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
-                        HttpContext.Session.SetString("Socket", "Iniciado");
+                }
+                catch
+                { hora.Horario_Mercado = 0; }
+
+                if (hora.Horario_Mercado >= hora_actual)
+                {
+                    //validamos primero que ya se ejecuto el socket
+                    //Luego, validamos que inicie solo cuando este logueado
+                    if (HttpContext.Session.GetString("Socket") != "Iniciado"
+                        && HttpContext.Session.GetString("Login") == "Logueado")
+                    {
+                        try
+                        {
+                            Socket socket = new Socket(_configuration);
+
+                            ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
+                            HttpContext.Session.SetString("Socket", "Iniciado");
+                        }
+                        catch { }
                     }
-                    catch { }
                 }
             }
-           
-            return View(RofexList.rfxlist);
+
+            var data = GetFuturoFinanciero();
+
+
+
+            return View(data);
         }
+
+        private List<MtbaRfx> GetFuturoFinanciero()
+        {
+           
+            string url = _configuration.GetSection("API:Instrumentos").Value;
+            var parames = new Dictionary<string, string>();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var data = new List<MtbaRfx>();
+
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("none"));
+
+                //HttpResponseMessage response = client.PostAsync(url, new FormUrlEncodedContent(parames)).Result;
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<List<MtbaRfx>>(responseText);
+            }
+
+
+            return data;
+
+        }
+
 
 
         public ActionResult opciones_financieras()
