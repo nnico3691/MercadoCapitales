@@ -86,6 +86,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "CrearAllInstruments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearAllInstruments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearAllInstruments"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
