@@ -11,5 +11,7 @@ namespace MercadoCapitales.API.Especies.Persistencia
         public virtual DbSet<Instrumento> Instrumento { get; set; }
         public virtual DbSet<InstrumentOrderType> InstrumentOrderType { get; set; }
         public virtual DbSet<InstrumentTimeInForce> InstrumentTimeInForce { get; set; }
+        public virtual DbSet<ProductGroup> ProductGroup { get; set; }
+        public virtual DbSet<TipoPanelPrecio> TipoPanelPrecio { get; set; }
     }
 }

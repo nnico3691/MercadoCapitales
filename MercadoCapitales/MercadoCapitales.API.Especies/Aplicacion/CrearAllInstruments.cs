@@ -8,6 +8,8 @@ using Primary;
 using Newtonsoft.Json;
 using MercadoCapitales.API.Especies.Modelo;
 using System;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
 
 namespace MercadoCapitales.API.Especies.Aplicacion
 {
@@ -29,35 +31,36 @@ namespace MercadoCapitales.API.Especies.Aplicacion
                 await api.Login(Api.DemoUsername, Api.DemoPassword);
                 
                 var allIInstruments = await api.GetAllInstruments();
-
-                foreach (var instumento in allIInstruments) 
+             
+                foreach (var instrumento in allIInstruments) 
                 {
-                    var i = new Instrumento 
+                    var i = new Instrumento
                     {
-                        Market = instumento.Market,
-                        Symbol = instumento.Symbol,
-                        MarketSegmentId = instumento.segment.MarketSegmentId,
-                        marketId = instumento.segment.marketId,
-                        lowLimitPrice = instumento.lowLimitPrice,
-                        highLimitPrice = instumento.highLimitPrice,
-                        minPriceIncrement = instumento.minPriceIncrement,
-                        minTradeVol = instumento.minTradeVol,
-                        maxTradeVol = instumento.maxTradeVol,
-                        tickSize = instumento.tickSize,
-                        contractMultiplier = instumento.contractMultiplier,
-                        roundLot = instumento.roundLot,
-                        PriceConversionFactor = instumento.PriceConversionFactor,
-                        MaturityDate = instumento.MaturityDate,
-                        Currency = instumento.Currency,
-                        securityType = instumento.securityType,
-                        settlType = instumento.settlType,
-                        instrumentPricePrecision = instumento.instrumentPricePrecision,
-                        instrumentSizePrecision = instumento.instrumentSizePrecision,
-                        securityId = instumento.securityId,
-                        securityIdSource = instumento.securityIdSource,
-                        Description = instumento.Description,
-                        cficode = instumento.cficode,
-                        
+                        Market = instrumento.Market,
+                        Symbol = instrumento.Symbol,
+                        MarketSegmentId = instrumento.segment.MarketSegmentId,
+                        marketId = instrumento.segment.marketId,
+                        lowLimitPrice = instrumento.lowLimitPrice,
+                        highLimitPrice = instrumento.highLimitPrice,
+                        minPriceIncrement = instrumento.minPriceIncrement,
+                        minTradeVol = instrumento.minTradeVol,
+                        maxTradeVol = instrumento.maxTradeVol,
+                        tickSize = instrumento.tickSize,
+                        contractMultiplier = instrumento.contractMultiplier,
+                        roundLot = instrumento.roundLot,
+                        PriceConversionFactor = instrumento.PriceConversionFactor,
+                        MaturityDate = instrumento.MaturityDate,
+                        Currency = instrumento.Currency,
+                        securityType = instrumento.securityType,
+                        settlType = instrumento.settlType,
+                        instrumentPricePrecision = instrumento.instrumentPricePrecision,
+                        instrumentSizePrecision = instrumento.instrumentSizePrecision,
+                        securityId = instrumento.securityId,
+                        securityIdSource = instrumento.securityIdSource,
+                        Description = instrumento.Description,
+                        cficode = instrumento.cficode,
+                        FechaAlta = DateTime.Now
+
                     };
 
                     _contexto.Instrumento.Add(i);
@@ -68,7 +71,7 @@ namespace MercadoCapitales.API.Especies.Aplicacion
                         throw new Exception("Errores en la inserción del Nuevos Instrumentos.");
                     }
 
-                    foreach (var item in instumento.orderTypes) 
+                    foreach (var item in instrumento.orderTypes) 
                     {
                         var orderType = new InstrumentOrderType
                         {
@@ -85,7 +88,7 @@ namespace MercadoCapitales.API.Especies.Aplicacion
                         }
                     }
 
-                    foreach (var item in instumento.timesInForce)
+                    foreach (var item in instrumento.timesInForce)
                     {
                         var timeInForce = new InstrumentTimeInForce
                         {
@@ -107,6 +110,8 @@ namespace MercadoCapitales.API.Especies.Aplicacion
                 return Unit.Value;
                 
             }
+
+
         }
     }
 }
