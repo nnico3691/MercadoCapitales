@@ -52,8 +52,9 @@ namespace GestorMercadoCapitales.Controllers
 
         }
 
-        public IActionResult Dashboard()
+        public IActionResult Dashboard(string usuario)
         {
+            ViewData["Usuario"] = usuario;
             return View();
         }
 

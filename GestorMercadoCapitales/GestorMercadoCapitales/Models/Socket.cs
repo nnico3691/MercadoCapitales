@@ -20,21 +20,8 @@ namespace GestorMercadoCapitales.Models
 
         public async void RunSocket(object state)
         {
-            HorarioMercado hora = new HorarioMercado();
-
-            try
-            {
-                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
-
-            }
-            catch
-            { hora.Horario_Mercado = 0; }
-           
-
-            int hora_actual = DateTime.Now.Hour;
-
-            if (hora_actual >= hora.Horario_Mercado)
-            {
+          
+            
                 Console.WriteLine("Connecting to ReMarkets...");
 
                 var api = new Api(Api.DemoEndpoint);
@@ -47,19 +34,19 @@ namespace GestorMercadoCapitales.Models
 
                 var symbols = new[]
                 {
-                "DLR/ENE23",
-                "ORO/ENE23",
-                "ORO/MAR23",
-                "ORO/MAY23",
-                "YPFD/FEB23",
-                "RFX20/FEB23",
-                "GGAL/FEB23",
-                "WTI/ENE23",
-                "WTI/MAR23",
-                "WTI/MAY23"
+                    "DLR/ENE23",
+                    "ORO/ENE23",
+                    "ORO/MAR23",
+                    "ORO/MAY23",
+                    "YPFD/FEB23",
+                    "RFX20/FEB23",
+                    "GGAL/FEB23",
+                    "WTI/ENE23",
+                    "WTI/MAR23",
+                    "WTI/MAY23"
 
 
-            };
+                };
                 var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
 
                 // Subscribe to bids and offers
@@ -76,9 +63,7 @@ namespace GestorMercadoCapitales.Models
 
                 socketTask.Wait();
                 await socketTask;
-            }
-
-
+            
         }
         private void OnMarketData(Api api, MarketData marketData)
         {

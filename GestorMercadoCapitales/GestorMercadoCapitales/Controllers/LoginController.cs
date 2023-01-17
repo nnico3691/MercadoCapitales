@@ -51,15 +51,13 @@ namespace GestorMercadoCapitales.Controllers
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
                     HttpContext.Session.SetString("Login", "Logueado");
-
-                    
-
-                     var responseText = response.Content.ReadAsStringAsync().Result;
+                    var responseText = response.Content.ReadAsStringAsync().Result;
                     responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
                     HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
+                   
 
-                    return RedirectToAction("Dashboard","Home");
+                    return RedirectToAction("Dashboard","Home", responseDataLogin.usuario.ToString().ToUpper().Trim());
                 }
                 else
                 {

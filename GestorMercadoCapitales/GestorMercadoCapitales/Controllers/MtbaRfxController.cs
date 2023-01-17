@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -24,22 +25,36 @@ namespace GestorMercadoCapitales.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
-            //validamos primero que ya se ejecuto el socket
-            //Luego, validamos que inicie solo cuando este logueado
-            if (HttpContext.Session.GetString("Socket") != "Iniciado"
-                && HttpContext.Session.GetString("Login") == "Logueado")
+            int hora_actual = DateTime.Now.Hour;
+
+            HorarioMercado hora = new HorarioMercado();
+
+            try
             {
-                try
-                {
-                    Socket socket = new Socket(_configuration);
+                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
 
-                    ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
-                    HttpContext.Session.SetString("Socket", "Iniciado");
-                }
-                catch { }
             }
+            catch
+            { hora.Horario_Mercado = 0; }
 
+            if (hora.Horario_Mercado >= hora_actual)
+            {
+                //validamos primero que ya se ejecuto el socket
+                //Luego, validamos que inicie solo cuando este logueado
+                if (HttpContext.Session.GetString("Socket") != "Iniciado"
+                    && HttpContext.Session.GetString("Login") == "Logueado")
+                {
+                    try
+                    {
+                        Socket socket = new Socket(_configuration);
 
+                        ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
+                        HttpContext.Session.SetString("Socket", "Iniciado");
+                    }
+                    catch { }
+                }
+            }
+           
             return View(RofexList.rfxlist);
         }
 
