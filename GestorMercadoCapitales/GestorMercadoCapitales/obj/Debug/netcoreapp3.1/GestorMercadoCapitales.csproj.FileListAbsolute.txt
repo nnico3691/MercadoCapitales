@@ -9,7 +9,6 @@ C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\Debug\netcoreapp3.1\GestorMercadoCapitales.Views.dll
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\Debug\netcoreapp3.1\GestorMercadoCapitales.Views.pdb
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\Debug\netcoreapp3.1\Newtonsoft.Json.Bson.dll
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\bin\Debug\netcoreapp3.1\Primary.pdb
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\GestorMercadoCapitales.csproj.AssemblyReference.cache
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\GestorMercadoCapitales.GeneratedMSBuildEditorConfig.editorconfig

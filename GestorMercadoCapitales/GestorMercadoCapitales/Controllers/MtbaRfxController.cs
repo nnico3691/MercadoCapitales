@@ -28,8 +28,7 @@ namespace GestorMercadoCapitales.Controllers
             }
 
 
-            if (1 == 0)
-            {
+           
                 int hora_actual = DateTime.Now.Hour;
 
                 HorarioMercado hora = new HorarioMercado();
@@ -59,41 +58,11 @@ namespace GestorMercadoCapitales.Controllers
                         catch { }
                     }
                 }
-            }
-
-            var data = GetFuturoFinanciero();
-
-
-
-            return View(data);
+          
+            return View(RofexList.rfxlist);
         }
 
-        private List<MtbaRfx> GetFuturoFinanciero()
-        {
-           
-            string url = _configuration.GetSection("API:Instrumentos").Value;
-            var parames = new Dictionary<string, string>();
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-            var data = new List<MtbaRfx>();
-
-            using (HttpClient client = new HttpClient(clientHandler))
-            {
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("none"));
-
-                //HttpResponseMessage response = client.PostAsync(url, new FormUrlEncodedContent(parames)).Result;
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                var responseText = response.Content.ReadAsStringAsync().Result;
-                data = JsonConvert.DeserializeObject<List<MtbaRfx>>(responseText);
-            }
-
-
-            return data;
-
-        }
-
-
-
+      
         public ActionResult opciones_financieras()
         {
             return View();
