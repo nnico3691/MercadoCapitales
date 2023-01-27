@@ -21,12 +21,12 @@ namespace Primary.Tests
             // Retrieve the order
             var retrievedOrder = await Api.GetOrderStatus(orderId);
 
-            Assert.That(retrievedOrder.InstrumentId.Symbol, Is.EqualTo(order.InstrumentId.Symbol));
-            Assert.That(retrievedOrder.Expiration, Is.EqualTo(order.Expiration));
-            Assert.That(retrievedOrder.Type, Is.EqualTo(order.Type));
-            Assert.That(retrievedOrder.Quantity, Is.EqualTo(order.Quantity));
-            Assert.That(retrievedOrder.Price, Is.EqualTo(order.Price));
-            Assert.That(retrievedOrder.Side, Is.EqualTo(order.Side));
+            Assert.That(retrievedOrder.Order.InstrumentId.Symbol, Is.EqualTo(order.InstrumentId.Symbol));
+            Assert.That(retrievedOrder.Order.Expiration, Is.EqualTo(order.Expiration));
+            Assert.That(retrievedOrder.Order.Type, Is.EqualTo(order.Type));
+            Assert.That(retrievedOrder.Order.Quantity, Is.EqualTo(order.Quantity));
+            Assert.That(retrievedOrder.Order.Price, Is.EqualTo(order.Price));
+            Assert.That(retrievedOrder.Order.Side, Is.EqualTo(order.Side));
         }
 
         [Test]
@@ -43,13 +43,13 @@ namespace Primary.Tests
 
             for (int i = 0; i < 4; i++)
             {
-                if (retrievedOrder.Status != Status.Cancelled)
+                if (retrievedOrder.Order.Status != Status.Cancelled)
                 {
                     retrievedOrder = await Api.GetOrderStatus(orderId);
                     Thread.Sleep(1000);
                 }
             }
-            Assert.That(retrievedOrder.Status, Is.EqualTo(Status.Cancelled), retrievedOrder.StatusText);
+            Assert.That(retrievedOrder.Status, Is.EqualTo(Status.Cancelled), retrievedOrder.Order.StatusText);
         }
 
         [Test]

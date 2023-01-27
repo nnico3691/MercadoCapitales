@@ -53,5 +53,6 @@ namespace Primary.Data.Orders
         /// <summary>More information about the order status.</summary>
         [JsonProperty("text")]
         public string StatusText { get; set; }
+
     }
 }

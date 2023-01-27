@@ -58,3 +58,5 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.genruntimeconfig.cache
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Primary.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Primary.pdb

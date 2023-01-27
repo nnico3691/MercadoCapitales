@@ -33,10 +33,10 @@ namespace Primary.Examples
             Console.WriteLine($"{orderId.ClientOrderId} / {orderId.Proprietary}");
 
             var retrievedOrder = await api.GetOrderStatus(orderId);
-            Console.WriteLine($"{retrievedOrder.Status} / {retrievedOrder.StatusText}");
+            Console.WriteLine($"{retrievedOrder.Status} / {retrievedOrder.Order.StatusText}");
 
-            Console.WriteLine($"{retrievedOrder.Quantity} / {retrievedOrder.DisplayQuantity}" +
-                $"/ {retrievedOrder.LastQuantity} / {retrievedOrder.CumulativeQuantity} / {retrievedOrder.LeavesQuantity}");
+            Console.WriteLine($"{retrievedOrder.Order.Quantity} / {retrievedOrder.Order.DisplayQuantity}" +
+                $"/ {retrievedOrder.Order.LastQuantity} / {retrievedOrder.Order.CumulativeQuantity} / {retrievedOrder.Order.LeavesQuantity}");
         }
     }
 }

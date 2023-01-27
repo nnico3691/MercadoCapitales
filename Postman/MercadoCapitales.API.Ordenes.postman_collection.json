@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"OrdenCodigo\": \"Byma\",\r\n    \"TipoCompraVenta\": \"COMPRA\",\r\n    \"Comitente\": \"30640 Marcelo Nicolas Messa\",\r\n    \"Cliente\": \"Marcelo Nicolas Messa\",\r\n    \"ComitenteId\": 1,\r\n    \"ClienteId\": 1,\r\n    \"Ticker\": \"YPFD\",\r\n    \"Cantidad\": 1,\r\n    \"TipoDeOrden\": \"Limite\",\r\n    \"Precio\": 1054.32,\r\n    \"Importe\": 1054.32,\r\n    \"ValidezOferta\": 0,\r\n    \"FechaVencimiento\": \"2022-12-28\",\r\n    \"Plazo\": 0\r\n\r\n}",
+					"raw": "{\r\n    \"Symbol\": \"DLR/ENE23\",\r\n    \"Price\": 187.10,\r\n    \"Side\": \"Buy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
