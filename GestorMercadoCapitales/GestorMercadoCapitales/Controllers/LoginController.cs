@@ -33,7 +33,7 @@ namespace GestorMercadoCapitales.Controllers
             datoslogin.Usuario = usuario.Trim();
             datoslogin.Clave = clave;
 
-            string url = _configuration.GetSection("API:Login").Value; //"http://localhost:51736/api/Cliente/Login";
+            string url = _configuration.GetSection("API:Login").Value;
 
             var json = JsonConvert.SerializeObject(datoslogin);
 
