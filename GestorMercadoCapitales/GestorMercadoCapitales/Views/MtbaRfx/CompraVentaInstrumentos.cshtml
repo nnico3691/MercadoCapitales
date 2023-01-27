@@ -1,4 +1,8 @@
-﻿<div>
+﻿
+@using (Html.BeginForm("CompraInstrumento", "MtbaRfx"))
+{
+
+<div>
 
     <table>
         <tr>
@@ -6,7 +10,7 @@
             <td></td>
             <td>
                 Instrumento:
-                <select style="color:black">
+                    <select style="color:black" name="symbol">
                     @if (PanelInferiorInstrumentos.Instrumentos != null)
                     {
                         @foreach (var secuencia in PanelInferiorInstrumentos.Instrumentos)
@@ -17,10 +21,16 @@
                     }
                 </select>
             </td>
-            <td>Precio: <input type="number" name="Precio" /> </td>
-            <td>Cantidad: <input type="number" name="Cantidad" /></td>
+            <td>Precio: <input type="text" name="Precio" style="color:black;" /> </td>
+           @* <td>Cantidad: <input type="number" name="Cantidad" /></td>*@
         </tr>
+        <tr>
+            <td>
 
+                    <input type="submit" class="btn btn-info" value="Comprar"/>
+            </td>
+        </tr>
     </table>
 </div>
 
+}

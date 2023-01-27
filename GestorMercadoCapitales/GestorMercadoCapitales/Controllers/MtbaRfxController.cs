@@ -6,7 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net;
 using System.Net.Http;
+using System.Security.Policy;
+using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -65,6 +68,45 @@ namespace GestorMercadoCapitales.Controllers
       
         public ActionResult opciones_financieras()
         {
+            return View();
+        }
+
+
+
+        public ActionResult CompraInstrumento(string symbol, string precio)
+        {
+            Orden ordenParam = new Orden();
+            ordenParam.Symbol = symbol;
+            ordenParam.Price = decimal.Parse(precio.Replace(".",","));
+            ordenParam.Side = "Buy";
+
+            string url = _configuration.GetSection("API:CrearOrden").Value;
+            var json = JsonConvert.SerializeObject(ordenParam);
+
+            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
+
+                if (response.StatusCode == HttpStatusCode.OK)
+                {
+                    
+                    var responseText = response.Content.ReadAsStringAsync().Result;
+                    //responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
+
+                   // return RedirectToAction("Dashboard", "Home");
+                }
+                else
+                {
+
+                }
+
+            }
+
             return View();
         }
 
