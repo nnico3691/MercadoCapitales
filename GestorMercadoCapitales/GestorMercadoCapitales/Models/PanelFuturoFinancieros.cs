@@ -9,4 +9,6 @@ namespace GestorMercadoCapitales.Models
         public string symbol { get; set; }
 
     }
+
+
 }

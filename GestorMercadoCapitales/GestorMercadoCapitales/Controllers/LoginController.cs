@@ -55,9 +55,9 @@ namespace GestorMercadoCapitales.Controllers
                     responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
                     HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
-                   
+                    HttpContext.Session.SetString("Usuario", responseDataLogin.usuario.ToString().ToUpper().Trim());
 
-                    return RedirectToAction("Dashboard","Home", responseDataLogin.usuario.ToString().ToUpper().Trim());
+                    return RedirectToAction("Dashboard","Home");
                 }
                 else
                 {
@@ -104,7 +104,7 @@ namespace GestorMercadoCapitales.Controllers
             datoCliente.Telefono = Telefono.Trim();
             datoCliente.Clave = clave.Trim();
 
-            string url = _configuration.GetSection("API:Registrarme").Value; //"http://localhost:51736/api/Cliente/CrearRegistro";
+            string url = _configuration.GetSection("API:Registrarme").Value;
 
             var json = JsonConvert.SerializeObject(datoCliente);
 
@@ -127,6 +127,19 @@ namespace GestorMercadoCapitales.Controllers
         }
 
         public ActionResult Logout()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("Login", "Login");
+        }
+
+        public ActionResult OlvideClave()
+        {
+            return View();
+        }
+
+
+
+        public ActionResult ConfirmaClave(string clave_anterior, string clave_nueva)
         {
             HttpContext.Session.Clear();
             return RedirectToAction("Login", "Login");

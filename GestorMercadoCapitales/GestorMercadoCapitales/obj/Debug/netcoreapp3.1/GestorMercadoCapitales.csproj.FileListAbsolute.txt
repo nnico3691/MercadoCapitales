@@ -56,3 +56,5 @@ C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\GestorMercadoCapitales.genruntimeconfig.cache
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\NavBarMtbrfx.cshtml.g.cs
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\opciones_financieras.cshtml.g.cs
+C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\Login\OlvideClave.cshtml.g.cs
+C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\CompraVentaInstrumentos.cshtml.g.cs

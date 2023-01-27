@@ -52,8 +52,11 @@ namespace GestorMercadoCapitales.Controllers
 
         }
 
-        public IActionResult Dashboard(string usuario)
+        public IActionResult Dashboard()
         {
+
+            string usuario = HttpContext.Session.GetString("Usuario");
+
             ViewData["Usuario"] = usuario;
             return View();
         }
@@ -73,7 +76,7 @@ namespace GestorMercadoCapitales.Controllers
             }
             catch { }
 
-            string url = _configuration.GetSection("API:PreciosAccion").Value; //"http://localhost:22684/api/Precio/GetPreciosAccion";
+            string url = _configuration.GetSection("API:PreciosAccion").Value;
             var parames = new Dictionary<string, string>();
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
@@ -81,9 +84,6 @@ namespace GestorMercadoCapitales.Controllers
 
             using (HttpClient client = new HttpClient(clientHandler))
             {
-                //client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("none"));
-
-                //HttpResponseMessage response = client.PostAsync(url, new FormUrlEncodedContent(parames)).Result;
                 HttpResponseMessage response = client.GetAsync(url).Result;
                 var responseText = response.Content.ReadAsStringAsync().Result;
                 data = JsonConvert.DeserializeObject<List<CotizacionAccion>>(responseText);

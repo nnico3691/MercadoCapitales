@@ -40,6 +40,19 @@
             color: blue;
         }
 
+        .ocultar {
+            display: none;
+        }
+
+        .mostrar {
+            display: block;
+        }
+
+        .sidebar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 15px;
+        }
 
     </style>
 
@@ -163,20 +176,40 @@
             $(".loader").fadeOut("slow");
         });
 
+        function verificarPasswords() {
 
-        //const links = document.querySelectorAll('.nav-link');
+            // Ontenemos los valores de los campos de contraseñas
+            pass1 = document.getElementById('pass1');
+            pass2 = document.getElementById('pass2');
 
-        //if (links.length) {
-        //    links.forEach((link) => {
-        //        link.addEventListener('click', (e) => {
-        //            links.forEach((link) => {
-        //                link.classList.remove('active');
-        //            });
-        //            e.preventDefault();
-        //            link.classList.add('active');
-        //        });
-        //    });
-        //}
+            // Verificamos si las constraseñas no coinciden
+            if (pass1.value != pass2.value) {
+
+                // Si las constraseñas no coinciden mostramos un mensaje
+                document.getElementById("error").classList.add("mostrar");
+
+                return false;
+            } else {
+
+                // Si las contraseñas coinciden ocultamos el mensaje de error
+                document.getElementById("error").classList.remove("mostrar");
+
+                // Mostramos un mensaje mencionando que las Contraseñas coinciden
+                document.getElementById("ok").classList.remove("ocultar");
+
+                // Desabilitamos el botón de login
+                document.getElementById("login").disabled = true;
+
+                // Refrescamos la página (Simulación de envío del formulario)
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
+
+                return true;
+            }
+
+        }
+       
        
 
 

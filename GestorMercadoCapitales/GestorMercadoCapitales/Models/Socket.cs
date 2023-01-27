@@ -34,8 +34,8 @@ namespace GestorMercadoCapitales.Models
             }
             catch
             { hora.Horario_Mercado = 0; }
-
-            if (hora.Horario_Mercado >= hora_actual)
+            
+            if (hora_actual >= hora.Horario_Mercado)
             {
 
                 Console.WriteLine("Connecting to ReMarkets...");
@@ -76,6 +76,9 @@ namespace GestorMercadoCapitales.Models
                     indice = indice + 1;
                 }
 
+                PanelInferiorInstrumentos.Instrumentos = symbols;
+
+                
 
                 var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
 
@@ -132,92 +135,96 @@ namespace GestorMercadoCapitales.Models
 
                 var nominalVolume = default(decimal?);
 
-                foreach (var trade in marketData.Data.Bids)
+                if (marketData.Data.Bids != null)
                 {
-                    bid = trade.Price;
-                    bidSize = trade.Size;
-                }
-
-                foreach (var trade in marketData.Data.Offers)
-                {
-                    offer = trade.Price;
-                    offerSize = trade.Size;
-                }
-
-                nominalVolume = marketData.Data.NominalVolume;
-
-
-                MtbaRfx rfx = new MtbaRfx();
-
-                //RofexList.rfxlist = new List<MtbaRfx>();
-
-               
-                if (bid > 0 || offer > 0)
-                {
-                    bool existe = RofexList.rfxlist.Any(item => item.Instrumento == marketData.InstrumentId.Symbol);
-
-                    if (!existe)
+                    foreach (var trade in marketData.Data.Bids)
                     {
-                        rfx.Instrumento = marketData.InstrumentId.Symbol;
-                        rfx.VolC = bidSize;
-                        rfx.Venta = offer;
-                        rfx.VolV = offerSize;
-                        rfx.VolOpe = nominalVolume;
-                        RofexList.rfxlist.Add(rfx);
-
+                        bid = trade.Price;
+                        bidSize = trade.Size;
                     }
-                    else
+
+                    foreach (var trade in marketData.Data.Offers)
                     {
-                        var list = RofexList.rfxlist.FirstOrDefault(item => item.Instrumento == marketData.InstrumentId.Symbol);
-                        string ColorVenta = "";
-                        string ColorCompra = "";
+                        offer = trade.Price;
+                        offerSize = trade.Size;
+                    }
 
-                        if (list.Compra >= bid)
+                    nominalVolume = marketData.Data.NominalVolume;
+
+
+                    MtbaRfx rfx = new MtbaRfx();
+
+                    //RofexList.rfxlist = new List<MtbaRfx>();
+
+
+                    if (bid > 0 || offer > 0)
+                    {
+                        bool existe = RofexList.rfxlist.Any(item => item.Instrumento == marketData.InstrumentId.Symbol);
+
+                        if (!existe)
                         {
-                            ColorCompra = "#1ABC9C";
+                            rfx.Instrumento = marketData.InstrumentId.Symbol;
+                            rfx.VolC = bidSize;
+                            rfx.Venta = offer;
+                            rfx.VolV = offerSize;
+                            rfx.VolOpe = nominalVolume;
+                            RofexList.rfxlist.Add(rfx);
+
                         }
                         else
                         {
-                            ColorCompra = "#C70039";
-                        }
+                            var list = RofexList.rfxlist.FirstOrDefault(item => item.Instrumento == marketData.InstrumentId.Symbol);
+                            string ColorVenta = "";
+                            string ColorCompra = "";
 
-                        if (list.Venta >= offer)
-                        {
-                            ColorVenta = "#1ABC9C";
-                        }
-                        else
-                        {
-                            ColorVenta = "#C70039";
-                        }
-
-                        //RofexList.rfxlist.Remove(list);
-                        foreach (var item in RofexList.rfxlist)
-                        {
-                            if (item.Instrumento == marketData.InstrumentId.Symbol)
+                            if (list.Compra >= bid)
                             {
-                                item.Instrumento = marketData.InstrumentId.Symbol;
-                                item.VolC = bidSize;
-                                item.Compra = bid;
-                                item.Venta = offer;
-                                item.VolV = offerSize;
-                                item.VolOpe = nominalVolume;
-                                item.ColorCompra = ColorCompra;
-                                item.ColorVenta = ColorVenta;
-                                break;
+                                ColorCompra = "#1ABC9C";
+                            }
+                            else
+                            {
+                                ColorCompra = "#C70039";
                             }
 
+                            if (list.Venta >= offer)
+                            {
+                                ColorVenta = "#1ABC9C";
+                            }
+                            else
+                            {
+                                ColorVenta = "#C70039";
+                            }
+
+                            //RofexList.rfxlist.Remove(list);
+                            foreach (var item in RofexList.rfxlist)
+                            {
+                                if (item.Instrumento == marketData.InstrumentId.Symbol)
+                                {
+                                    item.Instrumento = marketData.InstrumentId.Symbol;
+                                    item.VolC = bidSize;
+                                    item.Compra = bid;
+                                    item.Venta = offer;
+                                    item.VolV = offerSize;
+                                    item.VolOpe = nominalVolume;
+                                    item.ColorCompra = ColorCompra;
+                                    item.ColorVenta = ColorVenta;
+                                    break;
+                                }
+
+                            }
+
+                            // RofexList.rfxlist.Add(rfx);
+
                         }
-                      
-                       // RofexList.rfxlist.Add(rfx);
+
 
                     }
-
-                    
+                    //Console.WriteLine($"({marketData.Timestamp}) " +
+                    //                  $"{marketData.InstrumentId.Symbol} -> " +
+                    //                  $"Vol.C: {bidSize} ; Compra: {bid} ; Venta: {offer} ; Vol.V: {offerSize}; Vol. Operado: nominalVolume;"
+                    //);
                 }
-                //Console.WriteLine($"({marketData.Timestamp}) " +
-                //                  $"{marketData.InstrumentId.Symbol} -> " +
-                //                  $"Vol.C: {bidSize} ; Compra: {bid} ; Venta: {offer} ; Vol.V: {offerSize}; Vol. Operado: nominalVolume;"
-                //);
+
 
             }
             catch { }

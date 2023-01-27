@@ -12,7 +12,14 @@
 
 <h3>Futuro Financiero</h3>
 <br>
+
+@Html.Partial("CompraVentaInstrumentos")
+
+
  <div id="TablaPrincipal">
+
+    <br/>
+    <hr/>
     <table class="table table-striped table-dark">
         <thead class="">
             <tr>
@@ -64,11 +71,10 @@
         </tbody>
     </table>
 
-
-
  </div>
 
 <script>
+
     setInterval('contador()', 1000);
 
     //$(document).ready(function () {
@@ -90,6 +96,7 @@
               
             }
         });
+
         $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
     }
 

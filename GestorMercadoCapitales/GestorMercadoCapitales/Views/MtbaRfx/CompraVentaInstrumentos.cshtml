@@ -1,0 +1,26 @@
+﻿<div>
+
+    <table>
+        <tr>
+            <td>Cuenta: REM7609</td>
+            <td></td>
+            <td>
+                Instrumento:
+                <select style="color:black">
+                    @if (PanelInferiorInstrumentos.Instrumentos != null)
+                    {
+                        @foreach (var secuencia in PanelInferiorInstrumentos.Instrumentos)
+                        {
+                            <option value="@secuencia">@secuencia</option>
+                        }
+
+                    }
+                </select>
+            </td>
+            <td>Precio: <input type="number" name="Precio" /> </td>
+            <td>Cantidad: <input type="number" name="Cantidad" /></td>
+        </tr>
+
+    </table>
+</div>
+

@@ -41,7 +41,7 @@ namespace GestorMercadoCapitales.Controllers
                 catch
                 { hora.Horario_Mercado = 0; }
 
-                if (hora.Horario_Mercado >= hora_actual)
+                if (hora_actual >= hora.Horario_Mercado)
                 {
                     //validamos primero que ya se ejecuto el socket
                     //Luego, validamos que inicie solo cuando este logueado
@@ -68,6 +68,11 @@ namespace GestorMercadoCapitales.Controllers
             return View();
         }
 
+
+        public ActionResult CompraVentaInstrumentos()
+        {
+            return View();
+        }
 
     }
 }
