@@ -6,6 +6,9 @@ using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
+using System.Net.Http;
+using System.Threading;
 
 namespace GestorMercadoCapitales.Models
 {
@@ -20,8 +23,21 @@ namespace GestorMercadoCapitales.Models
 
         public async void RunSocket(object state)
         {
-          
-            
+            int hora_actual = DateTime.Now.Hour;
+
+            HorarioMercado hora = new HorarioMercado();
+
+            try
+            {
+                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
+
+            }
+            catch
+            { hora.Horario_Mercado = 0; }
+
+            if (hora.Horario_Mercado >= hora_actual)
+            {
+
                 Console.WriteLine("Connecting to ReMarkets...");
 
                 var api = new Api(Api.DemoEndpoint);
@@ -32,21 +48,35 @@ namespace GestorMercadoCapitales.Models
 
                 var allIInstruments = await api.GetAllInstruments();
 
-                var symbols = new[]
+                //var symbols = new[]
+                //{
+                //    "DLR/ENE23",
+                //    "ORO/ENE23",
+                //    "ORO/MAR23",
+                //    "ORO/MAY23",
+                //    "YPFD/FEB23",
+                //    "RFX20/FEB23",
+                //    "GGAL/FEB23",
+                //    "WTI/ENE23",
+                //    "WTI/MAR23",
+                //    "WTI/MAY23"
+
+
+                //};
+
+                //consumimos la devolucion de todos los instrumentos de la api
+                var datasymbols = new List<PanelFuturoFinancieros>();
+                datasymbols = GetPanelFuturoFinancieros();
+                string[] symbols = new string[datasymbols.Count];
+                int indice = 0;
+
+                foreach (var insymbols in datasymbols)
                 {
-                    "DLR/ENE23",
-                    "ORO/ENE23",
-                    "ORO/MAR23",
-                    "ORO/MAY23",
-                    "YPFD/FEB23",
-                    "RFX20/FEB23",
-                    "GGAL/FEB23",
-                    "WTI/ENE23",
-                    "WTI/MAR23",
-                    "WTI/MAY23"
+                    symbols[indice] = insymbols.symbol.ToString();
+                    indice = indice + 1;
+                }
 
 
-                };
                 var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
 
                 // Subscribe to bids and offers
@@ -63,8 +93,33 @@ namespace GestorMercadoCapitales.Models
 
                 socketTask.Wait();
                 await socketTask;
+            }
             
         }
+
+        private List<PanelFuturoFinancieros> GetPanelFuturoFinancieros()
+        {
+
+            string url = _configuration.GetSection("API:Instrumentos").Value;
+            var parames = new Dictionary<string, string>();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var data = new List<PanelFuturoFinancieros>();
+
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<List<PanelFuturoFinancieros>>(responseText);
+            }
+
+
+            return data;
+
+        }
+
+
+
         private void OnMarketData(Api api, MarketData marketData)
         {
             try
