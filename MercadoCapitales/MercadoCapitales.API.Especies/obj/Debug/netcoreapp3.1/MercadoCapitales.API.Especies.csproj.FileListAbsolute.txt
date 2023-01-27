@@ -58,3 +58,5 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especie
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especies\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especies\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especies\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.genruntimeconfig.cache
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especies\bin\Debug\netcoreapp3.1\Primary.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Especies\bin\Debug\netcoreapp3.1\Primary.pdb

@@ -31,7 +31,7 @@ namespace Primary.Tests.Builders
 
             Assert.That(retrievedOrder.Status, 
                         Is.Not.EqualTo(Status.Rejected).And.Not.EqualTo(Status.Cancelled), 
-                        retrievedOrder.StatusText
+                        retrievedOrder.Order.StatusText
             );
         }
     }

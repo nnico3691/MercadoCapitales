@@ -5,6 +5,10 @@ using System;
 using MercadoCapitales.API.Ordenes.Persistencia;
 using MercadoCapitales.API.Ordenes.Modelo;
 using System.Numerics;
+using Primary;
+using System.Linq;
+using Primary.Data.Orders;
+using Primary.Data;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion
 {
@@ -12,22 +16,9 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
     {
         public class Ejecuta : IRequest
         {
-            public string OrdenCodigo { get; set; } /*BYMA, FCI, LICITACIONES, ROFEX, CAUCION*/
-            public string TipoCompraVenta { get; set; } /*COMPRA, VENTA*/
-
-            /*COMITENTE - CLIENTE*/
-            public string Comitente { get; set; }
-            public string Cliente { get; set; }
-            public int ComitenteId { get; set; }
-            public int ClienteId { get; set; }
-            public string Ticker { get; set; }
-            public float Cantidad { get; set; }
-            public string TipoDeOrden { get; set; } /*Limite, Stop con limite*/
-            public float Precio { get; set; }
-            public float Importe { get; set; }
-            public int ValidezOferta { get; set; } /* 0- Hasta el día 1- Hasta Cancelar */
-            public DateTime? FechaVencimiento { get; set; }
-            public int Plazo { get; set; } /*48 hs - C.I*/
+            public string Symbol { get; set; }
+            public decimal? Price { get; set; }
+            public string Side { get; set; }
         }
 
         public class Manejador : IRequestHandler<Ejecuta>
@@ -41,28 +32,31 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
 
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
-                var orden = new Orden
+                var api = new Api(Api.DemoEndpoint);
+                await api.Login(Api.DemoUsername, Api.DemoPassword);
+
+                // Get a valid instrument and price
+                var instruments = await api.GetAllInstruments();
+                var instrumentId = instruments.Last(i => i.Symbol == request.Symbol);
+
+                var today = DateTime.Today;
+                var prices = await api.GetHistoricalTrades(instrumentId, today.AddDays(-3), today);
+
+                var order = new Order
                 {
-                    OrdenCodigo = request.OrdenCodigo,
-                    TipoCompraVenta = request.TipoCompraVenta,
-                    Comitente = request.Comitente,
-                    ClienteId = request.ClienteId,
-                    Cliente = request.Cliente,
-                    ComitenteId = request.ComitenteId,
-                    Ticker = request.Ticker,
-                    Cantidad = request.Cantidad,
-                    TipoDeOrden = request.TipoDeOrden,
-                    Precio = request.Precio,
-                    Importe = request.Importe,
-                    ValidezOferta = request.ValidezOferta,
-                    FechaVencimiento = request.FechaVencimiento,
-                    Plazo = request.Plazo,
+                    InstrumentId = instrumentId,
+                    Expiration = Expiration.Day,
+                    Type = Primary.Data.Orders.Type.Limit,
+                    Price = request.Price,
+                    Side = (request.Side == "Buy"? Side.Buy:Side.Sell),
+                    Quantity = 100
                 };
 
-                _contexto.Orden.Add(orden);
-                var value = await _contexto.SaveChangesAsync();
+                var orderId = await api.SubmitOrder(Api.DemoAccount, order);
 
-                if (value > 0)
+                var retrievedOrder = await api.GetOrderStatus(orderId);
+                
+                if (retrievedOrder.Status == "OK")
                 {
                     return Unit.Value;
                 }

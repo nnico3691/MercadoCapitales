@@ -280,7 +280,7 @@ namespace Primary
         /// </summary>
         /// <param name="orderId">Order identifier.</param>
         /// <returns>Order information.</returns>
-        public async Task<OrderStatus> GetOrderStatus(OrderId orderId)
+        public async Task<GetOrderResponse> GetOrderStatus(OrderId orderId)
         {
 
             var builder = new UriBuilder(BaseUri + "/rest/order/id");
@@ -297,7 +297,7 @@ namespace Primary
                 throw new Exception($"{response.Message} ({response.Description})");
             }
 
-            return response.Order;
+            return response;
         }
 
         /// <summary>
@@ -346,7 +346,7 @@ namespace Primary
             public Id Order;
         }
 
-        private struct GetOrderResponse
+        public struct GetOrderResponse
         {
             [JsonProperty("status")]
             public string Status;
