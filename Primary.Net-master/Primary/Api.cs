@@ -322,6 +322,32 @@ namespace Primary
             //}
         }
 
+        /// <summary>
+        /// Consultar Ordenes Operadas
+        /// Consulta que devuelve todas las ordenes que están total o parcialmente operadas.
+        /// </summary>
+        /// <param name="accountId">Account identifier.</param>
+        /// <returns>Orders information.</returns>
+        public async Task<GetOrderResponse> GetOrderFilleds(Account account)
+        {
+
+            var builder = new UriBuilder(BaseUri + "/rest/order/filleds");
+            var query = HttpUtility.ParseQueryString(builder.Query);
+            query["accountId"] = account.accountId;
+          
+            builder.Query = query.ToString();
+
+            var jsonResponse = await HttpClient.GetStringAsync(builder.Uri);
+
+            var response = JsonConvert.DeserializeObject<GetOrderResponse>(jsonResponse);
+            if (response.Status == Status.Error)
+            {
+                throw new Exception($"{response.Message} ({response.Description})");
+            }
+
+            return response;
+        }
+
         private struct OrderIdResponse
         {
             [JsonProperty("status")]

@@ -18,6 +18,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
         {
             public string Symbol { get; set; }
             public decimal? Price { get; set; }
+            public int Quantity { get; set; }
             public string Side { get; set; }
         }
 
@@ -32,38 +33,44 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
 
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
-                var api = new Api(Api.DemoEndpoint);
-                await api.Login(Api.DemoUsername, Api.DemoPassword);
 
-                // Get a valid instrument and price
-                var instruments = await api.GetAllInstruments();
-                var instrumentId = instruments.Last(i => i.Symbol == request.Symbol);
-
-                var today = DateTime.Today;
-                var prices = await api.GetHistoricalTrades(instrumentId, today.AddDays(-3), today);
-
-                var order = new Order
+                try
                 {
-                    InstrumentId = instrumentId,
-                    Expiration = Expiration.Day,
-                    Type = Primary.Data.Orders.Type.Limit,
-                    Price = request.Price,
-                    Side = (request.Side == "Buy"? Side.Buy:Side.Sell),
-                    Quantity = 100
-                };
+                    var api = new Api(Api.DemoEndpoint);
+                    await api.Login(Api.DemoUsername, Api.DemoPassword);
 
-                var orderId = await api.SubmitOrder(Api.DemoAccount, order);
+                    // Get a valid instrument and price
+                    var instruments = await api.GetAllInstruments();
+                    var instrumentId = instruments.Last(i => i.Symbol == request.Symbol);
 
-                var retrievedOrder = await api.GetOrderStatus(orderId);
-                
-                if (retrievedOrder.Status == "OK")
+                    var today = DateTime.Today;
+                    var prices = await api.GetHistoricalTrades(instrumentId, today.AddDays(-3), today);
+
+                    var order = new Order
+                    {
+                        InstrumentId = instrumentId,
+                        Expiration = Expiration.Day,
+                        Type = Primary.Data.Orders.Type.Limit,
+                        Price = request.Price,
+                        Side = (request.Side == "Buy" ? Side.Buy : Side.Sell),
+                        Quantity = request.Quantity
+                    };
+
+                    var orderId = await api.SubmitOrder(Api.DemoAccount, order);
+
+                    var retrievedOrder = await api.GetOrderStatus(orderId);
+
+                    if (retrievedOrder.Status == "OK")
+                        return Unit.Value;
+                    else
+                        throw new Exception("Error: " + retrievedOrder.Status);
+                }
+                catch(Exception ex)
                 {
-                    return Unit.Value;
+                    throw new Exception("Error: " + ex.Message);
                 }
 
                 throw new Exception("Errores en la inserción de la Orden");
-
-
 
             }
         }
