@@ -328,7 +328,7 @@ namespace Primary
         /// </summary>
         /// <param name="accountId">Account identifier.</param>
         /// <returns>Orders information.</returns>
-        public async Task<GetOrderResponse> GetOrderFilleds(Account account)
+        public async Task<GetOrdersResponse> GetOrderFilleds(Account account)
         {
 
             var builder = new UriBuilder(BaseUri + "/rest/order/filleds");
@@ -339,7 +339,36 @@ namespace Primary
 
             var jsonResponse = await HttpClient.GetStringAsync(builder.Uri);
 
-            var response = JsonConvert.DeserializeObject<GetOrderResponse>(jsonResponse);
+            var response = JsonConvert.DeserializeObject<GetOrdersResponse>(jsonResponse);
+            if (response.Status == Status.Error)
+            {
+                throw new Exception($"{response.Message} ({response.Description})");
+            }
+
+            return response;
+        }
+
+        /// <summary>
+        /// Estado de orden por ID Cuenta
+        /// Consulta que devuelve el último estado de los request (client order ID) asociadas a una
+        /// cuenta.Es decir, de los si se hizo un request para dar de alta una orden, y luego se hizo otro
+        /// para darlo de baja entonces esta API devolverá 2 ordenes, una con el ultimo estado asociado
+        /// al request de alta y otra con el ultimo estado asociado al request de baja.
+        /// </summary>
+        /// <param name="accountId">Account identifier.</param>
+        /// <returns>Orders information.</returns>
+        public async Task<GetOrdersResponse> GetOrderAll(Account account)
+        {
+
+            var builder = new UriBuilder(BaseUri + "/rest/order/all");
+            var query = HttpUtility.ParseQueryString(builder.Query);
+            query["accountId"] = account.accountId;
+
+            builder.Query = query.ToString();
+
+            var jsonResponse = await HttpClient.GetStringAsync(builder.Uri);
+
+            var response = JsonConvert.DeserializeObject<GetOrdersResponse>(jsonResponse);
             if (response.Status == Status.Error)
             {
                 throw new Exception($"{response.Message} ({response.Description})");
@@ -385,6 +414,21 @@ namespace Primary
 
             [JsonProperty("order")]
             public OrderStatus Order;
+        }
+
+        public struct GetOrdersResponse
+        {
+            [JsonProperty("status")]
+            public string Status;
+
+            [JsonProperty("message")]
+            public string Message;
+
+            [JsonProperty("description")]
+            public string Description;
+
+            [JsonProperty("orders")]
+            public List<OrderStatus> Orders;
         }
 
         #endregion

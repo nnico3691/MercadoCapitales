@@ -56,6 +56,27 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "GetOrderAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/GetOrderAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"GetOrderAll"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }

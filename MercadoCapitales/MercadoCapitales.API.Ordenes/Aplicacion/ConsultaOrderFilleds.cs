@@ -7,14 +7,15 @@ using static Primary.Api;
 using MercadoCapitales.API.Ordenes.Persistencia;
 using Primary;
 using Primary.Data;
+using Primary.Data.Orders;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion
 {
-    public class ConsultaOrdenesByAccount
+    public class ConsultaOrderFilleds
     {
-        public class ListaOrdenes : IRequest<GetOrderResponse> { }
+        public class ListaOrdenes : IRequest<List<OrderStatus>> { }
 
-        public class Manejador : IRequestHandler<ListaOrdenes, GetOrderResponse>
+        public class Manejador : IRequestHandler<ListaOrdenes, List<OrderStatus>>
         {
             private readonly ContextOrden _contexto;
 
@@ -22,7 +23,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
             {
                 _contexto = contexto;
             }
-            public async Task<GetOrderResponse> Handle(ListaOrdenes request, CancellationToken cancellationToken)
+            public async Task<List<OrderStatus>> Handle(ListaOrdenes request, CancellationToken cancellationToken)
             {
                 var api = new Api(Api.DemoEndpoint);
                 await api.Login(Api.DemoUsername, Api.DemoPassword);
@@ -32,9 +33,9 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
                     accountId = Api.DemoAccount
                 };
 
-                var ordenes = await api.GetOrderFilleds(account);
+                var result = await api.GetOrderFilleds(account);
 
-                return ordenes;
+                return result.Orders;
             }
         }
     }
