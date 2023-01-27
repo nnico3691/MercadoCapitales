@@ -7,13 +7,34 @@
 	},
 	"item": [
 		{
+			"name": "GetOrderFilleds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/GetOrderFilleds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"GetOrderFilleds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "CrearOrden",
 			"request": {
 				"method": "POST",
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Symbol\": \"DLR/ENE23\",\r\n    \"Price\": 187.10,\r\n    \"Side\": \"Buy\"\r\n}",
+					"raw": "{\r\n    \"Symbol\": \"DLR/ENE23\",\r\n    \"Price\": 187.10,\r\n    \"Quantity\": 100,\r\n    \"Side\": \"Buy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
