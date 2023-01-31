@@ -73,10 +73,11 @@ namespace GestorMercadoCapitales.Controllers
 
 
 
-        public ActionResult CompraInstrumento(string symbol, string precio)
+        public ActionResult CompraInstrumento(string symbol, string precio,int cantidad)
         {
             Orden ordenParam = new Orden();
             ordenParam.Symbol = symbol;
+            ordenParam.Quantity = cantidad;
             ordenParam.Price = decimal.Parse(precio.Replace(".",","));
             ordenParam.Side = "Buy";
 
