@@ -2,6 +2,7 @@
 using MercadoCapitales.API.Ordenes.Aplicacion;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Primary.Data.Orders;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Primary.Api;
@@ -28,7 +29,10 @@ namespace MercadoCapitales.API.Ordenes.Controllers
 
         [HttpGet]
         [Route("GetOrderFilleds")]
-        public async Task<ActionResult<GetOrderResponse>> GetOrderFilleds() => await _mediator.Send(new ConsultaOrdenesByAccount.ListaOrdenes());
+        public async Task<ActionResult<List<OrderStatus>>> GetOrderFilleds() => await _mediator.Send(new ConsultaOrderFilleds.ListaOrdenes());
 
+        [HttpGet]
+        [Route("GetOrderAll")]
+        public async Task<ActionResult<List<OrderStatus>>> GetOrderAll() => await _mediator.Send(new ConsultaGetOrderAll.ListaOrdenes());
     }
 }
