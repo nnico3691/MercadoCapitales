@@ -12,6 +12,9 @@ namespace MercadoCapitales.API.Clientes.Modelo
         public string TipoDNI { get; set; }
         public string DNI { get; set; }
         public string Telefono { get; set; }
+        [EmailAddress]
+        [Required]
+        public string Email { get; set; }
 
     }
 }

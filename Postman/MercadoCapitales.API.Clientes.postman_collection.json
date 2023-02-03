@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"DNI\": \"35726794\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\"\r\n\r\n}",
+					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"DNI\": \"35726794\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\",\r\n    \"Email\": \"nnico3691@gmail.com\"\r\n\r\n\r\n\r\n\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
