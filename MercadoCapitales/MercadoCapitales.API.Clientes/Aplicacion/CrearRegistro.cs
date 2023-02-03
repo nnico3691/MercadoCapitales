@@ -4,6 +4,7 @@ using System.Threading;
 using System;
 using MercadoCapitales.API.Clientes.Modelo;
 using MercadoCapitales.API.Clientes.Persistencia;
+using System.ComponentModel.DataAnnotations;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {
@@ -19,6 +20,9 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
             public string Usuario { get; set; }
             public string Clave { get; set; }
             public int IdCliente { get; set; }
+            [EmailAddress]
+            [Required]
+            public string Email { get; set; }
 
         }
 
@@ -39,7 +43,9 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                     Apellido = request.Apellido,
                     TipoDNI = request.TipoDNI,
                     DNI = request.DNI,
-                    Telefono = request.Telefono
+                    Telefono = request.Telefono,
+                    Email = request.Email
+
                     
                 };
 
