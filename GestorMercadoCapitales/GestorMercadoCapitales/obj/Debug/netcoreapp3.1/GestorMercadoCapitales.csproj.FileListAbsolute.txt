@@ -58,3 +58,5 @@ C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\opciones_financieras.cshtml.g.cs
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\Login\OlvideClave.cshtml.g.cs
 C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\CompraVentaInstrumentos.cshtml.g.cs
+C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\CompraInstrumento.cshtml.g.cs
+C:\proyectos\MercadoCapitales\GestorMercadoCapitales\GestorMercadoCapitales\obj\Debug\netcoreapp3.1\Razor\Views\MtbaRfx\HistoricoOperaciones.cshtml.g.cs

@@ -31,41 +31,41 @@ namespace GestorMercadoCapitales.Controllers
             }
 
 
-           
-                int hora_actual = DateTime.Now.Hour;
 
-                HorarioMercado hora = new HorarioMercado();
+            int hora_actual = DateTime.Now.Hour;
 
-                try
+            HorarioMercado hora = new HorarioMercado();
+
+            try
+            {
+                hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
+
+            }
+            catch
+            { hora.Horario_Mercado = 0; }
+
+            if (hora_actual >= hora.Horario_Mercado)
+            {
+                //validamos primero que ya se ejecuto el socket
+                //Luego, validamos que inicie solo cuando este logueado
+                if (HttpContext.Session.GetString("Socket") != "Iniciado"
+                    && HttpContext.Session.GetString("Login") == "Logueado")
                 {
-                    hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
-
-                }
-                catch
-                { hora.Horario_Mercado = 0; }
-
-                if (hora_actual >= hora.Horario_Mercado)
-                {
-                    //validamos primero que ya se ejecuto el socket
-                    //Luego, validamos que inicie solo cuando este logueado
-                    if (HttpContext.Session.GetString("Socket") != "Iniciado"
-                        && HttpContext.Session.GetString("Login") == "Logueado")
+                    try
                     {
-                        try
-                        {
-                            Socket socket = new Socket(_configuration);
+                        Socket socket = new Socket(_configuration);
 
-                            ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
-                            HttpContext.Session.SetString("Socket", "Iniciado");
-                        }
-                        catch { }
+                        ThreadPool.QueueUserWorkItem(socket.RunSocket, new object[] { });
+                        HttpContext.Session.SetString("Socket", "Iniciado");
                     }
+                    catch { }
                 }
-          
+            }
+
             return View(RofexList.rfxlist);
         }
 
-      
+
         public ActionResult opciones_financieras()
         {
             return View();
@@ -73,12 +73,12 @@ namespace GestorMercadoCapitales.Controllers
 
 
 
-        public ActionResult CompraInstrumento(string symbol, string precio,int cantidad)
+        public ActionResult CompraInstrumento(string symbol, string precio, int cantidad)
         {
             Orden ordenParam = new Orden();
             ordenParam.Symbol = symbol;
             ordenParam.Quantity = cantidad;
-            ordenParam.Price = decimal.Parse(precio.Replace(".",","));
+            ordenParam.Price = decimal.Parse(precio.Replace(".", ","));
             ordenParam.Side = "Buy";
 
             string url = _configuration.GetSection("API:CrearOrden").Value;
@@ -95,11 +95,11 @@ namespace GestorMercadoCapitales.Controllers
 
                 if (response.StatusCode == HttpStatusCode.OK)
                 {
-                    
+
                     var responseText = response.Content.ReadAsStringAsync().Result;
                     //responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
-                   // return RedirectToAction("Dashboard", "Home");
+                    // return RedirectToAction("Dashboard", "Home");
                 }
                 else
                 {
@@ -111,11 +111,24 @@ namespace GestorMercadoCapitales.Controllers
             return View();
         }
 
-
-        public ActionResult CompraVentaInstrumentos()
+        public ActionResult HistoricoOperaciones()
         {
-            return View();
-        }
+            string url = _configuration.GetSection("API:GetOrderAll").Value;
+            var parames = new Dictionary<string, string>();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var data = new List<OrderAll>();
 
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<List<OrderAll>>(responseText);
+            }
+
+
+            return View(data);
+
+        }
     }
 }

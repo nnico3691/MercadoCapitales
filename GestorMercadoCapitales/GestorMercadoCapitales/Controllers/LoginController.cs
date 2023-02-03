@@ -92,7 +92,7 @@ namespace GestorMercadoCapitales.Controllers
             return View();
         }
 
-        public ActionResult Confirmacion(string DNI, string Nombre, string Apellido, string Telefono, string clave)
+        public ActionResult Confirmacion(string DNI, string Nombre, string Apellido, string Telefono, string clave,string email)
         {
             DatosCliente datoCliente = new DatosCliente();
 
@@ -103,6 +103,7 @@ namespace GestorMercadoCapitales.Controllers
             datoCliente.Usuario = DNI.Trim();
             datoCliente.Telefono = Telefono.Trim();
             datoCliente.Clave = clave.Trim();
+            datoCliente.email = email.Trim();
 
             string url = _configuration.GetSection("API:Registrarme").Value;
 
