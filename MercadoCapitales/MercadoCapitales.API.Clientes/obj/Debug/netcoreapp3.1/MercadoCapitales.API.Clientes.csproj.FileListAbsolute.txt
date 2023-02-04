@@ -67,3 +67,6 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Cliente
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MercadoCapitales.API.Especies.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Primary.pdb
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MailKit.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\MimeKit.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\BouncyCastle.Crypto.dll

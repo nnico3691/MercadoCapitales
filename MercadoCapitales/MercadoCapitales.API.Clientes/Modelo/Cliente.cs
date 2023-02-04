@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
+using System.Security.Policy;
 
 namespace MercadoCapitales.API.Clientes.Modelo
 {
@@ -15,6 +16,7 @@ namespace MercadoCapitales.API.Clientes.Modelo
         [EmailAddress]
         [Required]
         public string Email { get; set; }
+        public string TokenRecovery { get; set; }
 
     }
 }

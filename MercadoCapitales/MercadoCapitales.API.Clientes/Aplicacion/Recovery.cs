@@ -17,60 +17,36 @@ using MercadoCapitales.API.Clientes.Services;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {
-    public class StartRecovery
+    public class Recovery
     {
-        public class Ejecuta : IRequest<Unit>
+        public class Ejecuta : IRequest<string> 
         {
-
-            [EmailAddress]
-            [Required]
+            public string Token { get; set; }
             public string Email { get; set; }
-
         }
 
-        public class Manejador : IRequestHandler<Ejecuta, Unit>
+        public class Manejador : IRequestHandler<Ejecuta, string>
         {
-            private readonly ContextCliente _contexto;
-            private readonly IEmailSenderService _emailSenderService;
 
-            public Manejador(ContextCliente contexto, IEmailSenderService emailSenderService)
+            private readonly ContextCliente _contexto;
+
+            public Manejador(ContextCliente contexto)
             {
                 _contexto = contexto;
-                _emailSenderService = emailSenderService;
             }
-
-            public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
+            public async Task<string> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 try
                 {
-                    /*HAY QUE HACER EL AUTOMAPPER VER EJEMPLO*/
-
-                    string token = GetSha256(Guid.NewGuid().ToString());
-
                     var oUser = _contexto.Cliente.Where(x => x.Email == request.Email).ToList().FirstOrDefault();
-                    if (oUser != null) 
-                    {
-                        oUser.TokenRecovery = token;
-                        _contexto.Update(oUser);
-                        _contexto.SaveChanges();
+                    var oLogin= _contexto.Login.Where(x => x.Cliente == oUser.ClienteId).ToList().FirstOrDefault();
 
-                        string urlDomain = "http://localhost:51736/api/Cliente/Recovery?token=" + token + "&email=" + request.Email;
+                    oLogin.Clave = Password.GenerarPassword(16);
 
-                        /*ENVIAR EMAIL*/
-                        MailRequest mail = new MailRequest 
-                        {
-                            Email = request.Email,
-                            Subject = "Test - Email",
-                            Body = "<p> Correo para recuperación de Contraseña</p><br>" + "<a href='" + urlDomain + "'>Click para recuperar</a>"
-                        };
-                        
-                        await _emailSenderService.SenderEmailAsync(mail);
+                    _contexto.Update(oLogin);
+                    _contexto.SaveChanges();
 
-
-                    }
-
-                    return Unit.Value;
-
+                    return "Sistma Mercado de Capitales - Contraseña Autogerada es: " + oLogin.Clave;
                 }
                 catch (Exception ex)
                 {
@@ -104,6 +80,33 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
 
             }    
 
+        }
+    }
+
+    public static class Password
+    {
+        public static string GenerarPassword(int longitud)
+        {
+            string contraseña = string.Empty;
+            string[] letras = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "ñ", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z",
+                                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"};
+            Random EleccionAleatoria = new Random();
+
+            for (int i = 0; i < longitud; i++)
+            {
+                int LetraAleatoria = EleccionAleatoria.Next(0, 100);
+                int NumeroAleatorio = EleccionAleatoria.Next(0, 9);
+
+                if (LetraAleatoria < letras.Length)
+                {
+                    contraseña += letras[LetraAleatoria];
+                }
+                else
+                {
+                    contraseña += NumeroAleatorio.ToString();
+                }
+            }
+            return contraseña;
         }
     }
 }
