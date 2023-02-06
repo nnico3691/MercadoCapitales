@@ -76,7 +76,7 @@ namespace GestorMercadoCapitales.Models
                     indice = indice + 1;
                 }
 
-                PanelInferiorInstrumentos.Instrumentos = symbols;
+                //PanelInferiorInstrumentos.Instrumentos = symbols;
 
 
 

@@ -42,6 +42,8 @@ namespace GestorMercadoCapitales.Controllers
                 int indice = 0;
                 RofexList.rfxlist = new List<MtbaRfx>();
 
+                PanelInferiorInstrumentos.Instrumentos = symbols;
+
                 foreach (var insymbols in datasymbols)
                 {
                     mtbaRfx = new MtbaRfx();    

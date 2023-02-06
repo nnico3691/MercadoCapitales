@@ -14,65 +14,76 @@
 <br>
 
 @Html.Partial("CompraVentaInstrumentos")
-
+<br />
+<br />
+<br />
+<hr/>
 <a asp-area="" class="btn btn-info" asp-controller="MtbaRfx" asp-action="HistoricoOperaciones">Estado de mis operaciones</a>
 <br/> 
-<div id="TablaPrincipal">
+<br />
+<br />
+<hr/>
+<div class="tableWrap">
+    <div id="TablaPrincipal">
 
-    <br/>
-    <hr/>
-    <table class="table table-striped table-dark" style="font-size:10px;">
-        <thead class="">
-            <tr>
-                <th scope="col">Instrumento</th>
-                <th scope="col">Vol. C</th>
-                <th scope="col">Compra</th>
-                <th scope="col">Venta</th>
-                <th scope="col">Vol. V</th>
-                <th scope="col">Ult</th>
-                <th scope="col">Var</th>
-                <th scope="col">Var%</th>
-                <th scope="col">Vol. Operado</th>
-                <th scope="col">Ajuste</th>
-                <th scope="col">Min</th>
-                <th scope="col">Max</th>
-                <th scope="col">Range</th>
-                <th scope="col">Int. Abierto</th>
-                <th scope="col">Hora</th>
-            </tr>
-        </thead>
-        <tbody>
+        <br />
+        <hr />
+        <table class="table table-striped table-dark">
+            <thead class="">
+                <tr>
+                    <th scope="col">Instrumento</th>
+                    <th scope="col">Vol. C</th>
+                    <th scope="col">Compra</th>
+                    <th scope="col">Venta</th>
+                    <th scope="col">Vol. V</th>
+                    <th scope="col">Ult</th>
+                    <th scope="col">Var</th>
+                    <th scope="col">Var%</th>
+                    <th scope="col">Vol. Operado</th>
+                    <th scope="col">Ajuste</th>
+                    <th scope="col">Min</th>
+                    <th scope="col">Max</th>
+                    <th scope="col">Range</th>
+                    <th scope="col">Int. Abierto</th>
+                    <th scope="col">Hora</th>
+                </tr>
+            </thead>
+            <tbody>
 
-            @try
-            {
-                @foreach (var datos in Model)
+                @try
                 {
-                    <tr>
-                        <td>@datos.Instrumento</td>
-                        <td>@datos.VolC</td>
-                        <td style="background-color:@datos.ColorCompra;">@datos.Compra</td>
-                        <td style="background-color:@datos.ColorVenta;">@datos.Venta</td>
-                        <td>@datos.VolV</td>
-                        <td>@datos.Ult</td>
-                        <td>@datos.Var</td>
-                        <td>@datos.VarPorcentaje %</td>
-                        <td>@datos.VolOpe</td>
-                        <td>@datos.Ajuste</td>
-                        <td>@datos.Min</td>
-                        <td>@datos.Max</td>
-                        <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
-                        <td>@datos.intAbierto</td>
-                        <td>@datos.hora</td>
-                    </tr>
+                    @foreach (var datos in Model)
+                    {
+                        <tr>
+                            <td>@datos.Instrumento</td>
+                            <td>@datos.VolC</td>
+                            <td style="background-color:@datos.ColorCompra;">@datos.Compra</td>
+                            <td style="background-color:@datos.ColorVenta;">@datos.Venta</td>
+                            <td>@datos.VolV</td>
+                            <td>@datos.Ult</td>
+                            <td>@datos.Var</td>
+                            <td>@datos.VarPorcentaje %</td>
+                            <td>@Convert.ToDouble(datos.VolOpe).ToString("N0")</td>
+                            <td>@datos.Ajuste</td>
+                            <td>@datos.Min</td>
+                            <td>@datos.Max</td>
+                            <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
+                            <td>@datos.intAbierto</td>
+                            <td>@datos.hora</td>
+                        </tr>
+                    }
                 }
-            }
-            catch { }
+                catch { }
 
 
-        </tbody>
-    </table>
+            </tbody>
+        </table>
 
- </div>
+    </div>
+
+
+
+</div>
 
 <script>
 
