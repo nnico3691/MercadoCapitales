@@ -35,7 +35,7 @@ namespace MercadoCapitales.API.Clientes.Services
 
                 using (var client = new SmtpClient()) 
                 {
-                    await client.ConnectAsync(_smtpSettings.Server);
+                    await client.ConnectAsync(_smtpSettings.Server,587,false);
                     await client.AuthenticateAsync(_smtpSettings.UserName, _smtpSettings.Password);
                     await client.SendAsync(message);
                     await client.DisconnectAsync(true);
