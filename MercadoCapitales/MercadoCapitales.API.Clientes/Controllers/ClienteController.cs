@@ -62,5 +62,16 @@ namespace MercadoCapitales.API.Clientes.Controllers
             return await _mediator.Send(data);
         }
 
+        [HttpPost]
+        [Route("StartRecovery")]
+        public async Task<ActionResult<Unit>> StartRecovery(StartRecovery.Ejecuta data)
+        {
+            return await _mediator.Send(data);
+        }
+
+        [HttpGet]
+        [Route("Recovery")]
+        public async Task<ActionResult<string>> Recovery(string token, string email) => await _mediator.Send(new Recovery.Ejecuta {Token = token, Email = email });
+
     }
 }

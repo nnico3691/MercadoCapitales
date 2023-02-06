@@ -4,14 +4,16 @@ using MercadoCapitales.API.Clientes.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Clientes.Migrations
 {
     [DbContext(typeof(ContextCliente))]
-    partial class ContextClienteModelSnapshot : ModelSnapshot
+    [Migration("20230203191134_MigracionInicialV2")]
+    partial class MigracionInicialV2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

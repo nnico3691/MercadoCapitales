@@ -58,6 +58,37 @@
 			"response": []
 		},
 		{
+			"name": "Recovery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/Recovery?token=1234&Email=nnico3691@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"Recovery"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "1234"
+						},
+						{
+							"key": "Email",
+							"value": "nnico3691@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "POST",
@@ -163,6 +194,36 @@
 						"api",
 						"Cliente",
 						"CrearClientePerfilInversor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StartRecovery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\": \"nnico3691@gmail.com\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/StartRecovery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"StartRecovery"
 					]
 				}
 			},

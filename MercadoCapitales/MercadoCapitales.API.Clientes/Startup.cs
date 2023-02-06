@@ -1,7 +1,9 @@
 using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion;
+using MercadoCapitales.API.Clientes.Modelo;
 using MercadoCapitales.API.Clientes.Persistencia;
+using MercadoCapitales.API.Clientes.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,12 +31,17 @@ namespace MercadoCapitales.API.Clientes
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //services.AddScoped<IEmailSenderService, EmailSenderService>();
+
             services.AddControllers();
             services.AddDbContext<ContextCliente>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
+
             services.AddMediatR(typeof(CrearRegistro.Manejador).Assembly);
             services.AddAutoMapper(typeof(ConsultaClientes.Manejador));
+            services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
+            services.AddSingleton<IEmailSenderService, EmailSenderService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
