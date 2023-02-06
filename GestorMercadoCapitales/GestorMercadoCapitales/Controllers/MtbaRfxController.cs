@@ -30,12 +30,41 @@ namespace GestorMercadoCapitales.Controllers
                 return RedirectToAction("Login", "Login");
             }
 
+            List<MtbaRfx> ListmtbaRfx = new List<MtbaRfx>();
+            MtbaRfx mtbaRfx = new MtbaRfx();
+
+            if (HttpContext.Session.GetString("Socket") != "Iniciado"
+                   && HttpContext.Session.GetString("Login") == "Logueado")
+            {
+                var datasymbols = new List<PanelFuturoFinancieros>();
+                datasymbols = GetPanelFuturoFinancieros();
+                string[] symbols = new string[datasymbols.Count];
+                int indice = 0;
+                RofexList.rfxlist = new List<MtbaRfx>();
+
+                foreach (var insymbols in datasymbols)
+                {
+                    mtbaRfx = new MtbaRfx();    
+                    symbols[indice] = insymbols.symbol.ToString();
+                    mtbaRfx.Instrumento = symbols[indice];
+                    indice = indice + 1;
+
+                    RofexList.rfxlist.Add(mtbaRfx);
+                }
+            }
+
+            return View(RofexList.rfxlist);
+        }
+
+        public ActionResult ActualizaPrecios()
+        {
 
 
             int hora_actual = DateTime.Now.Hour;
 
             HorarioMercado hora = new HorarioMercado();
 
+            
             try
             {
                 hora.Horario_Mercado = int.Parse(_configuration.GetSection("HorarioMercado:hora").Value);
@@ -70,7 +99,6 @@ namespace GestorMercadoCapitales.Controllers
         {
             return View();
         }
-
 
 
         public ActionResult CompraInstrumento(string symbol, string precio, int cantidad)
@@ -128,6 +156,27 @@ namespace GestorMercadoCapitales.Controllers
 
 
             return View(data);
+
+        }
+
+        private List<PanelFuturoFinancieros> GetPanelFuturoFinancieros()
+        {
+
+            string url = _configuration.GetSection("API:Instrumentos").Value;
+            var parames = new Dictionary<string, string>();
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var data = new List<PanelFuturoFinancieros>();
+
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                HttpResponseMessage response = client.GetAsync(url).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+                data = JsonConvert.DeserializeObject<List<PanelFuturoFinancieros>>(responseText);
+            }
+
+
+            return data;
 
         }
     }

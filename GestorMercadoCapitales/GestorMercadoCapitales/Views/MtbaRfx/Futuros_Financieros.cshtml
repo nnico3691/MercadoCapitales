@@ -21,7 +21,7 @@
 
     <br/>
     <hr/>
-    <table class="table table-striped table-dark">
+    <table class="table table-striped table-dark" style="font-size:10px;">
         <thead class="">
             <tr>
                 <th scope="col">Instrumento</th>
@@ -88,7 +88,7 @@
     function contador() {
 
         jQuery.ajax({
-            url: '@Url.Action("Futuros_Financieros", "MtbaRfx")',
+            url: '@Url.Action("ActualizaPrecios", "MtbaRfx")',
             type: "POST",
             dataType: "json",
             data: {},
@@ -98,7 +98,7 @@
             }
         });
 
-        $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
+       $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
     }
 
 

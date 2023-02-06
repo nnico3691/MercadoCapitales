@@ -78,7 +78,7 @@ namespace GestorMercadoCapitales.Models
 
                 PanelInferiorInstrumentos.Instrumentos = symbols;
 
-                
+
 
                 var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
 
