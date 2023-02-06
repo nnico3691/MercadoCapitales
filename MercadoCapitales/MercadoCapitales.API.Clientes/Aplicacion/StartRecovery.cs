@@ -60,7 +60,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                         MailRequest mail = new MailRequest 
                         {
                             Email = request.Email,
-                            Subject = "Test - Email",
+                            Subject = "Mercado Capitales - Recupero Contraseña",
                             Body = "<p> Correo para recuperación de Contraseña</p><br>" + "<a href='" + urlDomain + "'>Click para recuperar</a>"
                         };
                         
