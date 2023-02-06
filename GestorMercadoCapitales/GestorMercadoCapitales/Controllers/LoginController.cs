@@ -138,6 +138,31 @@ namespace GestorMercadoCapitales.Controllers
             return View();
         }
 
+        public ActionResult ConfirmaOlvideClave(string email)
+        {
+
+            StartRecoveryData startRecoveryData = new StartRecoveryData();
+            startRecoveryData.Email = email.Trim();
+
+            string url = _configuration.GetSection("API:StartRecovery").Value;
+
+            var json = JsonConvert.SerializeObject(startRecoveryData);
+
+            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+            HttpClientHandler clientHandler = new HttpClientHandler();
+            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+            var data = new List<CotizacionAccion>();
+
+            using (HttpClient client = new HttpClient(clientHandler))
+            {
+                HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
+                var responseText = response.Content.ReadAsStringAsync().Result;
+            }
+
+            return View(startRecoveryData);
+        }
+
 
 
         public ActionResult ConfirmaClave(string clave_anterior, string clave_nueva)
