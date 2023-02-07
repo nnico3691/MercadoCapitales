@@ -130,6 +130,7 @@ namespace GestorMercadoCapitales.Controllers
         public ActionResult Logout()
         {
             HttpContext.Session.Clear();
+            UsuarioLogueado.Usuario = "";
             return RedirectToAction("Login", "Login");
         }
 
@@ -168,6 +169,7 @@ namespace GestorMercadoCapitales.Controllers
         public ActionResult ConfirmaClave(string clave_anterior, string clave_nueva)
         {
             HttpContext.Session.Clear();
+            UsuarioLogueado.Usuario = "";
             return RedirectToAction("Login", "Login");
         }
 

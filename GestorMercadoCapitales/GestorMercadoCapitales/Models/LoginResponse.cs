@@ -10,4 +10,10 @@ namespace GestorMercadoCapitales.Models
         public Guid? cliente { get; set; }
 
     }
+
+    public static class UsuarioLogueado
+    { 
+        public static string Usuario { get; set; }
+    }
+
 }

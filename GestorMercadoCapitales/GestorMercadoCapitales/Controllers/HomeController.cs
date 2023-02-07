@@ -57,7 +57,10 @@ namespace GestorMercadoCapitales.Controllers
 
             string usuario = HttpContext.Session.GetString("Usuario");
 
-            ViewData["Usuario"] = usuario;
+            //ViewData["Usuario"] = usuario;
+
+            UsuarioLogueado.Usuario = usuario;
+
             return View();
         }
 

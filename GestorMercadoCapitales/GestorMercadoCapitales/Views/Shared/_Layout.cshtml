@@ -1,5 +1,6 @@
 ﻿
 @using Microsoft.AspNetCore.Http;
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,6 +61,7 @@
 
 
 </head>
+
 <body style="background:linear-gradient(#3498DB 10%, 30%, #1B4F72 90%);color:white">
     <div class="loader"></div>
    <div style="width:100%;">
@@ -127,7 +129,8 @@
                         <ul class="nav navbar-nav">
                             <li class="dropdown">
                                 <a class="dropdown-toggle" data-bs-toggle="dropdown">
-                                    Perfil - @ViewData["Usuario"]
+                                    Perfil - @UsuarioLogueado.Usuario
+
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                     <a asp-area="" style="color:black;" class="dropdown-item" asp-controller="Login" asp-action="Logout"><i class="material-icons" style="font-size:10px !important;">exit_to_app</i><b>Salir</b></a>

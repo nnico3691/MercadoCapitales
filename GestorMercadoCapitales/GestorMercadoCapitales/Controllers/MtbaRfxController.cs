@@ -103,13 +103,21 @@ namespace GestorMercadoCapitales.Controllers
         }
 
 
-        public ActionResult CompraInstrumento(string symbol, string precio, int cantidad)
+        public ActionResult CompraInstrumento(string symbol, string precio, int cantidad,string TipoOp)
         {
             Orden ordenParam = new Orden();
             ordenParam.Symbol = symbol;
             ordenParam.Quantity = cantidad;
             ordenParam.Price = decimal.Parse(precio.Replace(".", ","));
-            ordenParam.Side = "Buy";
+
+            if (TipoOp == "Compra")
+            {
+                ordenParam.Side = "Buy";
+            }
+            else
+            {
+                ordenParam.Side = "Sell";
+            }
 
             string url = _configuration.GetSection("API:CrearOrden").Value;
             var json = JsonConvert.SerializeObject(ordenParam);
