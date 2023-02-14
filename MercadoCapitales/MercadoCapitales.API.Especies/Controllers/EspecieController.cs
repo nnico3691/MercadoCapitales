@@ -1,4 +1,4 @@
-﻿    using MediatR;
+﻿using MediatR;
 using MercadoCapitales.API.Especies.Aplicacion;
 using MercadoCapitales.API.Especies.Aplicacion.Dto;
 using Microsoft.AspNetCore.Mvc;
