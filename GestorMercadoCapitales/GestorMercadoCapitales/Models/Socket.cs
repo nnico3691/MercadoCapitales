@@ -165,9 +165,12 @@ namespace GestorMercadoCapitales.Models
                         {
                             rfx.Instrumento = marketData.InstrumentId.Symbol;
                             rfx.VolC = bidSize;
+                            rfx.Compra = bid;
                             rfx.Venta = offer;
                             rfx.VolV = offerSize;
                             rfx.VolOpe = nominalVolume;
+                            //rfx.ColorCompra = ColorCompra;
+                            //rfx.ColorVenta = ColorVenta;
                             RofexList.rfxlist.Add(rfx);
 
                         }
@@ -208,7 +211,7 @@ namespace GestorMercadoCapitales.Models
                                     item.VolOpe = nominalVolume;
                                     item.ColorCompra = ColorCompra;
                                     item.ColorVenta = ColorVenta;
-                                    break;
+                                    //break;
                                 }
 
                             }

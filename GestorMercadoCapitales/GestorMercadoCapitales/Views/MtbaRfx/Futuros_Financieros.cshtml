@@ -3,6 +3,9 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
 @model List<MtbaRfx>
 
     @Html.Partial("NavBarMtbrfx")
@@ -12,23 +15,25 @@
 
 <h3>Futuro Financiero</h3>
 <br>
+<div id="head">
+    @Html.Partial("CompraVentaInstrumentos")
+</div>
 
-@Html.Partial("CompraVentaInstrumentos")
-<br />
-<br />
 <br />
 <hr/>
 <a asp-area="" class="btn btn-info" asp-controller="MtbaRfx" asp-action="HistoricoOperaciones">Estado de mis operaciones</a>
-<br/> 
 <br />
-<br />
+
+
+@*<input type="text" id="myInput" placeholder="Texto a buscar..." style="color:black;">
+*@
 <hr/>
 <div class="tableWrap">
     <div id="TablaPrincipal">
 
         <br />
         <hr />
-        <table class="table table-striped table-dark">
+        <table class="table table-striped table-dark" id="example">
             <thead class="">
                 <tr>
                     <th scope="col">Instrumento</th>
@@ -87,30 +92,146 @@
 
 <script>
 
-    setInterval('contador()', 1000);
 
-    //$(document).ready(function () {
-    //    var refreshId = setInterval(function () {
-    //        $('#TablaPrincipal').load('contador()');//actualizas el div automaticamente
-    //    }, 1000);
+
+    (function loop() {
+        setTimeout(function () {
+            $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
+            loop();
+        }, 5000);
+    })();
+
+
+
+     $('#TablaPrincipal').click(function () {
+
+        $('#example tbody').on('click', 'tr', function () {
+            /* if ($(this).hasClass('selected')) {
+                 // Deseleccionar
+                 $(this).removeClass('selected');
+                 // Limpiar campos
+                 //$('#Clave').val('');
+                 //$('#Descripcion').val('');
+                 //$('#Obse').val('');
+             } else {*/
+
+            // Remover clase de TR seleccionada, si es que hay
+            $('tr.selected').removeClass('selected');
+            // Asignar clase seleccionada a TR actual
+            $(this).addClass('selected');
+            // Obtener TD's
+            var tds = $(this).children();
+
+            //alert($(tds[0]).text())
+            $("#symbol").select2("val", [$(tds[0]).text()]);
+            document.getElementById("precio").value = $(tds[2]).text();
+            document.getElementById("cantidad").value = $(tds[4]).text();
+
+
+            // Asignar campos
+            /*  $('#Clave').val($(tds[0]).text());
+              $('#Descripcion').val($(tds[1]).text());
+              $('#Obse').val($(tds[2]).text());*/
+            //}
+        });
+
+    });
+
+       //setInterval('contador()', 5000);
+
+    var save_lock = false;
+
+    const sleep = (s) =>
+        new Promise((p) => setTimeout(p, (s * 1000) | 0))
+
+    async function contador() {
+        await sleep(1)
+
+
+        $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
+
+
+        $('#example tbody').on('click', 'tr', function () {
+            /* if ($(this).hasClass('selected')) {
+                 // Deseleccionar
+                 $(this).removeClass('selected');
+                 // Limpiar campos
+                 //$('#Clave').val('');
+                 //$('#Descripcion').val('');
+                 //$('#Obse').val('');
+             } else {*/
+
+            // Remover clase de TR seleccionada, si es que hay
+            $('tr.selected').removeClass('selected');
+            // Asignar clase seleccionada a TR actual
+            $(this).addClass('selected');
+            // Obtener TD's
+            var tds = $(this).children();
+
+            alert($(tds[0]).text())
+            //$("#symbol").select2("val", [$(tds[0]).text()]);
+
+
+            // Asignar campos
+            /*  $('#Clave').val($(tds[0]).text());
+              $('#Descripcion').val($(tds[1]).text());
+              $('#Obse').val($(tds[2]).text());*/
+            //}
+        });
+
+
+
+
+        //setTimeout(function () {
+        //}, 2000);
+
+        
+
+
+    }
+
+   // setTimeout('contador()', 10000)
+
+
+    //$("table[id*='example']").click(function (e) {
+    //    e.preventDefault();
+    //    //if ($(e.currentTarget).is('tr')) {
+    //        alert(1);
+    //    //}
+    //    e.stopPropagation();
+    //    return false;
     //});
 
 
-    function contador() {
+        //$('#example tbody').on('click', 'tr', function () {
+        //    /* if ($(this).hasClass('selected')) {
+        //         // Deseleccionar
+        //         $(this).removeClass('selected');
+        //         // Limpiar campos
+        //         //$('#Clave').val('');
+        //         //$('#Descripcion').val('');
+        //         //$('#Obse').val('');
+        //     } else {*/
 
-        jQuery.ajax({
-            url: '@Url.Action("ActualizaPrecios", "MtbaRfx")',
-            type: "POST",
-            dataType: "json",
-            data: {},
-            success: function (result) {
-               // window.location.reload()
-              
-            }
-        });
+        //    // Remover clase de TR seleccionada, si es que hay
+        //    $('tr.selected').removeClass('selected');
+        //    // Asignar clase seleccionada a TR actual
+        //    $(this).addClass('selected');
+        //    // Obtener TD's
+        //    var tds = $(this).children();
 
-       $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
-    }
+        //    //alert($(tds[0]).text())
+        //    $("#symbol").select2("val", [$(tds[0]).text()]);
 
+
+        //    // Asignar campos
+        //    /*  $('#Clave').val($(tds[0]).text());
+        //      $('#Descripcion').val($(tds[1]).text());
+        //      $('#Obse').val($(tds[2]).text());*/
+        //    //}
+        //});
+
+
+   // }
 
 </script>
