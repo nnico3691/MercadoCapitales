@@ -1,0 +1,68 @@
+{
+  /*Los agregados se agregan manualmente y puedo de dos endpoints generar uno asociado como aca*/
+  "Aggregates": [
+    {
+      "UpstreamPathTemplate": "/api/usersPosts",
+      "RouteKeys": [ "users", "posts" ], /*Realizamos dos peticiones para unificar en un endpoint usersPosts*/
+      "Aggregator": "UsersPostsAggregator"
+    }
+  ],
+  /*ENDPOINTS*/
+  "Routes": [
+    {
+      "UpstreamPathTemplate": "/api/users",
+      "UpstreamHttpMethod": [],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 443
+        }
+      ],
+      "DownstreamPathTemplate": "/users",
+      "Key": "users",
+    },
+    {
+      "UpstreamPathTemplate": "/api/posts",
+      "UpstreamHttpMethod": [],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "jsonplaceholder.typicode.com",
+          "Port": 443
+        }
+      ],
+      "DownstreamPathTemplate": "/posts",
+      "Key": "posts"
+    },
+    /*MercadoCapitales.API.Clientes*/
+    {
+      "UpstreamPathTemplate": "/api/Cliente/GetClientes",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 51736
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/GetClientes",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "GetClientes"
+    }
+  ],
+  "SwaggerEndPoints": [
+    {
+      "Key": "GetClientes",
+      "Config": [
+        {
+          "Name": "API",
+          "Version": "v1",
+          "Url": "http://localhost:5100/swagger/v1/swagger.json"
+        }
+      ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:44372"
+  }
+}

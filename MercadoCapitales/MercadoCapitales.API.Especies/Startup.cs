@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.OpenApi.Models;
 
 namespace MercadoCapitales.API.Especies
 {
@@ -35,6 +36,25 @@ namespace MercadoCapitales.API.Especies
             });
             services.AddMediatR(typeof(CrearAllInstruments.Manejador).Assembly);
             services.AddAutoMapper(typeof(ConsultaFuturosFinancieros.Manejador));
+
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.CustomSchemaIds(type => type.ToString());
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"Foo {groupName}",
+                    Version = groupName,
+                    Description = "Foo API",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Foo Company",
+                        Email = string.Empty,
+                        Url = new Uri("https://foo.com/"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,8 +65,15 @@ namespace MercadoCapitales.API.Especies
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Foo API V1");
+            });
+
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
