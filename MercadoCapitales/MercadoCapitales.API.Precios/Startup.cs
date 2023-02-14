@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -36,6 +37,25 @@ namespace MercadoCapitales.API.Precios
             });
             services.AddMediatR(typeof(CrearPrecioAccion.Manejador).Assembly);
             services.AddAutoMapper(typeof(ConsultaPreciosAccion.Manejador));
+
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.CustomSchemaIds(type => type.ToString());
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"API {groupName}",
+                    Version = groupName,
+                    Description = "API DE PRECIOS",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Mercado Capitales",
+                        Email = string.Empty,
+                        Url = new Uri("https://foo.com/"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,8 +66,15 @@ namespace MercadoCapitales.API.Precios
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API PRECIOS V1");
+            });
+
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

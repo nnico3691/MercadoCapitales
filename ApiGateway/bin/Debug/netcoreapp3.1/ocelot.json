@@ -55,9 +55,9 @@
       "Key": "GetClientes",
       "Config": [
         {
-          "Name": "API",
+          "Name": "API Mercado Capitales",
           "Version": "v1",
-          "Url": "http://localhost:5100/swagger/v1/swagger.json"
+          "Url": "http://localhost:51736/swagger/v1/swagger.json"
         }
       ]
     }

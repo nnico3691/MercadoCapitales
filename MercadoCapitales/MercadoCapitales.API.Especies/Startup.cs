@@ -44,12 +44,12 @@ namespace MercadoCapitales.API.Especies
                 options.CustomSchemaIds(type => type.ToString());
                 options.SwaggerDoc(groupName, new OpenApiInfo
                 {
-                    Title = $"Foo {groupName}",
+                    Title = $"API {groupName}",
                     Version = groupName,
-                    Description = "Foo API",
+                    Description = "API DE ESPECIES",
                     Contact = new OpenApiContact
                     {
-                        Name = "Foo Company",
+                        Name = "Mercado Capitales",
                         Email = string.Empty,
                         Url = new Uri("https://foo.com/"),
                     }
@@ -70,7 +70,7 @@ namespace MercadoCapitales.API.Especies
             app.UseSwagger();
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Foo API V1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API ESPECIES V1");
             });
 
             app.UseRouting();

@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,24 @@ namespace MercadoCapitales.API.Ordenes
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
             services.AddMediatR(typeof(CrearOrden.Manejador).Assembly);
+            services.AddSwaggerGen(options =>
+            {
+                var groupName = "v1";
+
+                options.CustomSchemaIds(type => type.ToString());
+                options.SwaggerDoc(groupName, new OpenApiInfo
+                {
+                    Title = $"API {groupName}",
+                    Version = groupName,
+                    Description = "API DE ORDENES",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Mercado Capitales",
+                        Email = string.Empty,
+                        Url = new Uri("https://foo.com/"),
+                    }
+                });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -43,8 +62,15 @@ namespace MercadoCapitales.API.Ordenes
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
+            app.UseHttpsRedirection();
 
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API ORDENES V1");
+            });
+
+            app.UseRouting();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
