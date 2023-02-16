@@ -2,7 +2,7 @@
 
 namespace GestorMercadoCapitales.Models
 {
-    public class MtbaRfx
+    public class MtbaRfx : MensajeRetorno
     {
         public string Instrumento { get; set; }
         public decimal? VolC { get; set; }
@@ -28,6 +28,14 @@ namespace GestorMercadoCapitales.Models
     public class RofexList
     {
         public static List<MtbaRfx> rfxlist = new List<MtbaRfx>();
+
+        public static void LimpiarMensaje()
+        {
+            rfxlist[0].cod_mensaje = 0;
+            rfxlist[0].mensaje = "";
+        }
+
+
     }
     
 

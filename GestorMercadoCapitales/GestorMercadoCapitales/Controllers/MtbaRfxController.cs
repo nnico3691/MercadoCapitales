@@ -38,6 +38,12 @@ namespace GestorMercadoCapitales.Controllers
             {
                 var datasymbols = new List<PanelFuturoFinancieros>();
                 datasymbols = GetPanelFuturoFinancieros();
+
+                if (datasymbols.Count == 0)
+                {
+                    return View(RofexList.rfxlist);
+                }
+
                 string[] symbols = new string[datasymbols.Count];
                 int indice = 0;
                 RofexList.rfxlist = new List<MtbaRfx>();
@@ -53,19 +59,20 @@ namespace GestorMercadoCapitales.Controllers
 
                     RofexList.rfxlist.Add(mtbaRfx);
                 }
+
+                //carga de precios consultando al mercado directamente
+                ActualizaPrecios();
+
             }
 
             return View(RofexList.rfxlist);
         }
 
-        public ActionResult ActualizaPrecios()
+        public void ActualizaPrecios()
         {
 
-
             int hora_actual = DateTime.Now.Hour;
-
             HorarioMercado hora = new HorarioMercado();
-
             
             try
             {
@@ -91,9 +98,16 @@ namespace GestorMercadoCapitales.Controllers
                     }
                     catch { }
                 }
+
+                RofexList.LimpiarMensaje();
+            }
+            else
+            {
+                var mens = TipoMensaje.ObtenerTipoMensaje("ErrHorarioMercado");
+                RofexList.rfxlist[0].cod_mensaje = mens.cod_mensaje;
+                RofexList.rfxlist[0].mensaje = mens.mensaje + " " + hora.Horario_Mercado + " am";
             }
 
-            return View(RofexList.rfxlist);
         }
 
 
@@ -105,89 +119,135 @@ namespace GestorMercadoCapitales.Controllers
 
         public ActionResult CompraInstrumento(string symbol, string precio, int cantidad,string TipoOp)
         {
-            Orden ordenParam = new Orden();
-            ordenParam.Symbol = symbol;
-            ordenParam.Quantity = cantidad;
-            ordenParam.Price = decimal.Parse(precio.Replace(".", ","));
 
-            if (TipoOp == "Compra")
+            try
             {
-                ordenParam.Side = "Buy";
-            }
-            else
-            {
-                ordenParam.Side = "Sell";
-            }
 
-            string url = _configuration.GetSection("API:CrearOrden").Value;
-            var json = JsonConvert.SerializeObject(ordenParam);
-
-            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-
-            using (HttpClient client = new HttpClient(clientHandler))
-            {
-                HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
-
-                if (response.StatusCode == HttpStatusCode.OK)
+                if (decimal.Parse(precio) <= 0 || cantidad <= 0)
                 {
+                    var mens = TipoMensaje.ObtenerTipoMensaje("ErrCompraVentamayorcero");
+                    RofexList.rfxlist[0].cod_mensaje = mens.cod_mensaje;
+                    RofexList.rfxlist[0].mensaje = mens.mensaje;
+                    return RedirectToAction("Futuros_Financieros", "Mtba");
+                }
 
-                    var responseText = response.Content.ReadAsStringAsync().Result;
-                    //responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
-                    // return RedirectToAction("Dashboard", "Home");
+                Orden ordenParam = new Orden();
+                ordenParam.Symbol = symbol;
+                ordenParam.Quantity = cantidad;
+                ordenParam.Price = decimal.Parse(precio.Replace(".", ","));
+
+                if (TipoOp == "Compra")
+                {
+                    ordenParam.Side = "Buy";
                 }
                 else
                 {
+                    ordenParam.Side = "Sell";
+                }
+
+                string url = _configuration.GetSection("API:CrearOrden").Value;
+                var json = JsonConvert.SerializeObject(ordenParam);
+
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+                using (HttpClient client = new HttpClient(clientHandler))
+                {
+                    HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
+
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        var responseText = response.Content.ReadAsStringAsync().Result;
+                    }
 
                 }
 
+                RofexList.LimpiarMensaje();
+
+                return View();
+
+            }
+            catch {
+
+                var mens = TipoMensaje.ObtenerTipoMensaje("ErrValidaCompra");
+
+                RofexList.rfxlist[0].cod_mensaje = mens.cod_mensaje;
+                RofexList.rfxlist[0].mensaje = mens.mensaje;
+                
+
+               return RedirectToAction("Futuros_Financieros", "Mtba");
+
             }
 
-            return View();
         }
 
         public ActionResult HistoricoOperaciones()
         {
-            string url = _configuration.GetSection("API:GetOrderAll").Value;
-            var parames = new Dictionary<string, string>();
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
             var data = new List<OrderAll>();
 
-            using (HttpClient client = new HttpClient(clientHandler))
+            try
             {
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                var responseText = response.Content.ReadAsStringAsync().Result;
-                data = JsonConvert.DeserializeObject<List<OrderAll>>(responseText);
+                string url = _configuration.GetSection("API:GetOrderAll").Value;
+                var parames = new Dictionary<string, string>();
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+
+                using (HttpClient client = new HttpClient(clientHandler))
+                {
+                    HttpResponseMessage response = client.GetAsync(url).Result;
+                    var responseText = response.Content.ReadAsStringAsync().Result;
+                    data = JsonConvert.DeserializeObject<List<OrderAll>>(responseText);
+                }
             }
-
-
+            catch { }
+           
             return View(data);
 
         }
 
         private List<PanelFuturoFinancieros> GetPanelFuturoFinancieros()
         {
-
-            string url = _configuration.GetSection("API:Instrumentos").Value;
-            var parames = new Dictionary<string, string>();
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
             var data = new List<PanelFuturoFinancieros>();
 
-            using (HttpClient client = new HttpClient(clientHandler))
+            try
             {
-                HttpResponseMessage response = client.GetAsync(url).Result;
-                var responseText = response.Content.ReadAsStringAsync().Result;
-                data = JsonConvert.DeserializeObject<List<PanelFuturoFinancieros>>(responseText);
+                string url = _configuration.GetSection("API:Instrumentos").Value;
+                var parames = new Dictionary<string, string>();
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+
+
+                using (HttpClient client = new HttpClient(clientHandler))
+                {
+                    HttpResponseMessage response = client.GetAsync(url).Result;
+                    var responseText = response.Content.ReadAsStringAsync().Result;
+                    data = JsonConvert.DeserializeObject<List<PanelFuturoFinancieros>>(responseText);
+
+                    if (data.Count == 0)
+                    {
+                        var mens = TipoMensaje.ObtenerTipoMensaje("ErrCargaPrecio");
+
+                        RofexList.rfxlist[0].cod_mensaje = mens.cod_mensaje;
+                        RofexList.rfxlist[0].mensaje = mens.mensaje;
+                    }
+
+                }
             }
+            catch {
+                var mens = TipoMensaje.ObtenerTipoMensaje("ErrCargaPrecio");
 
-
+                RofexList.rfxlist[0].cod_mensaje = mens.cod_mensaje;
+                RofexList.rfxlist[0].mensaje = mens.mensaje;
+            }
+            
             return data;
 
         }
+
     }
 }

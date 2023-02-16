@@ -21,10 +21,10 @@
 
                 @try
                 {
-                    if (Model.cod_mensaje == 99)
+                    if (Model.cod_mensaje == 99 || Model.cod_mensaje == 104)
                     {
                         <div class="alert alert-danger">
-                            <strong>Atención!</strong>  @Html.DisplayFor(model => model.mensaje)
+                            <strong>Atención!</strong> <br/>  @Html.DisplayFor(model => model.mensaje)
                         </div>
                     }
                 }

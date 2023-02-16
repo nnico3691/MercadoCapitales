@@ -24,9 +24,36 @@
 <a asp-area="" class="btn btn-info" asp-controller="MtbaRfx" asp-action="HistoricoOperaciones">Estado de mis operaciones</a>
 <br />
 
+@try
+{
+    @foreach (var mens in Model)
+    {
 
-@*<input type="text" id="myInput" placeholder="Texto a buscar..." style="color:black;">
-*@
+        if (mens.cod_mensaje == 105)
+        {
+            <br />
+            <div class="alert alert-info">
+                <strong>Atención!</strong> <br/> @mens.mensaje
+            </div>
+            break;
+        }
+
+        if (mens.mensaje != null && mens.mensaje != "")
+        {
+            <br />
+            <div class="alert alert-danger">
+                <strong>Atención!</strong> <br/>  @mens.mensaje
+            </div>
+            break;
+        }
+        
+    }
+
+}
+catch { }
+
+
+
 <hr/>
 <div class="tableWrap">
     <div id="TablaPrincipal">
@@ -101,19 +128,9 @@
         }, 5000);
     })();
 
-
-
      $('#TablaPrincipal').click(function () {
 
         $('#example tbody').on('click', 'tr', function () {
-            /* if ($(this).hasClass('selected')) {
-                 // Deseleccionar
-                 $(this).removeClass('selected');
-                 // Limpiar campos
-                 //$('#Clave').val('');
-                 //$('#Descripcion').val('');
-                 //$('#Obse').val('');
-             } else {*/
 
             // Remover clase de TR seleccionada, si es que hay
             $('tr.selected').removeClass('selected');
@@ -128,110 +145,9 @@
             document.getElementById("cantidad").value = $(tds[4]).text();
 
 
-            // Asignar campos
-            /*  $('#Clave').val($(tds[0]).text());
-              $('#Descripcion').val($(tds[1]).text());
-              $('#Obse').val($(tds[2]).text());*/
-            //}
         });
 
     });
 
-       //setInterval('contador()', 5000);
-
-    var save_lock = false;
-
-    const sleep = (s) =>
-        new Promise((p) => setTimeout(p, (s * 1000) | 0))
-
-    async function contador() {
-        await sleep(1)
-
-
-        $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
-
-
-        $('#example tbody').on('click', 'tr', function () {
-            /* if ($(this).hasClass('selected')) {
-                 // Deseleccionar
-                 $(this).removeClass('selected');
-                 // Limpiar campos
-                 //$('#Clave').val('');
-                 //$('#Descripcion').val('');
-                 //$('#Obse').val('');
-             } else {*/
-
-            // Remover clase de TR seleccionada, si es que hay
-            $('tr.selected').removeClass('selected');
-            // Asignar clase seleccionada a TR actual
-            $(this).addClass('selected');
-            // Obtener TD's
-            var tds = $(this).children();
-
-            alert($(tds[0]).text())
-            //$("#symbol").select2("val", [$(tds[0]).text()]);
-
-
-            // Asignar campos
-            /*  $('#Clave').val($(tds[0]).text());
-              $('#Descripcion').val($(tds[1]).text());
-              $('#Obse').val($(tds[2]).text());*/
-            //}
-        });
-
-
-
-
-        //setTimeout(function () {
-        //}, 2000);
-
-        
-
-
-    }
-
-   // setTimeout('contador()', 10000)
-
-
-    //$("table[id*='example']").click(function (e) {
-    //    e.preventDefault();
-    //    //if ($(e.currentTarget).is('tr')) {
-    //        alert(1);
-    //    //}
-    //    e.stopPropagation();
-    //    return false;
-    //});
-
-
-        //$('#example tbody').on('click', 'tr', function () {
-        //    /* if ($(this).hasClass('selected')) {
-        //         // Deseleccionar
-        //         $(this).removeClass('selected');
-        //         // Limpiar campos
-        //         //$('#Clave').val('');
-        //         //$('#Descripcion').val('');
-        //         //$('#Obse').val('');
-        //     } else {*/
-
-        //    // Remover clase de TR seleccionada, si es que hay
-        //    $('tr.selected').removeClass('selected');
-        //    // Asignar clase seleccionada a TR actual
-        //    $(this).addClass('selected');
-        //    // Obtener TD's
-        //    var tds = $(this).children();
-
-        //    //alert($(tds[0]).text())
-        //    $("#symbol").select2("val", [$(tds[0]).text()]);
-
-
-        //    // Asignar campos
-        //    /*  $('#Clave').val($(tds[0]).text());
-        //      $('#Descripcion').val($(tds[1]).text());
-        //      $('#Obse').val($(tds[2]).text());*/
-        //    //}
-        //});
-
-
-   // }
 
 </script>

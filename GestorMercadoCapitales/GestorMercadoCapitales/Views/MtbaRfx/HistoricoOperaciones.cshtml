@@ -2,48 +2,65 @@
 
 <H1>Histórico de operaciones</H1>
 
-<table class="table table-striped table-dark">
-    <thead class="">
-        <tr>
-            <th scope="col">Instrumento</th>
-            <th scope="col">Precio</th>
-            <th scope="col">Cantidad</th>
-            <th scope="col">Estado</th>
-            <th scope="col">Tipo</th>
-        </tr>
-    </thead>
-    <tbody>
 
-        @try
-        {
-            @foreach (var datos in Model)
+@if(Model.Count == 0)
+{
+
+    <div class="alert alert-info">
+        <strong>Importante!</strong> No cuenta con operaciones hasta el momento... Favor varefiquelo de vuelta
+    </div>
+}
+else
+{
+    <table class="table table-striped table-dark">
+        <thead class="">
+            <tr>
+                <th scope="col">Instrumento</th>
+                <th scope="col">Precio</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Estado</th>
+                <th scope="col">Tipo</th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @try
             {
-                <tr>
-                    <td>@datos.instrumentId.Symbol</td>
-                    <td>@datos.price</td>
-                    <td>@datos.quantity</td>
-                    <td>
-                        @if (datos.StatusText == "ME_ACCEPTED")
-                        {
-                            <text><h4><span class="badge badge-info">Pendiente</span></h4></text>
-                        }
-                        @if (datos.StatusText.Trim().ToUpper() == "OPERADA")
-                        {
-                            <text><h4><span class="badge badge-success">Operada</span></h4></text>
-                        }
-                        @if(datos.StatusText.Trim().ToUpper() != "OPERADA" && datos.StatusText != "ME_ACCEPTED")
-                        {
-                        <text><h4><span class="badge badge-danger">Error</span></h4></text>
-                        }
+                @foreach (var datos in Model)
+                {
+                    <tr>
+                        <td>@datos.instrumentId.Symbol</td>
+                        <td>@datos.price</td>
+                        <td>@datos.quantity</td>
+                        <td>
+                            @if (datos.StatusText == "ME_ACCEPTED")
+                            {
+                                <text><h4><span class="badge badge-info">Pendiente</span></h4></text>
+                            }
+                            @if (datos.StatusText.Trim().ToUpper() == "OPERADA")
+                            {
+                                <text><h4><span class="badge badge-success">Operada</span></h4></text>
+                            }
+                            @if (datos.StatusText.Trim().ToUpper() != "OPERADA" && datos.StatusText != "ME_ACCEPTED")
+                            {
+                                <text><h4><span class="badge badge-danger">Error</span></h4></text>
+                            }
 
 
-                    </td>
-                    <td>Compra</td>
-                </tr>
+                        </td>
+                        <td>Compra</td>
+                    </tr>
+                }
             }
-        }
-        catch { }
+            catch { }
 
 
-    </tbody>
-</table>
+        </tbody>
+    </table>
+    
+
+}
+
+
+
+

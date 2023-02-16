@@ -28,48 +28,57 @@ namespace GestorMercadoCapitales.Controllers
         public ActionResult Index(string usuario, string clave)
         {
 
-            DatosLogin datoslogin = new DatosLogin();
-
-            datoslogin.Usuario = usuario.Trim();
-            datoslogin.Clave = clave;
-
-            string url = _configuration.GetSection("API:Login").Value;
-
-            var json = JsonConvert.SerializeObject(datoslogin);
-
-            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
-
-            HttpClientHandler clientHandler = new HttpClientHandler();
-            clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
-            var data = new List<CotizacionAccion>();
-            var responseDataLogin = new LoginResponse();
-
-            using (HttpClient client = new HttpClient(clientHandler))
+            try
             {
-                HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
+                DatosLogin datoslogin = new DatosLogin();
 
-                if (response.StatusCode == HttpStatusCode.OK)
+                datoslogin.Usuario = usuario.Trim();
+                datoslogin.Clave = clave;
+
+                string url = _configuration.GetSection("API:Login").Value;
+
+                var json = JsonConvert.SerializeObject(datoslogin);
+
+                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
+
+                HttpClientHandler clientHandler = new HttpClientHandler();
+                clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
+                var data = new List<CotizacionAccion>();
+                var responseDataLogin = new LoginResponse();
+
+                using (HttpClient client = new HttpClient(clientHandler))
                 {
-                    HttpContext.Session.SetString("Login", "Logueado");
-                    var responseText = response.Content.ReadAsStringAsync().Result;
-                    responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
+                    HttpResponseMessage response = client.PostAsync(url, stringContent).Result;
 
-                    HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
-                    HttpContext.Session.SetString("Usuario", responseDataLogin.usuario.ToString().ToUpper().Trim());
+                    if (response.StatusCode == HttpStatusCode.OK)
+                    {
+                        HttpContext.Session.SetString("Login", "Logueado");
+                        var responseText = response.Content.ReadAsStringAsync().Result;
+                        responseDataLogin = JsonConvert.DeserializeObject<LoginResponse>(responseText);
 
-                    return RedirectToAction("Dashboard","Home");
+                        HttpContext.Session.SetString("ClienteId", responseDataLogin.cliente.ToString());
+                        HttpContext.Session.SetString("Usuario", responseDataLogin.usuario.ToString().ToUpper().Trim());
+
+                        return RedirectToAction("Dashboard", "Home");
+                    }
+                    else
+                    {
+
+                        HttpContext.Session.SetString("Login", "ErrLogin");
+
+                        return RedirectToAction("Login", "Login");
+
+                    }
+
                 }
-                else
-                {
-
-                    HttpContext.Session.SetString("Login", "ErrLogin");
-                    
-                    
-                    return RedirectToAction("Login", "Login");
-
-                }
-                
             }
+            catch
+            {
+                HttpContext.Session.SetString("Login", "ErrConexion");
+                return RedirectToAction("Login", "Login");
+
+            }
+            
 
         }
 
@@ -81,6 +90,11 @@ namespace GestorMercadoCapitales.Controllers
             if (HttpContext.Session.GetString("Login") == "ErrLogin")
             {
                 mensaje = TipoMensaje.ObtenerTipoMensaje("ErrLogin");
+            }
+
+            if (HttpContext.Session.GetString("Login") == "ErrConexion")
+            {
+                mensaje = TipoMensaje.ObtenerTipoMensaje("ErrConexion");
             }
 
 
