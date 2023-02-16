@@ -58,3 +58,7 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Precios.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Precios.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Precios.genruntimeconfig.cache
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Precios\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
