@@ -1,0 +1,5 @@
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\JwtAuthenticationManager\obj\Debug\netcoreapp3.1\JwtAuthenticationManager.csproj.AssemblyReference.cache
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\JwtAuthenticationManager\obj\Debug\netcoreapp3.1\JwtAuthenticationManager.GeneratedMSBuildEditorConfig.editorconfig
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\JwtAuthenticationManager\obj\Debug\netcoreapp3.1\JwtAuthenticationManager.AssemblyInfoInputs.cache
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\JwtAuthenticationManager\obj\Debug\netcoreapp3.1\JwtAuthenticationManager.AssemblyInfo.cs
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\JwtAuthenticationManager\obj\Debug\netcoreapp3.1\JwtAuthenticationManager.csproj.CoreCompileInputs.cache

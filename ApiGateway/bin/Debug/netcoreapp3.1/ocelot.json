@@ -19,7 +19,7 @@
         }
       ],
       "DownstreamPathTemplate": "/users",
-      "Key": "users",
+      "Key": "users"
     },
     {
       "UpstreamPathTemplate": "/api/posts",
@@ -35,6 +35,21 @@
     },
     /*MercadoCapitales.API.Clientes*/
     {
+      "UpstreamPathTemplate": "/api/Cliente/CrearRegistro",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/CrearRegistro",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
       "UpstreamPathTemplate": "/api/Cliente/GetClientes",
       "UpstreamHttpMethod": [],
       "DangerousAcceptAnyServerCertificateValidator": false,
@@ -42,27 +57,311 @@
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
-          "Port": 51736
+          "Port": 44373
         }
       ],
       "DownstreamPathTemplate": "/api/Cliente/GetClientes",
       "DownstreamScheme": "http",
-      "SwaggerKey": "GetClientes"
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/Recovery",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/Recovery",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/Login",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/Login",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/CrearEncuestaPregunta",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/CrearEncuestaPregunta",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/GetEncuestaPreguntasRespuestas",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/GetEncuestaPreguntasRespuestas",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/CrearClientePerfilInversor",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/CrearClientePerfilInversor",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Cliente/StartRecovery",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Cliente/StartRecovery",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiClientes"
+    },
+    /*MercadoCapitales.API.Especies*/
+    {
+      "UpstreamPathTemplate": "/api/Especie/GetPanelFuturosFinancieros",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9542
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Especie/GetPanelFuturosFinancieros",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiEspecies"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Especie/CrearProductGroup",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9542
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Especie/CrearProductGroup",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiEspecies"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Especie/CrearTipoPanelPrecio",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9542
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Especie/CrearTipoPanelPrecio",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiEspecies"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Especie/CrearAllInstruments",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9542
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Especie/CrearAllInstruments",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiEspecies"
+    },
+    /*MercadoCapitales.API.Ordenes*/
+    {
+      "UpstreamPathTemplate": "/api/Orden/GetOrderFilleds",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9901
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Orden/GetOrderFilleds",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiOrdenes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Orden/CrearOrden",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9901
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Orden/CrearOrden",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiOrdenes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Orden/GetOrderAll",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 9901
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Orden/GetOrderAll",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiOrdenes"
+    },
+    /*MercadoCapitales.API.Precios*/
+    {
+      "UpstreamPathTemplate": "/api/Precio/CrearPrecioAccion",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 22684
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Precio/CrearPrecioAccion",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiPrecios"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Precio/GetPreciosAccion",
+      "UpstreamHttpMethod": [],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 22684
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Precio/GetPreciosAccion",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiPrecios"
+    },
+    /*Authentication Web API*/
+    {
+      "UpstreamPathTemplate": "/api/Account/Authenticate",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DangerousAcceptAnyServerCertificateValidator": false,
+      "ReRouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44374
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Account/Authenticate",
+      "DownstreamScheme": "http",
+      "SwaggerKey": "ApiToken"
     }
   ],
   "SwaggerEndPoints": [
     {
-      "Key": "GetClientes",
+      "Key": "ApiClientes",
       "Config": [
         {
-          "Name": "API Mercado Capitales",
+          "Name": "API Mercado Capitales - CLIENTES",
           "Version": "v1",
-          "Url": "http://localhost:51736/swagger/v1/swagger.json"
+          "Url": "http://localhost:44373/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "ApiEspecies",
+      "Config": [
+        {
+          "Name": "API Mercado Capitales - ESPECIES",
+          "Version": "v1",
+          "Url": "http://localhost:9542/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "ApiOrdenes",
+      "Config": [
+        {
+          "Name": "API Mercado Capitales - ORDENES",
+          "Version": "v1",
+          "Url": "http://localhost:9901/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "ApiPrecios",
+      "Config": [
+        {
+          "Name": "API Mercado Capitales - PRECIOS",
+          "Version": "v1",
+          "Url": "http://localhost:22684/swagger/v1/swagger.json"
+        }
+      ]
+    },
+    {
+      "Key": "ApiToken",
+      "Config": [
+        {
+          "Name": "Api Token",
+          "Version": "v1",
+          "Url": "http://localhost:44374/swagger/v1/swagger.json"
         }
       ]
     }
   ],
   "GlobalConfiguration": {
-    "BaseUrl": "https://localhost:44372"
+    "BaseUrl": "https://localhost:44372/swagger"
   }
 }

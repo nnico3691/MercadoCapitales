@@ -33,20 +33,6 @@ namespace ApiGateway
 
             services.AddControllers();
 
-            /*Mecanismo para validar endpoints --> En caso de que se requiera*/
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuerSigningKey = true,
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.ASCII.GetBytes("MyAnonymousAndSecuredSecretKey")),
-                        ClockSkew = new System.TimeSpan(0)
-                    };
-                });
-
             /*Configuracion de Ocelot*/
             services.AddOcelot()
                 .AddDelegatingHandler<RemoveEncodingDelegatingHandler>(true) /*Invoco la clase creada*/

@@ -34,6 +34,10 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Primitives.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Microsoft.Identity.Client.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\System.Configuration.ConfigurationManager.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\System.Runtime.Caching.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
@@ -60,7 +64,3 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Ordenes.genruntimeconfig.cache
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Microsoft.OpenApi.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.Swagger.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerGen.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Ordenes\bin\Debug\netcoreapp3.1\Swashbuckle.AspNetCore.SwaggerUI.dll

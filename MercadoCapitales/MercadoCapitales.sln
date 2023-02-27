@@ -13,6 +13,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Especi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "..\ApiGateway\ApiGateway.csproj", "{6AF66062-0C20-4C89-B604-AADAC845E726}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JwtAuthenticationManager", "JwtAuthenticationManager\JwtAuthenticationManager.csproj", "{57A87B8E-4374-4EA7-9C43-EC843D23944F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AuthenticationWebApi", "AuthenticationWebApi\AuthenticationWebApi.csproj", "{7B31951C-9A91-447E-8338-A74E27CF70BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +43,14 @@ Global
 		{6AF66062-0C20-4C89-B604-AADAC845E726}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AF66062-0C20-4C89-B604-AADAC845E726}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AF66062-0C20-4C89-B604-AADAC845E726}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57A87B8E-4374-4EA7-9C43-EC843D23944F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57A87B8E-4374-4EA7-9C43-EC843D23944F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57A87B8E-4374-4EA7-9C43-EC843D23944F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57A87B8E-4374-4EA7-9C43-EC843D23944F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7B31951C-9A91-447E-8338-A74E27CF70BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7B31951C-9A91-447E-8338-A74E27CF70BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7B31951C-9A91-447E-8338-A74E27CF70BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7B31951C-9A91-447E-8338-A74E27CF70BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

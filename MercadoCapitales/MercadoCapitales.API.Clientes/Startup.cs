@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace MercadoCapitales.API.Clientes
 {
     public class Startup
@@ -43,6 +44,8 @@ namespace MercadoCapitales.API.Clientes
             services.AddAutoMapper(typeof(ConsultaClientes.Manejador));
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton<IEmailSenderService, EmailSenderService>();
+
+            //services.AddCustomJwtAuthentication();
 
             services.AddSwaggerGen(options =>
             {
