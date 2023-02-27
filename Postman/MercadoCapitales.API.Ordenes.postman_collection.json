@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "2c3f71f9-9d91-498d-b8c4-c488c29df701",
+		"name": "MercadoCapitales.API.Ordenes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "GetOrderFilleds",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/GetOrderFilleds",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"GetOrderFilleds"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearOrden",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Symbol\": \"DLR/ENE23\",\r\n    \"Price\": 187.10,\r\n    \"Quantity\": 100,\r\n    \"Side\": \"Buy\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/CrearOrden",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"CrearOrden"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetOrderAll",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9901/api/Orden/GetOrderAll",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9901",
+					"path": [
+						"api",
+						"Orden",
+						"GetOrderAll"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

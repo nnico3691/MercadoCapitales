@@ -3,7 +3,43 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Precios", "MercadoCapitales.API.Precios\MercadoCapitales.API.Precios.csproj", "{1C76958E-42A3-492F-8B2A-E7F29DA964A3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Ordenes", "MercadoCapitales.API.Ordenes\MercadoCapitales.API.Ordenes.csproj", "{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Clientes", "MercadoCapitales.API.Clientes\MercadoCapitales.API.Clientes.csproj", "{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MercadoCapitales.API.Especies", "MercadoCapitales.API.Especies\MercadoCapitales.API.Especies.csproj", "{4A7F0491-FF0D-4F00-A35E-FE0DFE30D225}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiGateway", "..\ApiGateway\ApiGateway.csproj", "{6AF66062-0C20-4C89-B604-AADAC845E726}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C76958E-42A3-492F-8B2A-E7F29DA964A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C76958E-42A3-492F-8B2A-E7F29DA964A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C76958E-42A3-492F-8B2A-E7F29DA964A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C76958E-42A3-492F-8B2A-E7F29DA964A3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{622D4F5C-1E58-48EF-A3D2-CB2A936BAD39}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C44FE469-93EB-4F8A-B46E-F7AD6A6BAC83}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4A7F0491-FF0D-4F00-A35E-FE0DFE30D225}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4A7F0491-FF0D-4F00-A35E-FE0DFE30D225}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4A7F0491-FF0D-4F00-A35E-FE0DFE30D225}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4A7F0491-FF0D-4F00-A35E-FE0DFE30D225}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6AF66062-0C20-4C89-B604-AADAC845E726}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6AF66062-0C20-4C89-B604-AADAC845E726}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6AF66062-0C20-4C89-B604-AADAC845E726}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6AF66062-0C20-4C89-B604-AADAC845E726}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection

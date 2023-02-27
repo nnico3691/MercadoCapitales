@@ -1,0 +1,233 @@
+{
+	"info": {
+		"_postman_id": "997ec55d-4606-4e74-9799-cdfdfd383724",
+		"name": "MercadoCapitales.API.Clientes",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "CrearRegistro",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Nombre\": \"Nicolas\",\r\n    \"Apellido\": \"Messa\",\r\n    \"TipoDNI\": \"DNI\",\r\n    \"DNI\": \"35726794\",\r\n    \"Telefono\": \"11678778\",\r\n    \"Usuario\": \"Nico1234\",\r\n    \"Clave\": \"123456\",\r\n    \"Email\": \"nnico3691@gmail.com\"\r\n\r\n\r\n\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearRegistro",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearRegistro"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetClientes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/GetClientes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"GetClientes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Recovery",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/Recovery?token=1234&Email=nnico3691@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"Recovery"
+					],
+					"query": [
+						{
+							"key": "token",
+							"value": "1234"
+						},
+						{
+							"key": "Email",
+							"value": "nnico3691@gmail.com"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n     \"Usuario\": \"Nico1234\",\r\n     \"Clave\": \"1234568\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/Login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"Login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearEncuestaPregunta",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ListadoPreguntasRespuestas\":[\r\n        {\r\n            \"Titulo\":\"Edad\",\r\n            \"Pregunta\": \"1-¿Cual es su edad?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Menos de 40 años\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"Edad\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Entre 40 y 50 años\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"Edad\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Por encima de 50 años\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"Edad\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n\r\n        },\r\n        {\r\n            \"Titulo\":\"Volumen de Ingresos/Life Cycle\",\r\n            \"Pregunta\": \"1-¿Que escenario define mejor tu etapa de vida actual?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Estoy comenzando a construir mi patrimonio y espero ahorrar parte de mis ingresos\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"Volumen_ingre\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Tengo un patrimonio formado, y estoy cumpliendo mis sueños y metas, pero igual espero seguir ahorrando parte de mis ingresos\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"Volumen_ingre\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Tengo un patrimonio consolidado, que considero suficiente para preservar mi estilo de vida, y ahora es el momento de disfrutar lo que he ahorrado\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"Volumen_ingre\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"Titulo\":\"Objetivo de Rentabilidad / Trade off Riesgo y Rentabilidad\",\r\n            \"Pregunta\": \"1-¿Que escenario describe mejor tu actitud hacia las inversiones?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Puedo aceptar riesgos elevados con posibilidades de pérdida de capital, en busca de ganancias muy altas a largo plazo\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"Obj_renta\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Puedo aceptar algun riesgo, en busca de mayores ganancias a largo plazo\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"Obj_renta\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Quiero evitar correr riesgos, aunque eso signifique que mis ganancias a largo plazo sean menores\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"Obj_renta\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"Titulo\":\"Tolerancia al Riesgo / Sentimiento\",\r\n            \"Pregunta\": \"1-¿Que escenario describe mejor tu actitud hacia las inversiones?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Evaluaría si la caída ha creado nuevas oportunidades de inversion en el mercado\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"tol_riesgo\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Buscaría mas informacion para decidir si debo (o no) cambiar algo en mis inversiones\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"tol_riesgo\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Trataría de deshacerme de las inversiones y buscaría opciones mas seguras para protegerme de las pérdidas\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"tol_riesgo\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"Titulo\":\"Horizonte de inversiones\",\r\n            \"Pregunta\": \"1-¿Qué situación define mejor tu expectativa para usar los fondos de tu cartera de inversión?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"No espero utilizar los fondos de la cartera en el corto o mediano plazo\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"hor_inv\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Espero utilizar un monto importante del monto total de los fondos de la cartera en el mediano plazo (hasta 2 años)\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"hor_inv\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Espero utilizar un monto importante del monto total de los fondos de la cartera en el corto plazo (hasta 12 meses)\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"hor_inv\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"Titulo\":\"Entendimiento del mercado\",\r\n            \"Pregunta\": \"1-¿Cuál frase define mejor tu formación y experiencia con el mercado financiero?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Extensa: Soy inversionista activo y experimentado, me siento comodo en tomar mis propias decisiones de inversión\",\r\n                    \"Puntos\": 40,\r\n                    \"NameInput\": \"entend_merc\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Moderada: Tengo alguna experiencia en inversiones, pero me gustaría recibir aclaraciones\",\r\n                    \"Puntos\": 20,\r\n                    \"NameInput\": \"entend_merc\",\r\n                    \"TipoInput\": \"radio\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Limitada: Tengo muy poca experiencia en inversiones, además de ahorro y CDA\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"entend_merc\",\r\n                    \"TipoInput\": \"radio\"   \r\n                }\r\n            ]\r\n        },\r\n        {\r\n            \"Titulo\":\"Experiencia sobre inversiones\",\r\n            \"Pregunta\": \"1-¿Con cuáles de estas inversiones estas familiarizado?\",\r\n            \"ListaRespuesta\": [\r\n                {\r\n                    \"Respuesta\": \"Acciones\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_1\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Bonos\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_2\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"CDA\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_3\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Fondos Mutuos\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_4\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Fideicomisos\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_5\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                },\r\n                {\r\n                    \"Respuesta\": \"Derivados\",\r\n                    \"Puntos\": 0,\r\n                    \"NameInput\": \"exp_inversion_6\",\r\n                    \"TipoInput\": \"checkbox\"   \r\n                }\r\n            ]\r\n        }\r\n\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearEncuestaPregunta",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearEncuestaPregunta"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetEncuestaPreguntasRespuestas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/GetEncuestaPreguntasRespuestas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"GetEncuestaPreguntasRespuestas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearClientePerfilInversor",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Volumen_ingre\":\"71dbc765-991e-4323-8011-08daf23f86c0\",\r\n    \"Obj_renta\":\"3f532b99-a77a-4342-8014-08daf23f86c0\",\r\n    \"tol_riesgo\":\"0def9095-6b49-462b-8017-08daf23f86c0\",\r\n    \"hor_inv\":\"eb81050b-8335-496f-801a-08daf23f86c0\",\r\n    \"entend_merc\":\"0ca929c3-67a0-4b20-801d-08daf23f86c0\",\r\n    \"exp_inversion_1\":\"cd78ff81-252e-4965-8020-08daf23f86c0\",\r\n    \"exp_inversion_2\":\"32232bc1-5cb4-44dc-8021-08daf23f86c0\",\r\n    \"exp_inversion_3\":null,\r\n    \"exp_inversion_4\":null,\r\n    \"exp_inversion_5\":null,\r\n    \"exp_inversion_6\":null,\r\n    \"ClienteId\":\"81306C64-74FD-46D9-4F82-08DAF23F840F\"}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/CrearClientePerfilInversor",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"CrearClientePerfilInversor"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "StartRecovery",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Email\": \"nnico3691@gmail.com\"\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:51736/api/Cliente/StartRecovery",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "51736",
+					"path": [
+						"api",
+						"Cliente",
+						"StartRecovery"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

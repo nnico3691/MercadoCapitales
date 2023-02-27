@@ -1,0 +1,227 @@
+﻿
+@using Microsoft.AspNetCore.Http;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - GestorMercadoCapitales</title>
+
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
+
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
+              asp-fallback-href="~/lib/bootstrap/dist/css/bootstrap.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/css/site.min.css" asp-append-version="true" />
+    </environment>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="~/css/bootstrap.css" rel="stylesheet" />
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <link href="~/css/EncuestaStyle.css" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <link href="~/css/registrostyle.css" rel="stylesheet" />
+    <link href="~/css/loaderstyle.css" rel="stylesheet" />
+    <link href="~/css/tablefinanzas.css" rel="stylesheet" />
+
+    <style>
+       
+        .nav > li > a:hover {
+            background-color: #210B61;
+        }
+
+        .logout {
+            margin-left: auto;
+        }
+
+        .nav-link.active {
+            color: blue;
+        }
+
+        .ocultar {
+            display: none;
+        }
+
+        .mostrar {
+            display: block;
+        }
+
+        .sidebar {
+            position: -webkit-sticky;
+            position: sticky;
+            top: 15px;
+        }
+
+
+    </style>
+
+
+</head>
+
+<body style="background:linear-gradient(#3498DB 10%, 30%, #1B4F72 90%);color:white">
+    <div class="loader"></div>
+   <div style="width:100%;">
+        <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(#58ACFA 10%, 30%, #045FB4 90%);">
+        <div class="container-fluid">
+            <a href="#" class="navbar-brand">GestorMercadoCapitales</a>
+            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                    <div class="navbar-nav">
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    ACCIONES
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="MtbaRfx" class="dropdown-item" asp-action="Futuros_Financieros">MtR</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Lideres Merval</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Panel General</a>
+                                </div>
+                            </li>
+
+
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:white;" asp-controller="Home" asp-action="#">OPCIONES</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    BONOS
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Todos</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Soberanos</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Soberanos Linked</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Provinciales</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">USD Provinciales Linked</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Cupones PBI $/USD</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Fija</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Variable</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos Ajust.CER</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">$ Soberanos T.Fija/Var.</a>
+                                </div>
+                            </li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Home" asp-action="#">CDEARS</a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    ROFEX
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Futuro</a><br>
+                                    <a asp-area="" asp-controller="Home" class="dropdown-item" asp-action="Inicio">Opciones</a>
+                                </div>
+                            </li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Home" asp-action="#">FONDOS</a></li>
+                            <li class="navbar-nav ms-auto"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Encuesta_Inversor" asp-action="Index">ENCUESTA INVERSOR</a></li>
+
+                        </ul>
+                    </div>
+                    <div class="logout">
+                      @*  <ul class="nav navbar-nav">
+                            <li class="navbar-nav ms-auto" style="text-align:right;"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Login" asp-action="Logout"><i class="material-icons">exit_to_app</i></a></li>
+                        </ul>*@
+
+
+                        <ul class="nav navbar-nav">
+                            <li class="dropdown">
+                                <a class="dropdown-toggle" data-bs-toggle="dropdown">
+                                    Perfil - @UsuarioLogueado.Usuario
+
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    <a asp-area="" style="color:black;" class="dropdown-item" asp-controller="Login" asp-action="Logout"><i class="material-icons" style="font-size:10px !important;">exit_to_app</i><b>Salir</b></a>
+                                </div>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+
+        </div>
+    </nav>
+</div>
+    <partial name="_CookieConsentPartial" />
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+        <footer>
+            <p>&copy; 2022 - Gestor de Mercados de Capitales</p>
+        </footer>
+    </div>
+
+    <environment include="Development">
+        <script src="~/js/bootstrap.js"></script>
+        <script src="~/js/site.js"></script>
+    </environment>
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+        </script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"
+                asp-fallback-src="~/lib/bootstrap/dist/js/bootstrap.min.js"
+                asp-fallback-test="window.jQuery && window.jQuery.fn && window.jQuery.fn.modal"
+                crossorigin="anonymous"
+                integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd">
+        </script>
+        <script src="~/js/site.min.js" asp-append-version="true"></script>
+    </environment>
+
+
+    <script type="text/javascript">
+       
+        
+        $(window).load(function () {
+            $(".loader").fadeOut("slow");
+        });
+
+        function verificarPasswords() {
+
+            // Ontenemos los valores de los campos de contraseñas
+            pass1 = document.getElementById('pass1');
+            pass2 = document.getElementById('pass2');
+
+            // Verificamos si las constraseñas no coinciden
+            if (pass1.value != pass2.value) {
+
+                // Si las constraseñas no coinciden mostramos un mensaje
+                document.getElementById("error").classList.add("mostrar");
+
+                return false;
+            } else {
+
+                // Si las contraseñas coinciden ocultamos el mensaje de error
+                document.getElementById("error").classList.remove("mostrar");
+
+                // Mostramos un mensaje mencionando que las Contraseñas coinciden
+                document.getElementById("ok").classList.remove("ocultar");
+
+                // Desabilitamos el botón de login
+                document.getElementById("login").disabled = true;
+
+                // Refrescamos la página (Simulación de envío del formulario)
+                setTimeout(function () {
+                    location.reload();
+                }, 3000);
+
+                return true;
+            }
+
+        }
+       
+       
+
+
+    </script>
+
+
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

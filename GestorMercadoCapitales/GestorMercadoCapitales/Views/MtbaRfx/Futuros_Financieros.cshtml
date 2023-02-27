@@ -1,0 +1,153 @@
+﻿@{
+    ViewData["Title"] = "Futuros Financieros";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+
+@model List<MtbaRfx>
+
+    @Html.Partial("NavBarMtbrfx")
+
+<br />
+<br />
+
+<h3>Futuro Financiero</h3>
+<br>
+<div id="head">
+    @Html.Partial("CompraVentaInstrumentos")
+</div>
+
+<br />
+<hr/>
+<a asp-area="" class="btn btn-info" asp-controller="MtbaRfx" asp-action="HistoricoOperaciones">Estado de mis operaciones</a>
+<br />
+
+@try
+{
+    @foreach (var mens in Model)
+    {
+
+        if (mens.cod_mensaje == 105)
+        {
+            <br />
+            <div class="alert alert-info">
+                <strong>Atención!</strong> <br/> @mens.mensaje
+            </div>
+            break;
+        }
+
+        if (mens.mensaje != null && mens.mensaje != "")
+        {
+            <br />
+            <div class="alert alert-danger">
+                <strong>Atención!</strong> <br/>  @mens.mensaje
+            </div>
+            break;
+        }
+        
+    }
+
+}
+catch { }
+
+
+
+<hr/>
+<div class="tableWrap">
+    <div id="TablaPrincipal">
+
+        <br />
+        <hr />
+        <table class="table table-striped table-dark" id="example">
+            <thead class="">
+                <tr>
+                    <th scope="col">Instrumento</th>
+                    <th scope="col">Vol. C</th>
+                    <th scope="col">Compra</th>
+                    <th scope="col">Venta</th>
+                    <th scope="col">Vol. V</th>
+                    <th scope="col">Ult</th>
+                    <th scope="col">Var</th>
+                    <th scope="col">Var%</th>
+                    <th scope="col">Vol. Operado</th>
+                    <th scope="col">Ajuste</th>
+                    <th scope="col">Min</th>
+                    <th scope="col">Max</th>
+                    <th scope="col">Range</th>
+                    <th scope="col">Int. Abierto</th>
+                    <th scope="col">Hora</th>
+                </tr>
+            </thead>
+            <tbody>
+
+                @try
+                {
+                    @foreach (var datos in Model)
+                    {
+                        <tr>
+                            <td>@datos.Instrumento</td>
+                            <td>@datos.VolC</td>
+                            <td style="background-color:@datos.ColorCompra;">@datos.Compra</td>
+                            <td style="background-color:@datos.ColorVenta;">@datos.Venta</td>
+                            <td>@datos.VolV</td>
+                            <td>@datos.Ult</td>
+                            <td>@datos.Var</td>
+                            <td>@datos.VarPorcentaje %</td>
+                            <td>@Convert.ToDouble(datos.VolOpe).ToString("N0")</td>
+                            <td>@datos.Ajuste</td>
+                            <td>@datos.Min</td>
+                            <td>@datos.Max</td>
+                            <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
+                            <td>@datos.intAbierto</td>
+                            <td>@datos.hora</td>
+                        </tr>
+                    }
+                }
+                catch { }
+
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+
+</div>
+
+<script>
+
+
+
+    (function loop() {
+        setTimeout(function () {
+            $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
+            loop();
+        }, 5000);
+    })();
+
+     $('#TablaPrincipal').click(function () {
+
+        $('#example tbody').on('click', 'tr', function () {
+
+            // Remover clase de TR seleccionada, si es que hay
+            $('tr.selected').removeClass('selected');
+            // Asignar clase seleccionada a TR actual
+            $(this).addClass('selected');
+            // Obtener TD's
+            var tds = $(this).children();
+
+            //alert($(tds[0]).text())
+            $("#symbol").select2("val", [$(tds[0]).text()]);
+            document.getElementById("precio").value = $(tds[2]).text();
+            document.getElementById("cantidad").value = $(tds[4]).text();
+
+
+        });
+
+    });
+
+
+</script>

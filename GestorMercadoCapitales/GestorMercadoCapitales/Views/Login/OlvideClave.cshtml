@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Olvide Clave";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div id="msg"></div>
+ 
+<!-- Mensajes de Verificación -->
+<div id="error" class="alert alert-danger ocultar" role="alert">
+    Las Contraseñas no coinciden, vuelve a intentar !
+</div>
+<div id="ok" class="alert alert-success ocultar" role="alert">
+    Las Contraseñas coinciden ! (Procesando formulario ... )
+</div>
+<!-- Fin Mensajes de Verificación -->
+@using (Html.BeginForm("ConfirmaOlvideClave", "Login", FormMethod.Post, new { onsubmit = "verificarPasswords(); return false" }))
+{
+
+    <h1>Olvide mi clave</h1>
+    
+    <div class="form-outline mb-3">
+        <input type="email" class="form-control form-control-lg"
+           placeholder="Email" name="email" id="email" required />
+        <label class="form-label" for="form3Example4">Email</label>
+    </div>
+
+@*    <div class="form-outline mb-3">
+        <input type="password" class="form-control form-control-lg"
+           placeholder="Clave nueva" name="Clave" id="pass2" required />
+        <label class="form-label" for="form3Example4">Clave Nueva</label>
+    </div>*@
+
+    <div class="text-center text-lg-start mt-4 pt-2">
+        <button type="submit" class="btn btn-info btn-lg"
+            style="padding-left: 2.5rem; padding-right: 2.5rem;">
+            Solicitar
+        </button>
+    </div>
+}

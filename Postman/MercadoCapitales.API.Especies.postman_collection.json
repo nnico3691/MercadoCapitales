@@ -1,0 +1,112 @@
+{
+	"info": {
+		"_postman_id": "df7c424a-b97c-42ca-a5cf-8d37cb370dd1",
+		"name": "MercadoCapitales.API.Especies",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "18441826"
+	},
+	"item": [
+		{
+			"name": "GetPanelFuturosFinancieros",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/GetPanelFuturosFinancieros",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"GetPanelFuturosFinancieros"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearProductGroup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Lista\": [\r\n        {\r\n            \"Descripcion\": \"Dolar USA\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Ledes\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Yuan CNH\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Indice ROFEX 20\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"RFX/FEB23/ABR23\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"GGAL\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"PAMP\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"YPFD\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Oro\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Petroleo WTI\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"Descripcion\": \"Índice BTC\",\r\n            \"Mercado\": \"MtR\"\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearProductGroup",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearProductGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearTipoPanelPrecio",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Lista\": [\r\n        {\r\n            \"cficode\": \"FXXXXX\",\r\n            \"marketSegmentId\": \"DDF\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXXX\",\r\n            \"marketSegmentId\": \"DUAL\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXSX\",\r\n            \"marketSegmentId\": \"DDF\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        },\r\n        {\r\n            \"cficode\": \"FXXXSX\",\r\n            \"marketSegmentId\": \"DUAL\",\r\n            \"Tipo\": \"Futuros Financieros\",\r\n            \"Mercado\": \"MtR\"\r\n        }\r\n    ]\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearTipoPanelPrecio",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearTipoPanelPrecio"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CrearAllInstruments",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:9542/api/Especie/CrearAllInstruments",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9542",
+					"path": [
+						"api",
+						"Especie",
+						"CrearAllInstruments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
