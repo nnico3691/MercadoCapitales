@@ -1,0 +1,59 @@
+﻿@page "/counter"
+@using System.Timers
+@using BlazorApp1.Data
+@using GestorMercadoCapitales.Models
+@using GestorMercadoCapitales.Controllers
+@inject MarketDataService MarketDataService
+
+
+<h1>Counter</h1>
+<p>Current count: @MarketData[0].Instrumento </p>
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+
+@code {
+
+    private int currentCount = 0;
+    private Timer time;
+
+    private void IncrementCount()
+    {
+        currentCount++;
+    }
+
+    private MtbaRfx[]? MarketData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        MarketData = await MarketDataService.GetMarketDataAsync();
+    }
+
+    protected override void OnAfterRender(bool firstRender)
+    {
+        if (firstRender)
+        {
+            time = new Timer();
+            //Set the time interval.
+            time.Interval = 1000;
+            time.Elapsed += OnTimeInterval;
+            time.AutoReset = true;
+            // Start the timer.
+            time.Enabled = true;
+        }
+        base.OnAfterRender(firstRender);
+    }
+
+    private async void OnTimeInterval(object sender, ElapsedEventArgs e)
+    {
+        OnInitializedAsync();
+        await InvokeAsync(() => StateHasChanged());
+    }
+
+    public void Dispose()
+    {
+        // While navigating to other components, Dispose method will be called and clean up the Timer function.
+        time?.Dispose();
+    }
+
+
+}

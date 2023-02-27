@@ -1,0 +1,21 @@
+﻿@page "/"
+
+@using BlazorApp1.Data
+@using GestorMercadoCapitales.Models
+@inject MarketDataService MarketDataService
+ 
+<p>@MarketData[0].Instrumento</p>
+
+@code {
+    private MtbaRfx[]? MarketData;
+
+    protected override async Task OnInitializedAsync()
+    {
+        MarketData = await MarketDataService.GetMarketDataAsync();
+    }
+       
+}
+
+
+
+
