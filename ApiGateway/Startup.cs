@@ -1,5 +1,6 @@
 using ApiGateway.Aggregators;
 using ApiGateway.Handlers;
+using JwtAuthenticationManager;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -39,6 +40,7 @@ namespace ApiGateway
                 .AddSingletonDefinedAggregator<UsersPostsAggregator>();
 
             services.AddSwaggerForOcelot(Configuration);
+            services.AddCustomJwtAuthentication();
 
         }
 
@@ -60,6 +62,7 @@ namespace ApiGateway
              
             app.UseRouting();
             app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

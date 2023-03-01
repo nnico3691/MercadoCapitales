@@ -45,8 +45,6 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
 
                 throw new Exception("Errores en la inserción de la Encuesta Pregunta");
 
-
-
             }
         }
     }

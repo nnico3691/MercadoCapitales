@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\JwtAuthenticationManager\JwtAuthenticationManager.csproj" />
+    <PackageReference Include="MediatR" Version="10.0.1" />
 	<PackageReference Include="Swashbuckle.AspNetCore" Version="5.4.1" />
   </ItemGroup>
 

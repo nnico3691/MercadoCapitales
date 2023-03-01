@@ -13,7 +13,6 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Deb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Microsoft.OpenApi.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Newtonsoft.Json.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
@@ -36,3 +35,5 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\obj\Deb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\obj\Debug\net6.0\AuthenticationWebApi.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\obj\Debug\net6.0\AuthenticationWebApi.genruntimeconfig.cache
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\obj\Debug\net6.0\ref\AuthenticationWebApi.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\MediatR.dll
+E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\AuthenticationWebApi\bin\Debug\net6.0\MediatR.Contracts.dll
