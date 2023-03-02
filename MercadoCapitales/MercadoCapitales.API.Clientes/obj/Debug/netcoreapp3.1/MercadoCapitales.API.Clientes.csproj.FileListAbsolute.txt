@@ -65,6 +65,3 @@ E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Cliente
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Clientes.dll
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Clientes.pdb
 E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\obj\Debug\netcoreapp3.1\MercadoCapitales.API.Clientes.genruntimeconfig.cache
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Primary.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll
-E:\Proyectos\.NET\MercadoCapitales\MercadoCapitales\MercadoCapitales.API.Clientes\bin\Debug\netcoreapp3.1\Primary.pdb

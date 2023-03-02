@@ -378,10 +378,6 @@
       ],
       "DownstreamPathTemplate": "/api/Account/Authenticate",
       "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
       "SwaggerKey": "ApiToken"
     }
   ],

@@ -20,10 +20,14 @@ GestorMercadoCapitales/GestorMercadoCapitales/obj/Debug/netcoreapp3.1/GestorMerc
 GestorMercadoCapitales/GestorMercadoCapitales/obj/Debug/netcoreapp3.1/project.razor.vs.json
 GestorMercadoCapitales/GestorMercadoCapitales/obj/Debug/netcoreapp3.1/Razor/Views/Login/ConfirmaOlvideClave.cshtml.g.cs
 GestorMercadoCapitales/GestorMercadoCapitales/obj/Debug/netcoreapp3.1/Razor/Views/MtbaRfx/Futuros_Financieros.cshtml.g.cs
-*.cs
 *.cache
 *.props
 *.v2
 *.v2
 *.v2
 *.v2
+MercadoCapitales/JwtAuthenticationManager/bin
+MercadoCapitales/AuthenticationWebApi/obj
+MercadoCapitales/MercadoCapitales.API.Especies/obj
+MercadoCapitales/MercadoCapitales.API.Ordenes/obj
+MercadoCapitales/JwtAuthenticationManager/obj
