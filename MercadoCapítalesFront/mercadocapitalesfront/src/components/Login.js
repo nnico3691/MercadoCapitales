@@ -35,7 +35,7 @@ function Copyright(props) {
 const theme = createTheme();
 
 export default function SignIn() {
-  const [usuario, setUsuario] = useState({ email: "", password: "" });
+  const [usuario, setUsuario] = useState({ Usuario: "", Clave: "" });
   const [msg, setMsg] = useState("");
 
   // const { handleLogin } = useContext(LoginContext);
@@ -51,7 +51,8 @@ export default function SignIn() {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
 
-    const { data: token } = await login(data);
+    const a = await login(data);
+    console.log(a);
   };
 
   return (
@@ -82,9 +83,9 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              id="email"
+              id="Usuario"
               label="Email Address"
-              name="email"
+              name="Usuario"
               autoComplete="email"
               autoFocus
               onChange={(e) => handleChange(e)}
@@ -93,10 +94,10 @@ export default function SignIn() {
               margin="normal"
               required
               fullWidth
-              name="password"
+              name="Clave"
               label="Password"
               type="password"
-              id="password"
+              id="Clave"
               autoComplete="current-password"
               onChange={(e) => handleChange(e)}
             />

@@ -57,3 +57,7 @@ MercadoCapitales/MercadoCapitales.API.Precios/obj/MercadoCapitales.API.Precios.c
 MercadoCapitales/MercadoCapitales.API.Precios/obj/MercadoCapitales.API.Precios.csproj.nuget.g.targets
 MercadoCapitales/MercadoCapitales.API.Precios/obj/project.assets.json
 MercadoCapitales/MercadoCapitales.API.Precios/obj/project.nuget.cache
+MercadoCapitales/MercadoCapitales.API.Clientes/appsettings.json
+MercadoCapitales/MercadoCapitales.API.Clientes/appsettings.Development.json
+MercadoCapitales/MercadoCapitales.API.Clientes/bin/Debug/netcoreapp3.1/appsettings.Development.json
+MercadoCapitales/MercadoCapitales.API.Clientes/bin/Debug/netcoreapp3.1/appsettings.json
