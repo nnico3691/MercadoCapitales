@@ -10,8 +10,7 @@ export const LoginProvider = (props) => {
 
   return (
     <LoginContext.Provider value={{ handleLogin }}>
-      {" "}
-      {props.children}{" "}
+      {props.children}
     </LoginContext.Provider>
   );
 };

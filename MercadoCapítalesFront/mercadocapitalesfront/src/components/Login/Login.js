@@ -1,19 +1,24 @@
 import * as React from "react";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
-import TextField from "@mui/material/TextField";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { useState } from "react";
-import { login } from "./Services/UsuarioServices";
+import { useState, useContext } from "react";
+import { login } from "../../Services/UsuarioServices";
+import { LoginContext } from "../../Context/LoginContext";
+import { useNavigate } from "react-router-dom";
+import {
+  Button,
+  Grid,
+  TextField,
+  Typography,
+  Link,
+  Alert,
+} from "@mui/material";
 
 function Copyright(props) {
   return (
@@ -37,8 +42,8 @@ const theme = createTheme();
 export default function SignIn() {
   const [usuario, setUsuario] = useState({ Usuario: "", Clave: "" });
   const [msg, setMsg] = useState("");
-
-  // const { handleLogin } = useContext(LoginContext);
+  const { handleLogin } = useContext(LoginContext);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setUsuario({
@@ -47,12 +52,16 @@ export default function SignIn() {
     });
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const data = new FormData(e.currentTarget);
 
-    const a = await login(data);
-    console.log(a);
+    const { data: usuarioValido } = await login(data);
+    console.log(usuarioValido);
+    if (usuarioValido) {
+      handleLogin(usuarioValido.idUsuario, usuarioValido.token);
+      navigate("/Dashboard");
+    } else setMsg("Las credenciales son incorrectas, intente nuevamente.");
   };
 
   return (
@@ -73,6 +82,9 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
+          <Grid item xs={12} sm={12} display={!!msg ? "" : "none"}>
+            <Alert severity="error"> {msg} </Alert>
+          </Grid>
           <Box
             component="form"
             onSubmit={handleSubmit}
