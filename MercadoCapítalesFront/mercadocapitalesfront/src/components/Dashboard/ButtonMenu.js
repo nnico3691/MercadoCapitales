@@ -1,4 +1,4 @@
-import { Grid, Paper, Typography } from "@mui/material";
+import { Button, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
 import Deposits from "./Deposits";
 import { styled } from "@mui/material/styles";
@@ -10,7 +10,7 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 
 const ImageButton = styled(ButtonBase)(({ theme }) => ({
   position: "relative",
-  height: 240,
+  height: 140,
   display: "inline",
   [theme.breakpoints.down("sm")]: {
     width: "100% !important", // Overrides inline-style
@@ -18,6 +18,9 @@ const ImageButton = styled(ButtonBase)(({ theme }) => ({
   },
   "&:hover, &.Mui-focusVisible": {
     zIndex: 1,
+    backgroundColor: "#1976d2",
+    borderColor: "#0062cc",
+    boxShadow: "none",
     "& .MuiImageBackdrop-root": {
       opacity: 0.15,
     },
@@ -36,7 +39,7 @@ const ButtonMenu = () => {
             p: 0,
             display: "flex",
             flexDirection: "column",
-            height: 240,
+            height: 140,
           }}
         >
           <ImageButton>
@@ -64,7 +67,7 @@ const ButtonMenu = () => {
             p: 0,
             display: "flex",
             flexDirection: "column",
-            height: 240,
+            height: 140,
           }}
         >
           <ImageButton>
@@ -91,7 +94,7 @@ const ButtonMenu = () => {
             p: 0,
             display: "flex",
             flexDirection: "column",
-            height: 240,
+            height: 140,
           }}
         >
           <ImageButton>
@@ -118,7 +121,7 @@ const ButtonMenu = () => {
             p: 2,
             display: "flex",
             flexDirection: "column",
-            height: 240,
+            height: 140,
           }}
         >
           <Deposits />

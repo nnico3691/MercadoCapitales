@@ -9,41 +9,52 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 import LayersIcon from "@mui/icons-material/Layers";
 import AssignmentIcon from "@mui/icons-material/Assignment";
 import CandlestickChartIcon from "@mui/icons-material/CandlestickChart";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
+
+const styleLink = { textDecoration: "none", color: "inherit" };
+
 export const mainListItems = (
   <React.Fragment>
-    <Link to="/Orders">
+    <NavLink to="/Dashboard" style={styleLink}>
       <ListItemButton>
         <ListItemIcon>
           <DashboardIcon />
         </ListItemIcon>
         <ListItemText primary="Dashboard" />
       </ListItemButton>
-    </Link>
-    <ListItemButton>
-      <ListItemIcon>
-        <ShoppingCartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Ordenes" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <CandlestickChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Mercado" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <BarChartIcon />
-      </ListItemIcon>
-      <ListItemText primary="Movimientos" />
-    </ListItemButton>
-    <ListItemButton>
-      <ListItemIcon>
-        <LayersIcon />
-      </ListItemIcon>
-      <ListItemText primary="Portafolio" />
-    </ListItemButton>
+    </NavLink>
+    <NavLink to="/Orders" style={styleLink}>
+      <ListItemButton>
+        <ListItemIcon>
+          <ShoppingCartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Ordenes" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/Market" style={styleLink}>
+      <ListItemButton>
+        <ListItemIcon>
+          <CandlestickChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Mercado" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/Movements" style={styleLink}>
+      <ListItemButton>
+        <ListItemIcon>
+          <BarChartIcon />
+        </ListItemIcon>
+        <ListItemText primary="Movimientos" />
+      </ListItemButton>
+    </NavLink>
+    <NavLink to="/Portfolio" style={styleLink}>
+      <ListItemButton>
+        <ListItemIcon>
+          <LayersIcon />
+        </ListItemIcon>
+        <ListItemText primary="Portafolio" />
+      </ListItemButton>
+    </NavLink>
   </React.Fragment>
 );
 

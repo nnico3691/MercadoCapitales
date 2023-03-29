@@ -5,6 +5,8 @@ import Dashboard from "../components/Dashboard/Dashboard";
 import Wallet from "../components/Wallet/Wallet";
 import Orders from "../components/Orders/Orders";
 import Movements from "../components/Movements/Movements";
+import Portfolio from "../components/Portfolio/Portfolio";
+import Market from "../components/Market/Market";
 
 const AppRouter = () => {
   return (
@@ -18,6 +20,8 @@ const AppRouter = () => {
             <Route path="/Wallet" element={<Wallet></Wallet>} />
             <Route path="/Orders" element={<Orders></Orders>} />
             <Route path="/Movements" element={<Movements></Movements>} />
+            <Route path="/Market" element={<Market></Market>} />
+            <Route path="/Portfolio" element={<Portfolio></Portfolio>} />
           </Routes>
         </div>
       </div>
