@@ -55,3 +55,6 @@ MercadoCapitales/MercadoCapitales.API.Especies/bin
 MercadoCapitales/MercadoCapitales.API.Precios/bin
 MercadoCapitales/MercadoCapitales.API.Precios/obj
 MercadoCapitales/MercadoCapitales.API.Ordenes/bin
+ApiGateway/bin
+ApiGateway/obj
+MercadoCapitales/MercadoCapitales.API.Clientes/obj
