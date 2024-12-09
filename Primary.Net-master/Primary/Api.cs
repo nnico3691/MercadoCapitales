@@ -64,9 +64,9 @@ namespace Primary
             return result.IsSuccessStatusCode;
         }
 
-        public const string DemoUsername = "nnico36917609";
-        public const string DemoPassword = "epfomT3(";
-        public const string DemoAccount = "REM7609";
+        public const string DemoUsername = "nnico369120675";
+        public const string DemoPassword = "jlrsnO8$";
+        public const string DemoAccount = "REM20675";
 
         #endregion
 

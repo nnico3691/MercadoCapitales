@@ -54,7 +54,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                         _contexto.Update(oUser);
                         _contexto.SaveChanges();
 
-                        string urlDomain = "http://localhost:51736/api/Cliente/Recovery?token=" + token + "&email=" + request.Email;
+                        string urlDomain = "http://localhost:44373/api/Cliente/Recovery?token=" + token + "&email=" + request.Email;
 
                         /*ENVIAR EMAIL*/
                         MailRequest mail = new MailRequest 
