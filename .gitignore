@@ -61,3 +61,6 @@ MercadoCapitales/MercadoCapitales.API.Clientes/appsettings.json
 MercadoCapitales/MercadoCapitales.API.Clientes/appsettings.Development.json
 MercadoCapitales/MercadoCapitales.API.Clientes/bin/Debug/netcoreapp3.1/appsettings.Development.json
 MercadoCapitales/MercadoCapitales.API.Clientes/bin/Debug/netcoreapp3.1/appsettings.json
+GestorMercadoCapitales/.vs
+GestorMercadoCapitales/GestorMercadoCapitales/bin
+GestorMercadoCapitales/GestorMercadoCapitales/obj

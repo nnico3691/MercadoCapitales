@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Security.Policy;
@@ -36,14 +37,25 @@ namespace GestorMercadoCapitales.Controllers
             if (HttpContext.Session.GetString("Socket") != "Iniciado"
                    && HttpContext.Session.GetString("Login") == "Logueado")
             {
+
                 var datasymbols = new List<PanelFuturoFinancieros>();
                 datasymbols = GetPanelFuturoFinancieros();
+
+                // Define la lista de símbolos que deseas filtrar
+                var ListaFiltro = new List<string> { "DLR/DIC24", "DLR/ENE25A", "DLR/ABR25", "DLR/AGO25", "GGAL/DIC24", "PAMP/DIC24","PAMP/FEB25" };
+
+                var filteredDataSymbols = datasymbols
+                    .Where(dataSymbol => ListaFiltro.Contains(dataSymbol.symbol))
+                    .ToList();
+
+
+                datasymbols = filteredDataSymbols;
 
                 if (datasymbols.Count == 0)
                 {
                     return View(RofexList.rfxlist);
                 }
-
+    
                 string[] symbols = new string[datasymbols.Count];
                 int indice = 0;
                 RofexList.rfxlist = new List<MtbaRfx>();

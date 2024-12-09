@@ -48,23 +48,8 @@ namespace GestorMercadoCapitales.Models
 
                 var allIInstruments = await api.GetAllInstruments();
 
-                //var symbols = new[]
-                //{
-                //    "DLR/ENE23",
-                //    "ORO/ENE23",
-                //    "ORO/MAR23",
-                //    "ORO/MAY23",
-                //    "YPFD/FEB23",
-                //    "RFX20/FEB23",
-                //    "GGAL/FEB23",
-                //    "WTI/ENE23",
-                //    "WTI/MAR23",
-                //    "WTI/MAY23"
-
-
-                //};
-
                 //consumimos la devolucion de todos los instrumentos de la api
+                /*
                 var datasymbols = new List<PanelFuturoFinancieros>();
                 datasymbols = GetPanelFuturoFinancieros();
                 string[] symbols = new string[datasymbols.Count];
@@ -76,18 +61,68 @@ namespace GestorMercadoCapitales.Models
                     indice = indice + 1;
                 }
 
-                //PanelInferiorInstrumentos.Instrumentos = symbols;
+                var symbols = new[]
+                {
+                    "DLR/DIC24",
+                    "DLR/ENE25A",
 
-
-
+                };
+                
                 var dollarFuture = allIInstruments.Where(c => symbols.Contains(c.Symbol));
+
+                */
+
+                //PanelInferiorInstrumentos.Instrumentos = symbols;
 
                 // Subscribe to bids and offers
                 var entries = new[] { Entry.Offers, Entry.Close, Entry.EffectiveVolume, Entry.NominalVolume, Entry.Bids };
 
                 Console.WriteLine("Connecting to market data...");
 
-                var socket = api.CreateMarketDataSocket(dollarFuture, entries, 1, 2);
+                // Crear una lista para almacenar los instrumentos
+                var instrumentIds = new List<Primary.Data.InstrumentId>
+                {
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "DLR/DIC24"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "DLR/ENE25A"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "DLR/ABR25"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "DLR/AGO25"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "GGAL/DIC24"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "PAMP/DIC24"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
+                        Symbol = "PAMP/FEB25"
+                    }
+
+                };
+
+                // Pasar la lista directamente al método CreateMarketDataSocket
+                var socket = api.CreateMarketDataSocket(instrumentIds, entries, 1, 2);
+
                 socket.OnData = OnMarketData;
 
                 Console.WriteLine("Start Socket...");
@@ -127,6 +162,17 @@ namespace GestorMercadoCapitales.Models
         {
             try
             {
+
+                // Obtener el último Bid y Offer, asegurándose de que no sean nulos
+                var lastBid = marketData.Data.Bids.LastOrDefault();
+                var lastOffer = marketData.Data.Offers.LastOrDefault();
+
+                // Construir el mensaje con verificaciones de nulos
+                string bidPrice = lastBid != null ? lastBid.Price.ToString() : "N/A";
+                string offerPrice = lastOffer != null ? lastOffer.Price.ToString() : "N/A";
+
+                Console.WriteLine($"MarketData Novedades ==> El Símbolo es: {marketData.InstrumentId.Symbol}, Bids: {bidPrice}, Offers: {offerPrice}");
+
                 var bid = default(decimal);
                 var offer = default(decimal);
 
@@ -137,16 +183,18 @@ namespace GestorMercadoCapitales.Models
 
                 if (marketData.Data.Bids != null)
                 {
-                    foreach (var trade in marketData.Data.Bids)
+                    // Obtener el último registro de Bids
+                    if (lastBid != null)
                     {
-                        bid = trade.Price;
-                        bidSize = trade.Size;
+                        bid = lastBid.Price;
+                        bidSize = lastBid.Size;
                     }
 
-                    foreach (var trade in marketData.Data.Offers)
+                    // Obtener el último registro de Offers
+                    if (lastOffer != null)
                     {
-                        offer = trade.Price;
-                        offerSize = trade.Size;
+                        offer = lastOffer.Price;
+                        offerSize = lastOffer.Size;
                     }
 
                     nominalVolume = marketData.Data.NominalVolume;
