@@ -63,15 +63,15 @@
 
 </head>
 
-<body style="background:linear-gradient(#3498DB 10%, 30%, #1B4F72 90%);color:white">
+<body style="background: linear-gradient(#D3D3D3 10%, #A9A9A9 30%, #FFFFFF 90%); color: #333333;">
     <div class="loader"></div>
-   <div style="width:100%;">
+    <div style="width:100%;">
         <nav class="navbar navbar-expand-lg navbar-dark" style="background: linear-gradient(#58ACFA 10%, 30%, #045FB4 90%);">
-        <div class="container-fluid">
-            <a href="#" class="navbar-brand">GestorMercadoCapitales</a>
-            <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="container-fluid">
+                <a href="#" class="navbar-brand">GestorMercadoCapitales</a>
+                <button type="button" class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav">
@@ -122,9 +122,9 @@
                         </ul>
                     </div>
                     <div class="logout">
-                      @*  <ul class="nav navbar-nav">
-                            <li class="navbar-nav ms-auto" style="text-align:right;"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Login" asp-action="Logout"><i class="material-icons">exit_to_app</i></a></li>
-                        </ul>*@
+                        @*  <ul class="nav navbar-nav">
+                                <li class="navbar-nav ms-auto" style="text-align:right;"><a asp-area="" style="color:white;" class="nav-link" asp-controller="Login" asp-action="Logout"><i class="material-icons">exit_to_app</i></a></li>
+                            </ul>*@
 
 
                         <ul class="nav navbar-nav">
@@ -142,9 +142,9 @@
                     </div>
                 </div>
 
-        </div>
-    </nav>
-</div>
+            </div>
+        </nav>
+    </div>
     <partial name="_CookieConsentPartial" />
     <div class="container body-content">
         @RenderBody()
@@ -176,8 +176,8 @@
 
 
     <script type="text/javascript">
-       
-        
+
+
         $(window).load(function () {
             $(".loader").fadeOut("slow");
         });
@@ -215,8 +215,8 @@
             }
 
         }
-       
-       
+
+
 
 
     </script>
