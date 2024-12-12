@@ -28,7 +28,7 @@
 
 	<ItemGroup>
 		<Reference Include="Newtonsoft.Json">
-			<HintPath>bin\Debug\netcoreapp3.1\Newtonsoft.Json.dll</HintPath>
+		  <HintPath>..\..\Dependencias\Newtonsoft.Json.dll</HintPath>
 		</Reference>
 		<Reference Include="Primary">
 		  <HintPath>..\..\Primary.Net-master\Primary\bin\Debug\netcoreapp3.1\Primary.dll</HintPath>

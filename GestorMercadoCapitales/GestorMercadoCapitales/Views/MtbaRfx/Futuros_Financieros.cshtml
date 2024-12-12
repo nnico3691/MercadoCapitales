@@ -60,10 +60,10 @@ catch { }
 
         <br />
         <hr />
-        <table class="table table-striped table-hover" id="example">
-            <thead class="">
+        <table class="table table-light table-background" id="example">
+            <thead class="thead-style">
                 <tr>
-                    <th scope="col">Instrumento</th>
+                    <th scope="col">Instrumento </th>
                     <th scope="col">Vol. C</th>
                     <th scope="col">Compra</th>
                     <th scope="col">Venta</th>
@@ -99,7 +99,7 @@ catch { }
                             <td>@datos.Ajuste</td>
                             <td>@datos.Min</td>
                             <td>@datos.Max</td>
-                            <td><input type="range" min="@datos.Max" max="@datos.Max" disabled></td>
+                            <td><input type="range" min="@datos.Min" max="@datos.Max" disabled></td>
                             <td>@datos.intAbierto</td>
                             <td>@datos.hora</td>
                         </tr>
@@ -152,22 +152,3 @@ catch { }
 
 </script>
 
-<!-- Estilo CSS -->
-<style>
-    body {
-        background: linear-gradient(#D3D3D3 10%, #A9A9A9 30%, #FFFFFF 90%);
-        color: #333333;
-    }
-
-    .table th, .table td {
-        vertical-align: middle;
-    }
-
-    .alert {
-        margin-bottom: 20px;
-    }
-
-    .table-hover tbody tr:hover {
-        background-color: #f1f1f1; /* Color de fondo al pasar el mouse */
-    }
-</style>

@@ -6,12 +6,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" Version="2.2.8" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
   <ItemGroup>
     <Reference Include="Primary">
-      <HintPath>bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
+      <HintPath>..\..\Primary.Net-master\Primary\bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
     </Reference>
   </ItemGroup>
 

@@ -86,7 +86,7 @@ namespace GestorMercadoCapitales.Controllers
         private List<EncuestaPreguntas> ConsultaEncuestaApi()
         {
          
-            string url = "http://localhost:51736/api/Cliente/GetEncuestaPreguntasRespuestas";
+            string url = "http://localhost:44373/api/Cliente/GetEncuestaPreguntasRespuestas";
             var parames = new Dictionary<string, string>();
             HttpClientHandler clientHandler = new HttpClientHandler();
             clientHandler.ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; };
