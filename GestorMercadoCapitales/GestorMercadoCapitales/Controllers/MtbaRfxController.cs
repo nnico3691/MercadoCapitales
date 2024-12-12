@@ -42,7 +42,7 @@ namespace GestorMercadoCapitales.Controllers
                 datasymbols = GetPanelFuturoFinancieros();
 
                 // Define la lista de símbolos que deseas filtrar
-                var ListaFiltro = new List<string> { "DLR/DIC24", "DLR/ENE25A", "DLR/ABR25", "DLR/AGO25", "GGAL/DIC24", "PAMP/DIC24","PAMP/FEB25" };
+                var ListaFiltro = new List<string> { "DLR/DIC24", "DLR/ENE25A", "DLR/ENE25", "DLR/ABR25", "DLR/AGO25", "GGAL/DIC24", "PAMP/DIC24","PAMP/FEB25" };
 
                 var filteredDataSymbols = datasymbols
                     .Where(dataSymbol => ListaFiltro.Contains(dataSymbol.symbol))

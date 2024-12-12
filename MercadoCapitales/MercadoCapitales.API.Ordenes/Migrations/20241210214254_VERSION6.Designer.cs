@@ -4,14 +4,16 @@ using MercadoCapitales.API.Ordenes.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    partial class ContextOrdenModelSnapshot : ModelSnapshot
+    [Migration("20241210214254_VERSION6")]
+    partial class VERSION6
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -96,6 +98,9 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
                     b.Property<decimal>("AveragePrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("ClientOrderId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("CumulativeQuantity")
                         .HasColumnType("bigint");

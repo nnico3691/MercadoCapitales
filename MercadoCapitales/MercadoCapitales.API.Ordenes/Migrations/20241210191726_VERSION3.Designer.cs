@@ -4,14 +4,16 @@ using MercadoCapitales.API.Ordenes.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    partial class ContextOrdenModelSnapshot : ModelSnapshot
+    [Migration("20241210191726_VERSION3")]
+    partial class VERSION3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -112,7 +114,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                     b.Property<long>("LeavesQuantity")
                         .HasColumnType("bigint");
 
-                    b.Property<Guid>("OrdenId")
+                    b.Property<Guid?>("OrdenId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Status")
@@ -140,11 +142,9 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
             modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.OrderStatus", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Ordenes.Modelo.Orden", "Orden")
+                    b.HasOne("MercadoCapitales.API.Ordenes.Modelo.Orden", null)
                         .WithMany("StatusHistory")
-                        .HasForeignKey("OrdenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("OrdenId");
                 });
 #pragma warning restore 612, 618
         }

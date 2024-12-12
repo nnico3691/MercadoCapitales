@@ -4,14 +4,16 @@ using MercadoCapitales.API.Ordenes.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    partial class ContextOrdenModelSnapshot : ModelSnapshot
+    [Migration("20241210201114_VERSION5")]
+    partial class VERSION5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -95,6 +95,11 @@ namespace GestorMercadoCapitales.Models
                     new Primary.Data.InstrumentId
                     {
                         Market = "ROFX",
+                        Symbol = "DLR/ENE25"
+                    },
+                    new Primary.Data.InstrumentId
+                    {
+                        Market = "ROFX",
                         Symbol = "DLR/ABR25"
                     },
                     new Primary.Data.InstrumentId

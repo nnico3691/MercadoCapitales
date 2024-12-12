@@ -4,14 +4,16 @@ using MercadoCapitales.API.Ordenes.Persistencia;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    partial class ContextOrdenModelSnapshot : ModelSnapshot
+    [Migration("20241210182045_VERSION1")]
+    partial class VERSION1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,7 +38,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                     b.ToTable("InstrumentId");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Orden", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -82,69 +84,14 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
                     b.HasIndex("InstrumentIdId");
 
-                    b.ToTable("Orden");
+                    b.ToTable("Order");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.OrderStatus", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Account")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("AveragePrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("CumulativeQuantity")
-                        .HasColumnType("bigint");
-
-                    b.Property<string>("ExecutionId")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("LastPrice")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<long>("LastQuantity")
-                        .HasColumnType("bigint");
-
-                    b.Property<long>("LeavesQuantity")
-                        .HasColumnType("bigint");
-
-                    b.Property<Guid>("OrdenId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
-
-                    b.Property<string>("StatusText")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("TransactionTime")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("OrdenId");
-
-                    b.ToTable("OrderStatus");
-                });
-
-            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Orden", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.Order", b =>
                 {
                     b.HasOne("MercadoCapitales.API.Ordenes.Modelo.InstrumentId", "InstrumentId")
                         .WithMany()
                         .HasForeignKey("InstrumentIdId");
-                });
-
-            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Modelo.OrderStatus", b =>
-                {
-                    b.HasOne("MercadoCapitales.API.Ordenes.Modelo.Orden", "Orden")
-                        .WithMany("StatusHistory")
-                        .HasForeignKey("OrdenId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
