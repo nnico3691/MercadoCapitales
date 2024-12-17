@@ -2,13 +2,16 @@
     ViewData["Title"] = "Futuros Financieros";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
+  <environment include="Development">
+    <script src="~/css/jquery.min.js"></script>
+    <script src="~/css/jquery-3.6.0.min.js"></script>
+</environment>
 
 @model List<MtbaRfx>
 
-@Html.Partial("NavBarMtbrfx")
+@*@Html.Partial("NavBarMtbrfx")*@
+
+
 
 <br />
 <br />
@@ -23,6 +26,8 @@
 <hr />
 <a asp-area="" class="btn btn-info" asp-controller="MtbaRfx" asp-action="HistoricoOperaciones">Estado de mis operaciones</a>
 <br />
+
+
 
 @try
 {
@@ -57,11 +62,10 @@ catch { }
 <hr />
 <div class="table-responsive">
     <div id="TablaPrincipal">
-
         <br />
         <hr />
-        <table class="table table-light table-background" id="example">
-            <thead class="thead-style">
+        <table class="table" id="example">
+            <thead class="thead-dark">
                 <tr>
                     <th scope="col">Instrumento </th>
                     <th scope="col">Vol. C</th>
@@ -117,38 +121,6 @@ catch { }
 
 </div>
 
-<script>
 
 
-
-    (function loop() {
-        setTimeout(function () {
-            $('#TablaPrincipal').load(location.href + " #TablaPrincipal");
-            loop();
-        }, 5000);
-    })();
-
-    $('#TablaPrincipal').click(function () {
-
-        $('#example tbody').on('click', 'tr', function () {
-
-            // Remover clase de TR seleccionada, si es que hay
-            $('tr.selected').removeClass('selected');
-            // Asignar clase seleccionada a TR actual
-            $(this).addClass('selected');
-            // Obtener TD's
-            var tds = $(this).children();
-
-            //alert($(tds[0]).text())
-            $("#symbol").select2("val", [$(tds[0]).text()]);
-            document.getElementById("precio").value = $(tds[2]).text();
-            document.getElementById("cantidad").value = $(tds[4]).text();
-
-
-        });
-
-    });
-
-
-</script>
 
