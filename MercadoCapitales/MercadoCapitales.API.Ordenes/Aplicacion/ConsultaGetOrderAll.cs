@@ -11,14 +11,16 @@ using Primary.Data.Orders;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System;
+using MercadoCapitales.API.Ordenes.Dto;
+using MercadoCapitales.API.Ordenes.Modelo;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion
 {
     public class ConsultaGetOrderAll
     {
-        public class ListaOrdenes : IRequest<List<OrderStatus>> { }
+        public class ListaOrdenes : IRequest<List<OrderDto>> { }
 
-        public class Manejador : IRequestHandler<ListaOrdenes, List<OrderStatus>>
+        public class Manejador : IRequestHandler<ListaOrdenes, List<OrderDto>>
         {
             private readonly ContextOrden _contexto;
 
@@ -26,7 +28,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
             {
                 _contexto = contexto;
             }
-            public async Task<List<OrderStatus>> Handle(ListaOrdenes request, CancellationToken cancellationToken)
+            public async Task<List<OrderDto>> Handle(ListaOrdenes request, CancellationToken cancellationToken)
             {
                 try
                 {
@@ -39,24 +41,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
                     };
 
                     var result = await api.GetOrderAll(account);
-
-
-                    /*
-                        // Configurar el mapeador
-                    var configuration = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-                    var mapper = configuration.CreateMapper();
-
-                    var order = mapper.Map<List<Modelo.Orden>>(result.Orders);
-                    var orderStatuses = mapper.Map<List<Modelo.OrderStatus>>(result.Orders);
-
-                    // Suponiendo que 'order' es una lista de 'Modelo.Orden' que has mapeado
-                    var clientOrderIds = order.Select(o => o.ClientOrderId).ToList();
-
-                    // Filtrar las órdenes en el contexto que coinciden con los ClientOrderId
-                    var filteredOrders = await _contexto.Orden
-                        .Where(o => clientOrderIds.Contains(o.ClientOrderId))
-                        .ToListAsync(cancellationToken); 
-                     */
 
                     var Ordenes = result.Orders;
 
@@ -82,16 +66,12 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
 
                     // Filtrar las órdenes que no existen en StatusOrder y prepararlas para la inserción
                     var filteredOrdenes = ordenesFiltradas
-                        .Where(of => !statusOrders.Any(so => so.OrdenId == of.OrdenId && so.StatusText == of.OrderStatus.StatusText))
+                        .Where(of => !statusOrders.Any(so => so.OrdenId == of.OrdenId && so.Status == of.OrderStatus.Status))
                         .ToList();
 
                     // Configurar el mapeador
                     var configuration = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
                     var mapper = configuration.CreateMapper();
-
-                    // Obtener solo la lista de Primary.Data.Orders.OrderStatus
-                    //var orderStatusesPrimary = filteredOrdenes.Select(of => of.OrderStatus).ToList();
-
 
                     var orderStatuses = mapper.Map<List<Modelo.OrderStatus>>(filteredOrdenes);
 
@@ -99,7 +79,53 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
                     await _contexto.OrderStatus.AddRangeAsync(orderStatuses);
                     await _contexto.SaveChangesAsync(cancellationToken); // Guardar 
 
-                    return result.Orders; // Retornar solo los nuevos estados agregados
+                    // Obtener las órdenes junto con sus estados desde el contexto
+                    var newOrders = await _contexto.Orden
+                        .Where(o => _contexto.OrderStatus.Select(os => os.OrdenId).Contains(o.Id)) // Filtrar por los IDs de las órdenes agregadas
+                        .Include(o => o.StatusHistory) // Incluir el historial de estados
+                        .Include(o => o.InstrumentId) 
+                        .ToListAsync(cancellationToken);
+
+                    // Mapear las órdenes y sus estados a DTOs antes de retornar
+                    var orderDtos = newOrders.Select(os => new OrderDto
+                    {
+                        Id = os.Id,
+                        Proprietary = os.Proprietary,
+                        ClientOrderId = os.ClientOrderId,
+                        CancelPrevious = os.CancelPrevious,
+                        Iceberg = os.Iceberg,
+                        DisplayQuantity = os.DisplayQuantity,
+                        InstrumentId = new InstrumentDto 
+                        {
+                            Id = os.InstrumentId.Id,
+                            Market = os.InstrumentId.Market,
+                            Symbol = os.InstrumentId.Symbol,
+                        
+                        },
+                        Price = os.Price,
+                        Quantity = os.Quantity,
+                        Type = os.Type,
+                        Side = os.Side,
+                        Expiration = os.Expiration,
+                        ExpirationDate = os.ExpirationDate,
+                        StatusHistory = os.StatusHistory.Select(s => new OrderStatusDto
+                        {
+                            Id = s.Id,
+                            Account = s.Account,
+                            ExecutionId = s.ExecutionId,
+                            TransactionTime = s.TransactionTime,
+                            AveragePrice = s.AveragePrice,
+                            LastPrice = s.LastPrice,
+                            LastQuantity = s.LastQuantity,
+                            CumulativeQuantity = s.CumulativeQuantity,
+                            LeavesQuantity = s.LeavesQuantity,
+                            Status = s.Status,
+                            StatusText = s.StatusText
+                        }).ToList()
+                    }).ToList();
+
+                    return orderDtos; // Retornar solo los nuevos estados 
+
                 }
                 catch (DbUpdateException dbEx)
                 {

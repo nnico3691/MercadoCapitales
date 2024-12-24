@@ -1,12 +1,11 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System;
-using Newtonsoft.Json;
-using Primary.Data.Orders;
+﻿using MercadoCapitales.API.Ordenes.Modelo;
 using System.Collections.Generic;
+using System;
+using Primary.Data.Orders;
 
-namespace MercadoCapitales.API.Ordenes.Modelo
+namespace MercadoCapitales.API.Ordenes.Dto
 {
-    public class Orden
+    public class OrderDto
     {
         // Identificador único del pedido
         public Guid Id { get; set; }
@@ -27,7 +26,7 @@ namespace MercadoCapitales.API.Ordenes.Modelo
         public uint DisplayQuantity { get; set; }
 
         // Identificador del instrumento relacionado con el pedido
-        public InstrumentId InstrumentId { get; set; }
+        public InstrumentDto InstrumentId { get; set; }
 
         // Precio del pedido, puede ser nulo
         public decimal? Price { get; set; }
@@ -39,71 +38,59 @@ namespace MercadoCapitales.API.Ordenes.Modelo
         public Orders.Type Type { get; set; }
 
         // Lado de la orden (compra o venta)
-        public Side Side { get; set; }
+        public Modelo.Side Side { get; set; }
 
         // Expiración de la orden (si aplica)
-        public Expiration Expiration { get; set; }
+        public Modelo.Expiration Expiration { get; set; }
 
         // Fecha de expiración de la orden
         public DateTime ExpirationDate { get; set; }
 
         // Lista de estados asociados a la orden
-        public List<OrderStatus> StatusHistory { get; set; } = new List<OrderStatus>();
+        public List<OrderStatusDto> StatusHistory { get; set; } = new List<OrderStatusDto>();
     }
 
-    public class OrderStatus
+    public class OrderStatusDto
     {
+        // Identificador único del estado de la orden
         public Guid Id { get; set; }
+
+        // Cuenta asociada al estado de la orden
         public string Account { get; set; }
+
+        // Identificador de ejecución asociado al estado
         public string ExecutionId { get; set; }
+
+        // Hora de la transacción
         public DateTime TransactionTime { get; set; }
+
+        // Precio promedio de ejecución
         public decimal AveragePrice { get; set; }
+
+        // Último precio registrado
         public decimal LastPrice { get; set; }
+
+        // Última cantidad registrada en la transacción
         public uint LastQuantity { get; set; }
+
+        // Cantidad acumulada hasta el momento
         public uint CumulativeQuantity { get; set; }
+
+        // Cantidad restante por ejecutar
         public uint LeavesQuantity { get; set; }
+
+        // Estado actual de la orden
         public Status Status { get; set; }
+
+        // Texto descriptivo del estado
         public string StatusText { get; set; }
-        public Guid OrdenId { get; set; } // Este será el Id de la orden a la que pertenece
-        public virtual Orden Orden { get; set; }
     }
 
-    public class AccountId
-    {
-        public string Id { get; set; }
-    }
-    public class InstrumentId
+    public class InstrumentDto
     {
         public Guid Id { get; set; }
         public string Market { get; set; }
         public string Symbol { get; set; }
-        public Guid OrdenId { get; set; } // Este será el Id de la orden a la que pertenece
-        public virtual Orden Orden { get; set; }
-    }
-
-    public static class Orders
-    {
-        public enum Type
-        {
-            Market,
-            Limit,
-            Stop,
-            StopLimit,
-            // Agregar otros tipos según sea necesario
-        }
-    }
-
-    public enum Side
-    {
-        Buy,
-        Sell,
-    }
-
-    public enum Expiration
-    {
-        GoodTillCancel,
-        ImmediateOrCancel,
-        FillOrKill,
     }
 
 }

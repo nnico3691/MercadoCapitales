@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using MercadoCapitales.API.Ordenes.Aplicacion;
+using MercadoCapitales.API.Ordenes.Dto;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Primary.Data.Orders;
@@ -33,6 +34,6 @@ namespace MercadoCapitales.API.Ordenes.Controllers
 
         [HttpGet]
         [Route("GetOrderAll")]
-        public async Task<ActionResult<List<OrderStatus>>> GetOrderAll() => await _mediator.Send(new ConsultaGetOrderAll.ListaOrdenes());
+        public async Task<ActionResult<List<OrderDto>>> GetOrderAll() => await _mediator.Send(new ConsultaGetOrderAll.ListaOrdenes());
     }
 }

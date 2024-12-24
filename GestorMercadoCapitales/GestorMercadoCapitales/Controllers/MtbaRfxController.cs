@@ -216,8 +216,22 @@ namespace GestorMercadoCapitales.Controllers
                     data = JsonConvert.DeserializeObject<List<OrderAll>>(responseText);
                 }
             }
-            catch { }
-           
+            catch (HttpRequestException httpRequestException)
+            {
+                // Manejo específico para excepciones de solicitud HTTP
+                Console.WriteLine($"Error en la solicitud HTTP: {httpRequestException.Message}");
+            }
+            catch (JsonException jsonException)
+            {
+                // Manejo específico para errores de deserialización JSON
+                Console.WriteLine($"Error al deserializar la respuesta JSON: {jsonException.Message}");
+            }
+            catch (Exception ex)
+            {
+                // Manejo general para cualquier otra excepción
+                Console.WriteLine($"Se produjo un error inesperado: {ex.Message}");
+            }
+
             return View(data);
 
         }
