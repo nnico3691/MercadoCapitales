@@ -22,6 +22,7 @@
     .login-button:hover {
     background-color: #88B257; /* Opcional: efecto al pasar el ratón */
     }
+
 </style>
 
 
@@ -47,7 +48,10 @@
             <section class="login_content">
                 @using (Html.BeginForm("Index", "Login", FormMethod.Post))
                 {
-                    <img src="~/images/emunah-objeto-01.png" height="50px" width="200px" />
+                      <div class="image-container">
+                        <img src="~/images/emunah-objeto-01.png" class="animated-image"/>
+                      </div>
+                    
                     <h1>Ingresar</h1>
                     <div>
                         <input type="text" name="usuario" class="form-control" placeholder="Username" required />
@@ -75,7 +79,7 @@
                         <br />
 
                         <div>
-                            <h1><i class="fa fa-area-chart"></i> 2025 - Emunah</h1>
+                            <img src="~/images/emunah-logo-bco-nuevo.svg" style="width:180px; height:50px;" />
                         </div>
                     </div>
                 }

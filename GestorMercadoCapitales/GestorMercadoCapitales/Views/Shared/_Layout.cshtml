@@ -19,6 +19,14 @@
         <link href="~/css/vendors/animate.css/animate.min.css" rel="stylesheet">
         <link href="~/css/build/css/custom.min.css" rel="stylesheet">*@
 
+        <script src="~/css/jquery.min.js"></script>
+        <script src="~/css/jquery-3.6.0.min.js"></script>
+
+        <!-- CSS de Select2 -->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+
+
+
         <link href="~/css/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="~/css/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
         <link href="~/css/vendors/nprogress/nprogress.css" rel="stylesheet">
@@ -27,7 +35,7 @@
         <link href="~/css/vendors/jqvmap/dist/jqvmap.min.css" rel="stylesheet" />
         <link href="~/css/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
         <link href="~/css/build/css/custom.min.css" rel="stylesheet">
-
+        <link href="~/css/TableFinanzas.css" rel="stylesheet" />
 
 @*        <script src="~/css/vendors/jquery/dist/jquery.min.js"></script>
         <script src="~/css/vendors/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
@@ -44,6 +52,8 @@
     @*<div>*@
         @RenderBody()
     @*</div>*@
+    @RenderSection("Scripts", required: false)
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 
     <script src="~/css/vendors/jquery/dist/jquery.min.js"></script>
@@ -72,79 +82,26 @@
     <script src="~/css/build/js/custom.min.js"></script>
 
 
-    <script type="text/javascript">
-
-      /*  $('.alert').alert()
-
-        $(window).load(function () {
-            $(".loader").fadeOut("slow");
-        });
-
-        function verificarPasswords() {
-
-            // Ontenemos los valores de los campos de contraseñas
-            pass1 = document.getElementById('pass1');
-            pass2 = document.getElementById('pass2');
-
-            // Verificamos si las constraseñas no coinciden
-            if (pass1.value != pass2.value) {
-
-                // Si las constraseñas no coinciden mostramos un mensaje
-                document.getElementById("error").classList.add("mostrar");
-
-                return false;
-            } else {
-
-                // Si las contraseñas coinciden ocultamos el mensaje de error
-                document.getElementById("error").classList.remove("mostrar");
-
-                // Mostramos un mensaje mencionando que las Contraseñas coinciden
-                document.getElementById("ok").classList.remove("ocultar");
-
-                // Desabilitamos el botón de login
-                document.getElementById("login").disabled = true;
-
-                // Refrescamos la página (Simulación de envío del formulario)
-                setTimeout(function () {
-                    location.reload();
-                }, 3000);
-
-                return true;
-            }
-
-        }
-
-        */
-
-
-    </script>
-
     <script>
         $(document).ready(function () {
-            $("#btnLoadPartial").click(function (e) {
+           
+            $("#btnMtbaRfx").click(function (e) {
                 e.preventDefault(); // Previene la navegación predeterminada
-
                 // Llamada AJAX para obtener el partial view
                 $.get("/MtbaRfx/Futuros_Financieros", function (data) {
                     // Inserta el contenido en el contenedor
-                    $("#partialContainer").html(data);
+                    $("#MtbaRofexContainer").html(data);
 
                 }).fail(function () {
                     alert("Error loading content. Please try again.");
                 });
             });
         });
+
+        
     </script>
 
     <script>
-
-        //(function loop() {
-        //    setTimeout(function () {
-        //        $('#partialContainer #TablaPrincipal').load(location.href + "#partialContainer #TablaPrincipal");
-        //        loop();
-        //    }, 5000);
-        //})();
-
         (function loop() {
             setTimeout(function () {
                 $.get('/MtbaRfx/Futuros_Financieros', function (data) {
@@ -156,9 +113,10 @@
                 loop();
             }, 10000);
         })();
+    </script>
 
-
-        $('#partialContainer #TablaPrincipal').click(function () {
+    <script>
+        $('#TablaPrincipal').click(function () {
 
             $('#example tbody').on('click', 'tr', function () {
 
@@ -180,7 +138,6 @@
         });
 
     </script>
-
-
+  
 </body>
 </html>
