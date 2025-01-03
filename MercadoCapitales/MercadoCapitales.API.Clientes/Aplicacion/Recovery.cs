@@ -39,14 +39,14 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                 try
                 {
                     var oUser = _contexto.Cliente.Where(x => x.Email == request.Email).ToList().FirstOrDefault();
-                    var oLogin= _contexto.Login.Where(x => x.Cliente == oUser.ClienteId).ToList().FirstOrDefault();
+                    var oLogin= _contexto.Login.Where(x => x.ClienteId == oUser.ClienteId).ToList().FirstOrDefault();
 
                     oLogin.Clave = Password.GenerarPassword(16);
 
                     _contexto.Update(oLogin);
                     _contexto.SaveChanges();
 
-                    return "Sistma Mercado de Capitales - Contraseña Autogerada es: " + oLogin.Clave;
+                    return "Sistema Mercado de Capitales - Contraseña Autogerada es: " + oLogin.Clave;
                 }
                 catch (Exception ex)
                 {

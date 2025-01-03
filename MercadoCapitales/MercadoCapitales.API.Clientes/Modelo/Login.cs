@@ -9,6 +9,7 @@ namespace MercadoCapitales.API.Clientes.Modelo
         public Guid? LoginId { get; set; }
         public string Usuario { get; set; }
         public string Clave { get; set; }
-        public Guid? Cliente { get; set; }
+        public Guid? ClienteId { get; set; }
+        public virtual Cliente Cliente { get; set; } // Referencia al objeto Cliente
     }
 }

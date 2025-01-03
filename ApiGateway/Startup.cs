@@ -42,6 +42,16 @@ namespace ApiGateway
             services.AddSwaggerForOcelot(Configuration);
             services.AddCustomJwtAuthentication();
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowReactApp", builder =>
+                {
+                    builder.WithOrigins("http://localhost:3000") // Dirección del frontend
+                           .AllowAnyHeader()
+                           .AllowAnyMethod();
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,6 +63,7 @@ namespace ApiGateway
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseCors("AllowReactApp");
             app.UseHttpsRedirection();
 
             app.UseSwaggerForOcelotUI(opt =>

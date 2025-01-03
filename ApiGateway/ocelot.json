@@ -190,6 +190,176 @@
       },
       "SwaggerKey": "ApiClientes"
     },
+    {
+      "UpstreamPathTemplate": "/api/Primaryuser",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Primaryuser",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Primaryuser/{UserName}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Primaryuser/{UserName}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Primaryuser",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Primaryuser",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Primaryuser",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Primaryuser",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Primaryuser/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Primaryuser/{id}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Position",
+      "UpstreamHttpMethod": [ "POST" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Position",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Position/{UserName}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Position/{UserName}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Position/{id}/{username}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Position/{id}/{username}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Position",
+      "UpstreamHttpMethod": [ "PUT" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Position",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
+    {
+      "UpstreamPathTemplate": "/api/Position/{id}",
+      "UpstreamHttpMethod": [ "DELETE" ],
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 44373
+        }
+      ],
+      "DownstreamPathTemplate": "/api/Position/{id}",
+      "DownstreamScheme": "http",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "Bearer",
+        "AllowedScopes": []
+      },
+      "SwaggerKey": "ApiClientes"
+    },
     /*MercadoCapitales.API.Especies*/
     {
       "UpstreamPathTemplate": "/api/Especie/GetPanelFuturosFinancieros",
@@ -269,8 +439,8 @@
     },
     /*MercadoCapitales.API.Ordenes*/
     {
-      "UpstreamPathTemplate": "/api/Orden/GetOrderFilleds",
-      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/Order",
+      "UpstreamHttpMethod": [ "POST" ],
       "DangerousAcceptAnyServerCertificateValidator": false,
       "ReRouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [
@@ -279,7 +449,7 @@
           "Port": 9901
         }
       ],
-      "DownstreamPathTemplate": "/api/Orden/GetOrderFilleds",
+      "DownstreamPathTemplate": "/api/Order",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -288,8 +458,8 @@
       "SwaggerKey": "ApiOrdenes"
     },
     {
-      "UpstreamPathTemplate": "/api/Orden/CrearOrden",
-      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/Order/{id}/{username}",
+      "UpstreamHttpMethod": [ "GET" ],
       "DangerousAcceptAnyServerCertificateValidator": false,
       "ReRouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [
@@ -298,7 +468,7 @@
           "Port": 9901
         }
       ],
-      "DownstreamPathTemplate": "/api/Orden/CrearOrden",
+      "DownstreamPathTemplate": "/api/Order/{id}/{username}",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -307,17 +477,15 @@
       "SwaggerKey": "ApiOrdenes"
     },
     {
-      "UpstreamPathTemplate": "/api/Orden/GetOrderAll",
-      "UpstreamHttpMethod": [],
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "ReRouteIsCaseSensitive": false,
+      "UpstreamPathTemplate": "/api/Order/{username}",
+      "UpstreamHttpMethod": [ "GET" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 9901
         }
       ],
-      "DownstreamPathTemplate": "/api/Orden/GetOrderAll",
+      "DownstreamPathTemplate": "/api/Order/{username}",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -325,6 +493,7 @@
       },
       "SwaggerKey": "ApiOrdenes"
     },
+
     /*MercadoCapitales.API.Precios*/
     {
       "UpstreamPathTemplate": "/api/Precio/CrearPrecioAccion",

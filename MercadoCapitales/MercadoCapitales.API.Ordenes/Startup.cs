@@ -1,6 +1,8 @@
 using MediatR;
 using MercadoCapitales.API.Ordenes.Aplicacion;
+using MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands;
 using MercadoCapitales.API.Ordenes.Persistencia;
+using MercadoCapitales.API.Ordenes.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -13,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 
 namespace MercadoCapitales.API.Ordenes
@@ -33,7 +36,20 @@ namespace MercadoCapitales.API.Ordenes
             services.AddDbContext<ContextOrden>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
-            services.AddMediatR(typeof(CrearOrden.Manejador).Assembly);
+            services.AddMediatR(typeof(Program).Assembly);
+
+            //services.AddHttpClient<IClienteService, ClienteService>();
+
+
+            // Acceder a la configuración de la API
+            var apiIp = Configuration["ApiConfig:APICliente:Ip"];
+            var apiPort = Configuration["ApiConfig:APICliente:Port"];
+
+            // Registrar HttpClient
+            services.AddHttpClient<IClienteService, ClienteService>(client =>
+            {
+                client.BaseAddress = new Uri($"http://{apiIp}:{apiPort}/api/");
+            });
             services.AddSwaggerGen(options =>
             {
                 var groupName = "v1";

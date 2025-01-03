@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using MediatR;
-using MercadoCapitales.API.Clientes.Dto;
 using MercadoCapitales.API.Clientes.Modelo;
 using MercadoCapitales.API.Clientes.Persistencia;
 using System.Collections.Generic;
@@ -8,6 +7,7 @@ using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using MercadoCapitales.API.Clientes.Modelo.Dto;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {

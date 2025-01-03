@@ -1,7 +1,7 @@
-﻿using MercadoCapitales.API.Ordenes.Modelo;
+﻿using MercadoCapitales.API.Ordenes.Models;
 using Microsoft.EntityFrameworkCore;
 using Primary.Data.Orders;
-using OrderStatus = MercadoCapitales.API.Ordenes.Modelo.OrderStatus;
+using OrderStatus = MercadoCapitales.API.Ordenes.Models.OrderStatus;
 
 namespace MercadoCapitales.API.Ordenes.Persistencia
 {

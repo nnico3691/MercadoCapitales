@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 using System.Security.Policy;
+using System.Collections.Generic;
 
 namespace MercadoCapitales.API.Clientes.Modelo
 {
@@ -17,6 +18,9 @@ namespace MercadoCapitales.API.Clientes.Modelo
         [Required]
         public string Email { get; set; }
         public string TokenRecovery { get; set; }
+
+        // Colección de usuarios primarios relacionados con el cliente
+        public ICollection<PrimaryUser> PrimaryUsers { get; set; } = new List<PrimaryUser>();
 
     }
 }

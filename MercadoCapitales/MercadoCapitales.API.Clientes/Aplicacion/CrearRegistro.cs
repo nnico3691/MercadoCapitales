@@ -57,7 +57,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                 {
                     Usuario = request.Usuario,
                     Clave = request.Clave,
-                    Cliente = cliente.ClienteId
+                    ClienteId = cliente.ClienteId
                 };
 
                 _contexto.Login.Add(login);

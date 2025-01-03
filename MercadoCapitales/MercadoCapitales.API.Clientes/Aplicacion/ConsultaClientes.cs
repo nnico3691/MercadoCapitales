@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using MercadoCapitales.API.Clientes.Persistencia;
-using MercadoCapitales.API.Clientes.Dto;
 using Microsoft.EntityFrameworkCore;
 using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Modelo.Dto;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {

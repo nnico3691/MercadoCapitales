@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MercadoCapitales.API.Ordenes.Modelo;
-using static MercadoCapitales.API.Ordenes.Aplicacion.ConsultaGetOrderAll;
+using MercadoCapitales.API.Ordenes.Models;
+using static MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries.GetOrdersQueryHandler;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion
 {
@@ -30,10 +30,10 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
 
 
             // Agregar mapeo para InstrumentId si es necesario
-            CreateMap<Primary.Data.InstrumentId, MercadoCapitales.API.Ordenes.Modelo.InstrumentId>();
+            CreateMap<Primary.Data.InstrumentId, MercadoCapitales.API.Ordenes.Models.InstrumentId>();
 
             // Si necesitas mapear OrderStatus también, puedes hacerlo aquí.
-            CreateMap<Primary.Data.Orders.OrderStatus, Modelo.OrderStatus>()
+            CreateMap<Primary.Data.Orders.OrderStatus, Models.OrderStatus>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
                 .ForMember(dest => dest.ExecutionId, opt => opt.MapFrom(src => src.ExecutionId))
                 .ForMember(dest => dest.TransactionTime, opt => opt.MapFrom(src => src.TransactionTime))
@@ -44,7 +44,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
                 .ForMember(dest => dest.LeavesQuantity, opt => opt.MapFrom(src => src.LeavesQuantity))
                 .ForMember(dest => dest.StatusText, opt => opt.MapFrom(src => src.StatusText));
 
-            CreateMap<OrdenFiltrada, Modelo.OrderStatus>()
+            CreateMap<OrdenFiltrada, Models.OrderStatus>()
              .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
                 .ForMember(dest => dest.ExecutionId, opt => opt.MapFrom(src => src.OrderStatus.ExecutionId))
                 .ForMember(dest => dest.TransactionTime, opt => opt.MapFrom(src => src.OrderStatus.TransactionTime))

@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace MercadoCapitales.API.Clientes.Dto
+namespace MercadoCapitales.API.Clientes.Modelo.Dto
 {
     public class EncuestaPreguntaDto
     {

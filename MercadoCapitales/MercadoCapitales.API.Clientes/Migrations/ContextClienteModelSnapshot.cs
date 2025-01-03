@@ -140,7 +140,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.Property<string>("Clave")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("Cliente")
+                    b.Property<Guid?>("ClienteId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Usuario")
@@ -148,7 +148,77 @@ namespace MercadoCapitales.API.Clientes.Migrations
 
                     b.HasKey("LoginId");
 
+                    b.HasIndex("ClienteId");
+
                     b.ToTable("Login");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Position", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("BuyPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("BuySize")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("PrimaryUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("SellPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("SellSize")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Symbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("TotalDailyDiff")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("TotalDiff")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("TradingSymbol")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PrimaryUserId");
+
+                    b.ToTable("Position");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Account")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("ClienteId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Password")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Username")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClienteId");
+
+                    b.ToTable("PrimaryUser");
                 });
 
             modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
@@ -156,6 +226,29 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.HasOne("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", null)
                         .WithMany("encuestaRespuestas")
                         .HasForeignKey("EncuestaPreguntaId");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Login", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.Cliente", "Cliente")
+                        .WithMany()
+                        .HasForeignKey("ClienteId");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Position", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", "PrimaryUser")
+                        .WithMany("Positions")
+                        .HasForeignKey("PrimaryUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.Cliente", "Cliente")
+                        .WithMany("PrimaryUsers")
+                        .HasForeignKey("ClienteId");
                 });
 #pragma warning restore 612, 618
         }

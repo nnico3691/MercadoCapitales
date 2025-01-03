@@ -93,6 +93,324 @@ namespace Primary
 
         #endregion
 
+        #region Position data
+        /// <summary>
+        /// Obtiene las posiciones para una cuenta específica.
+        /// </summary>
+        /// <param name="accountName">Nombre de la cuenta para la cual se desean obtener las posiciones.</param>
+        /// <returns>Lista de posiciones de la cuenta.</returns>
+        public async Task<List<Data.PrimaryRiskAPI.Position>> GetPositions(string accountName)
+        {
+            var uri = new Uri(DemoEndpoint, $"/rest/risk/position/getPositions/{accountName}");
+            var response = await HttpClient.GetStringAsync(uri);
+            var data = JsonConvert.DeserializeObject<GetPositionsResponse>(response);
+
+            if (data.Status != "OK")
+            {
+                throw new Exception($"Error al obtener posiciones: {data.Status}");
+            }
+
+            return data.Positions;
+        }
+
+        public class GetPositionsResponse
+        {
+            [JsonProperty("status")]
+            public string Status { get; set; }
+
+            [JsonProperty("positions")]
+            public List<Data.PrimaryRiskAPI.Position> Positions { get; set; }
+
+        }
+
+        public async Task<AccountReportResponse> GetAccountReport(string accountName)
+        {
+            var uri = new Uri(DemoEndpoint, $"/rest/risk/accountReport/{accountName}");
+            var response = await HttpClient.GetStringAsync(uri);
+
+            // Deserialize the response into AccountReportResponse
+            var data = JsonConvert.DeserializeObject<AccountReportResponse>(response);
+
+            // Check if the status is OK
+            if (data.Status != "OK")
+            {
+                throw new Exception($"Error al obtener el informe de la cuenta: {data.Status}");
+            }
+
+            // Return the AccountReportResponse object
+            return data;
+        }
+
+
+        public class AccountReportResponse
+        {
+            [JsonProperty("status")]
+            public string Status { get; set; }
+
+            [JsonProperty("accountData")]
+            public AccountData AccountData { get; set; }
+
+            [JsonProperty("hasError")]
+            public bool HasError { get; set; }
+
+            [JsonProperty("errorDetail")]
+            public string ErrorDetail { get; set; }
+
+            [JsonProperty("lastCalculation")]
+            public long LastCalculation { get; set; }
+
+            [JsonProperty("portfolio")]
+            public decimal Portfolio { get; set; }
+
+            [JsonProperty("ordersMargin")]
+            public decimal OrdersMargin { get; set; }
+
+            [JsonProperty("currentCash")]
+            public decimal CurrentCash { get; set; }
+
+            [JsonProperty("dailyDiff")]
+            public decimal DailyDiff { get; set; }
+
+            [JsonProperty("uncoveredMargin")]
+            public decimal UncoveredMargin { get; set; }
+        }
+
+        public class AccountData
+        {
+            [JsonProperty("accountName")]
+            public string AccountName { get; set; }
+
+            [JsonProperty("marketMember")]
+            public string MarketMember { get; set; }
+
+            [JsonProperty("marketMemberIdentity")]
+            public string MarketMemberIdentity { get; set; }
+
+            [JsonProperty("collateral")]
+            public decimal Collateral { get; set; }
+
+            [JsonProperty("margin")]
+            public decimal Margin { get; set; }
+
+            [JsonProperty("availableToCollateral")]
+            public decimal AvailableToCollateral { get; set; }
+
+            [JsonProperty("detailedAccountReports")]
+            public Dictionary<string, DetailedAccountReport> DetailedAccountReports { get; set; }
+        }
+
+        public class DetailedAccountReport
+        {
+            [JsonProperty("currencyBalance")]
+            public CurrencyBalance CurrencyBalance { get; set; }
+
+            [JsonProperty("availableToOperate")]
+            public AvailableToOperate AvailableToOperate { get; set; }
+
+            [JsonProperty("settlementDate")]
+            public long SettlementDate { get; set; }
+        }
+
+        public class CurrencyBalance
+        {
+            [JsonProperty("detailedCurrencyBalance")]
+            public Dictionary<string, CurrencyDetail> DetailedCurrencyBalance { get; set; }
+        }
+
+        public class CurrencyDetail
+        {
+            [JsonProperty("consumed")]
+            public decimal Consumed { get; set; }
+
+            [JsonProperty("available")]
+            public decimal Available { get; set; }
+        }
+
+        public class AvailableToOperate
+        {
+            [JsonProperty("cash")]
+            public Cash Cash { get; set; }
+
+            [JsonProperty("movements")]
+            public int Movements { get; set; }
+
+            [JsonProperty("credit")]
+            public object Credit { get; set; } // Assuming credit can be null
+
+            [JsonProperty("total")]
+            public decimal Total { get; set; }
+
+            [JsonProperty("pendingMovements")]
+            public int PendingMovements { get; set; }
+        }
+
+        public class Cash
+        {
+            [JsonProperty("totalCash")]
+            public decimal TotalCash { get; set; }
+
+            [JsonProperty("detailedCash")]
+            public Dictionary<string, decimal> DetailedCash { get; set; }
+        }
+
+        public async Task<DetailedPositionResponse> GetDetailedPosition(string accountName)
+        {
+            var uri = new Uri(DemoEndpoint, $"/rest/risk/detailedPosition/{accountName}");
+            var response = await HttpClient.GetStringAsync(uri);
+
+            // Deserialize the response into AccountReportResponse
+            var data = JsonConvert.DeserializeObject<DetailedPositionResponse>(response);
+
+            // Check if the status is OK
+            if (data.Status != "OK")
+            {
+                throw new Exception($"Error al obtener el informe de la cuenta: {data.Status}");
+            }
+
+            // Return the AccountReportResponse object
+            return data;
+        }
+
+        public class DetailedPositionResponse
+        {
+            [JsonProperty("status")]
+            public string Status { get; set; }
+
+            [JsonProperty("detailedPosition")]
+            public DetailedPosition DetailedPosition { get; set; }
+
+            [JsonProperty("lastCalculation")]
+            public long LastCalculation { get; set; }
+        }
+
+        public class DetailedPosition
+        {
+            [JsonProperty("account")]
+            public string Account { get; set; }
+
+            [JsonProperty("totalDailyDiffPlain")]
+            public decimal TotalDailyDiffPlain { get; set; }
+
+            [JsonProperty("totalMarketValue")]
+            public decimal TotalMarketValue { get; set; }
+
+            [JsonProperty("report")]
+            public Dictionary<string, Dictionary<string, ContractDetail>> Report { get; set; }
+        }
+
+
+        public class ContractDetail
+        {
+            [JsonProperty("detailedPositions")]
+            public List<DetailedPositionInfo> DetailedPositions { get; set; }
+
+            [JsonProperty("instrumentInitialSize")]
+            public decimal InstrumentInitialSize { get; set; }
+
+            [JsonProperty("instrumentFilledSize")]
+            public decimal InstrumentFilledSize { get; set; }
+
+            [JsonProperty("instrumentCurrentSize")]
+            public decimal InstrumentCurrentSize { get; set; }
+        }
+
+        public class DetailedPositionInfo
+        {
+            [JsonProperty("symbolReference")]
+            public string SymbolReference { get; set; }
+
+            [JsonProperty("contractType")]
+            public string ContractType { get; set; }
+
+            [JsonProperty("priceConversionFactor")]
+            public decimal PriceConversionFactor { get; set; }
+
+            [JsonProperty("contractSize")]
+            public decimal ContractSize { get; set; }
+
+            [JsonProperty("marketPrice")]
+            public decimal MarketPrice { get; set; }
+
+            [JsonProperty("currency")]
+            public string Currency { get; set; }
+
+            [JsonProperty("exchangeRate")]
+            public decimal ExchangeRate { get; set; }
+
+            [JsonProperty("contractMultiplier")]
+            public decimal ContractMultiplier { get; set; }
+
+            [JsonProperty("totalInitialSize")]
+            public decimal TotalInitialSize { get; set; }
+
+            [JsonProperty("buyInitialSize")]
+            public decimal BuyInitialSize { get; set; }
+
+            [JsonProperty("sellInitialSize")]
+            public decimal SellInitialSize { get; set; }
+
+            [JsonProperty("buyInitialPrice")]
+            public decimal BuyInitialPrice { get; set; }
+
+            [JsonProperty("sellInitialPrice")]
+            public decimal SellInitialPrice { get; set; }
+
+            [JsonProperty("totalFilledSize")]
+            public decimal TotalFilledSize { get; set; }
+
+            [JsonProperty("buyFilledSize")]
+            public decimal BuyFilledSize { get; set; }
+
+            [JsonProperty("sellFilledSize")]
+            public decimal SellFilledSize { get; set; }
+
+            [JsonProperty("buyFilledPrice")]
+            public decimal BuyFilledPrice { get; set; }
+
+            [JsonProperty("sellFilledPrice")]
+            public decimal SellFilledPrice { get; set; }
+
+            [JsonProperty("totalCurrentSize")]
+            public decimal TotalCurrentSize { get; set; }
+
+            [JsonProperty("buyCurrentSize")]
+            public decimal BuyCurrentSize { get; set; }
+
+            [JsonProperty("sellCurrentSize")]
+            public decimal SellCurrentSize { get; set; }
+
+            [JsonProperty("detailedDailyDiff")]
+            public DetailedDailyDiff DetailedDailyDiff { get; set; }
+        }
+
+        public class DetailedDailyDiff
+        {
+            [JsonProperty("buyPricePPPDiff")]
+            public decimal BuyPricePPPDiff { get; set; }
+
+            [JsonProperty("sellPricePPPDiff")]
+            public decimal SellPricePPPDiff { get; set; }
+
+            [JsonProperty("totalDailyDiff")]
+            public decimal TotalDailyDiff { get; set; }
+
+            [JsonProperty("buyDailyDiff")]
+            public decimal BuyDailyDiff { get; set; }
+
+            [JsonProperty("sellDailyDiff")]
+            public decimal SellDailyDiff { get; set; }
+
+            [JsonProperty("totalDailyDiffPlain")]
+            public decimal TotalDailyDiffPlain { get; set; }
+
+            [JsonProperty("buyDailyDiffPlain")]
+            public decimal BuyDailyDiffPlain { get; set; }
+
+            [JsonProperty("sellDailyDiffPlain")]
+            public decimal SellDailyDiffPlain { get; set; }
+        }
+        #endregion
+
         #region Historical data
 
         /// <summary>
@@ -441,5 +759,7 @@ namespace Primary
         }
 
         #endregion
+
     }
 }
+

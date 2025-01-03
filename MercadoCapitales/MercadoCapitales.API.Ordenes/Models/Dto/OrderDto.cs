@@ -1,9 +1,9 @@
-﻿using MercadoCapitales.API.Ordenes.Modelo;
+﻿using MercadoCapitales.API.Ordenes.Models;
 using System.Collections.Generic;
 using System;
 using Primary.Data.Orders;
 
-namespace MercadoCapitales.API.Ordenes.Dto
+namespace MercadoCapitales.API.Ordenes.Models.Dto
 {
     public class OrderDto
     {
@@ -38,10 +38,10 @@ namespace MercadoCapitales.API.Ordenes.Dto
         public Orders.Type Type { get; set; }
 
         // Lado de la orden (compra o venta)
-        public Modelo.Side Side { get; set; }
+        public Side Side { get; set; }
 
         // Expiración de la orden (si aplica)
-        public Modelo.Expiration Expiration { get; set; }
+        public Expiration Expiration { get; set; }
 
         // Fecha de expiración de la orden
         public DateTime ExpirationDate { get; set; }

@@ -4,7 +4,7 @@ using Newtonsoft.Json;
 using Primary.Data.Orders;
 using System.Collections.Generic;
 
-namespace MercadoCapitales.API.Ordenes.Modelo
+namespace MercadoCapitales.API.Ordenes.Models
 {
     public class Orden
     {
@@ -49,36 +49,6 @@ namespace MercadoCapitales.API.Ordenes.Modelo
 
         // Lista de estados asociados a la orden
         public List<OrderStatus> StatusHistory { get; set; } = new List<OrderStatus>();
-    }
-
-    public class OrderStatus
-    {
-        public Guid Id { get; set; }
-        public string Account { get; set; }
-        public string ExecutionId { get; set; }
-        public DateTime TransactionTime { get; set; }
-        public decimal AveragePrice { get; set; }
-        public decimal LastPrice { get; set; }
-        public uint LastQuantity { get; set; }
-        public uint CumulativeQuantity { get; set; }
-        public uint LeavesQuantity { get; set; }
-        public Status Status { get; set; }
-        public string StatusText { get; set; }
-        public Guid OrdenId { get; set; } // Este será el Id de la orden a la que pertenece
-        public virtual Orden Orden { get; set; }
-    }
-
-    public class AccountId
-    {
-        public string Id { get; set; }
-    }
-    public class InstrumentId
-    {
-        public Guid Id { get; set; }
-        public string Market { get; set; }
-        public string Symbol { get; set; }
-        public Guid OrdenId { get; set; } // Este será el Id de la orden a la que pertenece
-        public virtual Orden Orden { get; set; }
     }
 
     public static class Orders

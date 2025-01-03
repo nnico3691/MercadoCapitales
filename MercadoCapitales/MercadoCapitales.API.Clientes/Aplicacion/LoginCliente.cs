@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using System.Threading;
 using System;
 using System.Linq;
-using MercadoCapitales.API.Clientes.Dto;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {
