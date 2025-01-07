@@ -40,12 +40,12 @@ namespace MercadoCapitales.API.Clientes
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
 
-            services.AddMediatR(typeof(CrearRegistro.Manejador).Assembly);
-            services.AddAutoMapper(typeof(ConsultaClientes.Manejador));
+            services.AddMediatR(typeof(Program).Assembly);
+            services.AddAutoMapper(typeof(Program).Assembly);
             services.Configure<SmtpSettings>(Configuration.GetSection("SmtpSettings"));
             services.AddSingleton<IEmailSenderService, EmailSenderService>();
 
-            //services.AddCustomJwtAuthentication();
+            services.AddScoped<IMarketConnectService, PrimaryService>();
 
             services.AddSwaggerGen(options =>
             {

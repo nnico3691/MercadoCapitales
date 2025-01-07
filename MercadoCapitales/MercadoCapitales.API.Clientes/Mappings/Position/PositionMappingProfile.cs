@@ -1,16 +1,12 @@
 ﻿using AutoMapper;
 using Model = MercadoCapitales.API.Clientes.Modelo;
 using MercadoCapitales.API.Clientes.Modelo.Dto;
-
-namespace MercadoCapitales.API.Clientes.Aplicacion
+namespace MercadoCapitales.API.Clientes.Mappings.Position
 {
-    public class MappingProfile : Profile
+    public class PositionMappingProfile : Profile
     {
-        public MappingProfile()
+        public PositionMappingProfile() 
         {
-            CreateMap<Model.Cliente, ClienteDto>();
-
-
             // Mapeo de Position a PositionDto
             CreateMap<Model.Position, PositionDto>()
                 .ForMember(dest => dest.InstrumentId, opt => opt.MapFrom(src => src.InstrumentId))
@@ -24,8 +20,12 @@ namespace MercadoCapitales.API.Clientes.Aplicacion
                 .ForMember(dest => dest.TradingSymbol, opt => opt.MapFrom(src => src.TradingSymbol)).ReverseMap();
 
             CreateMap<PositionDto, Model.Position>()
-           .ForMember(dest => dest.PrimaryUserId, opt => opt.MapFrom(src => src.PrimaryUserId));
-        }
+                .ForMember(dest => dest.PrimaryUserId, opt => opt.MapFrom(src => src.PrimaryUserId));
 
-    }  
+            CreateMap<Primary.Data.PrimaryRiskAPI.Position, Model.Position>()
+                .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar el Id, ya que lo generaremos en la base de datos
+                .ForMember(dest => dest.PrimaryUserId, opt => opt.Ignore()); // Asignar este valor más tarde
+
+        }
+    }
 }

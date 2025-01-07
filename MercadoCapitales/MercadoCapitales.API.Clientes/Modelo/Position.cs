@@ -7,9 +7,9 @@ namespace MercadoCapitales.API.Clientes.Modelo
         public Guid Id { get; set; }
         public Guid InstrumentId { get; set; }
         public string Symbol { get; set; }
-        public int BuySize { get; set; }
+        public decimal BuySize { get; set; }
         public decimal BuyPrice { get; set; }
-        public int SellSize { get; set; }
+        public decimal SellSize { get; set; }
         public decimal SellPrice { get; set; }
         public decimal TotalDailyDiff { get; set; }
         public decimal TotalDiff { get; set; }
