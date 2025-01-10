@@ -25,8 +25,11 @@ namespace MercadoCapitales.API.Ordenes.Models.Dto
         // Cantidad a mostrar en caso de ser un iceberg
         public uint DisplayQuantity { get; set; }
 
-        // Identificador del instrumento relacionado con el pedido
-        public InstrumentDto InstrumentId { get; set; }
+        // Mercado de la Especie
+        public string Market { get; set; }
+
+        // Simbolo de la Especie
+        public string Symbol { get; set; }
 
         // Precio del pedido, puede ser nulo
         public decimal? Price { get; set; }
@@ -85,12 +88,4 @@ namespace MercadoCapitales.API.Ordenes.Models.Dto
         // Texto descriptivo del estado
         public string StatusText { get; set; }
     }
-
-    public class InstrumentDto
-    {
-        public Guid Id { get; set; }
-        public string Market { get; set; }
-        public string Symbol { get; set; }
-    }
-
 }

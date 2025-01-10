@@ -3,6 +3,7 @@ using MercadoCapitales.API.Ordenes.Models.Dto;
 using MercadoCapitales.API.Ordenes.Persistencia;
 using MercadoCapitales.API.Ordenes.Services;
 using Microsoft.EntityFrameworkCore;
+using Primary.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
@@ -25,7 +26,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
             // Buscar la orden en la base de datos usando el ID proporcionado en la solicitud
             var orden = await _context.Orden
                 .Include(o => o.StatusHistory) // Incluye el historial de estados de la orden
-                .Include(o => o.InstrumentId) // Incluye el instrumento asociado a la orden
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
 
             // Verifica si se encontró la orden
@@ -33,14 +33,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
             {
                 throw new KeyNotFoundException($"Order with ID {request.Id} not found.");
             }
-
-            // Mapeo del Instrumento
-            var Instrument = new InstrumentDto
-            {
-                Id = orden.InstrumentId.Id,
-                Market = orden.InstrumentId.Market,
-                Symbol = orden.InstrumentId.Symbol
-            };
 
             var orderDto = new OrderDto
             {
@@ -50,7 +42,8 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
                 CancelPrevious = orden.CancelPrevious,
                 Iceberg = orden.Iceberg,
                 DisplayQuantity = orden.DisplayQuantity,
-                InstrumentId = Instrument,
+                Market = orden.Market,
+                Symbol = orden.Symbol,
                 Price = orden.Price,
                 Quantity = orden.Quantity,
                 Type = orden.Type,

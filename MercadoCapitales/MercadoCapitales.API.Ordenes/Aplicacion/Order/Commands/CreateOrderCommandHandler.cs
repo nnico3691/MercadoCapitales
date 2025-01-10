@@ -76,7 +76,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
 
                 // Establecer el OrdenId en OrderStatus
                 orderStatus.OrdenId = orden.Id;
-                orden.InstrumentId.OrdenId = orden.Id;
 
                 _context.Orden.Add(orden);
                 await _context.SaveChangesAsync();

@@ -79,7 +79,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
                 var newOrders = await _context.Orden
                     .Where(o => _context.OrderStatus.Select(os => os.OrdenId).Contains(o.Id)) // Filtrar por los IDs de las órdenes agregadas
                     .Include(o => o.StatusHistory) // Incluir el historial de estados
-                    .Include(o => o.InstrumentId)
                     .ToListAsync(cancellationToken);
 
                 // Mapear las órdenes y sus estados a DTOs antes de retornar
@@ -91,13 +90,8 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
                     CancelPrevious = os.CancelPrevious,
                     Iceberg = os.Iceberg,
                     DisplayQuantity = os.DisplayQuantity,
-                    InstrumentId = new InstrumentDto
-                    {
-                        Id = os.InstrumentId.Id,
-                        Market = os.InstrumentId.Market,
-                        Symbol = os.InstrumentId.Symbol,
-
-                    },
+                    Market = os.Market,
+                    Symbol = os.Symbol,
                     Price = os.Price,
                     Quantity = os.Quantity,
                     Type = os.Type,

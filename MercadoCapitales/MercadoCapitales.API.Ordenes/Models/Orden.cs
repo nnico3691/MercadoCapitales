@@ -11,6 +11,12 @@ namespace MercadoCapitales.API.Ordenes.Models
         // Identificador único del pedido
         public Guid Id { get; set; }
 
+        // Mercado de la Especie
+        public string Market { get; set; }
+
+        // Simbolo de la Especie
+        public string Symbol { get; set; }
+
         // Identificador propietario del pedido
         public string Proprietary { get; set; }
 
@@ -25,9 +31,6 @@ namespace MercadoCapitales.API.Ordenes.Models
 
         // Cantidad a mostrar en caso de ser un iceberg
         public uint DisplayQuantity { get; set; }
-
-        // Identificador del instrumento relacionado con el pedido
-        public InstrumentId InstrumentId { get; set; }
 
         // Precio del pedido, puede ser nulo
         public decimal? Price { get; set; }

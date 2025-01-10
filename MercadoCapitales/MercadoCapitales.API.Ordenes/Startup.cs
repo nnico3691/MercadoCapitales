@@ -1,3 +1,4 @@
+using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Ordenes.Aplicacion;
 using MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands;
@@ -37,9 +38,7 @@ namespace MercadoCapitales.API.Ordenes
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
             services.AddMediatR(typeof(Program).Assembly);
-
-            //services.AddHttpClient<IClienteService, ClienteService>();
-
+            services.AddAutoMapper(typeof(Program).Assembly);
 
             // Acceder a la configuración de la API
             var apiIp = Configuration["ApiConfig:APICliente:Ip"];

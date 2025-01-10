@@ -15,7 +15,8 @@ namespace MercadoCapitales.API.Ordenes.Mappings.Order
                 .ForMember(dest => dest.CancelPrevious, opt => opt.MapFrom(src => false)) // Ajusta según sea necesario
                 .ForMember(dest => dest.Iceberg, opt => opt.MapFrom(src => false)) // Ajusta según sea necesario
                 .ForMember(dest => dest.DisplayQuantity, opt => opt.MapFrom(src => 0)) // Ajusta según sea necesario
-                .ForMember(dest => dest.InstrumentId, opt => opt.MapFrom(src => src.InstrumentId)) // Mapeo para InstrumentId
+                .ForMember(dest => dest.Market, opt => opt.MapFrom(src => src.InstrumentId.Market)) // Mapeo para Mercado de la Especie
+                .ForMember(dest => dest.Symbol, opt => opt.MapFrom(src => src.InstrumentId.Symbol)) // Mapeo para el Simbolo de la Especie
                 .ForMember(dest => dest.Price, opt => opt.MapFrom(src => src.Price)) // Mapeo para Price
                 .ForMember(dest => dest.Quantity, opt => opt.MapFrom(src => src.Quantity)) // Mapeo para Quantity
                 .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type)) // Mapeo para Type
@@ -27,10 +28,6 @@ namespace MercadoCapitales.API.Ordenes.Mappings.Order
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
                 .ForMember(dest => dest.Proprietary, opt => opt.MapFrom(src => src.Proprietary)) // Ajusta según sea necesario
                 .ForMember(dest => dest.ClientOrderId, opt => opt.MapFrom(src => src.ClientOrderId)); // Ajusta según sea necesario
-
-
-            // Agregar mapeo para InstrumentId si es necesario
-            CreateMap<Primary.Data.InstrumentId, MercadoCapitales.API.Ordenes.Models.InstrumentId>();
 
             // Si necesitas mapear OrderStatus también, puedes hacerlo aquí.
             CreateMap<Primary.Data.Orders.OrderStatus, Models.OrderStatus>()
