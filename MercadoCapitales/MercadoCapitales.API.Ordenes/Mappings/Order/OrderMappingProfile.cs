@@ -2,11 +2,11 @@
 using MercadoCapitales.API.Ordenes.Models;
 using static MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries.GetOrdersQueryHandler;
 
-namespace MercadoCapitales.API.Ordenes.Aplicacion
+namespace MercadoCapitales.API.Ordenes.Mappings.Order
 {
-    public class MappingProfile : Profile
+    public class OrderMappingProfile : Profile
     {
-        public MappingProfile()
+        public OrderMappingProfile() 
         {
             CreateMap<Primary.Data.Orders.Order, Orden>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
@@ -55,7 +55,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion
                 .ForMember(dest => dest.LeavesQuantity, opt => opt.MapFrom(src => src.OrderStatus.LeavesQuantity))
                 .ForMember(dest => dest.StatusText, opt => opt.MapFrom(src => src.OrderStatus.StatusText)) // Mapea propiedades específicas
                 .ForMember(dest => dest.OrdenId, opt => opt.MapFrom(src => src.OrdenId)); // Asegúrate de mapear OrdenId
-                                                                                     // Agrega aquí otros mapeos necesarios
 
         }
     }

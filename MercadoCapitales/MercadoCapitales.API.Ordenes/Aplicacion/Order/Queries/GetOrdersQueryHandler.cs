@@ -19,10 +19,12 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
     {
         private readonly ContextOrden _context;
         private readonly IClienteService _clienteService;
-        public GetOrdersQueryHandler(ContextOrden context, IClienteService clienteService)
+        private readonly IMapper _mapper;
+        public GetOrdersQueryHandler(ContextOrden context, IClienteService clienteService, IMapper mapper)
         {
             _context = context;
             _clienteService = clienteService;
+            _mapper = mapper;
         }
 
         public async Task<List<OrderDto>> Handle(GetOrdersQuery request, CancellationToken cancellationToken)
@@ -67,11 +69,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
                     .Where(of => !statusOrders.Any(so => so.OrdenId == of.OrdenId && so.Status == of.OrderStatus.Status))
                     .ToList();
 
-                // Configurar el mapeador
-                var configuration = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-                var mapper = configuration.CreateMapper();
-
-                var orderStatuses = mapper.Map<List<Models.OrderStatus>>(filteredOrdenes);
+                var orderStatuses = _mapper.Map<List<Models.OrderStatus>>(filteredOrdenes);
 
                 // Agregar los objetos mapeados al contexto y guardar cambios
                 await _context.OrderStatus.AddRangeAsync(orderStatuses);

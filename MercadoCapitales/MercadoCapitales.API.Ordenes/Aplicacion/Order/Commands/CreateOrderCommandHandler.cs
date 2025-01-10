@@ -8,6 +8,7 @@ using MercadoCapitales.API.Ordenes.Models;
 using Primary;
 using System.Linq;
 using MercadoCapitales.API.Ordenes.Services;
+using MercadoCapitales.API.Ordenes.Mappings.Order;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
 {
@@ -16,11 +17,13 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
 
         private readonly ContextOrden _context;
         private readonly IClienteService _clienteService;
+        private readonly IMapper _mapper;
 
-        public CreateOrderCommandHandler(ContextOrden context, IClienteService clienteService)
+        public CreateOrderCommandHandler(ContextOrden context, IClienteService clienteService, IMapper mapper)
         {
             _context = context;
-            _clienteService = clienteService;   
+            _clienteService = clienteService;
+            _mapper = mapper;
         }
 
         public async Task<Guid> Handle(CreateOrderCommand request, CancellationToken cancellationToken)
@@ -58,14 +61,10 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
                 var retrievedOrder = await api.GetOrderStatus(orderId);
                 var orderStatusData = retrievedOrder.Order;
 
-                // Configurar el mapeador
-                var configuration = new MapperConfiguration(cfg => cfg.AddProfile<MappingProfile>());
-                var mapper = configuration.CreateMapper();
-
                 // Usar el mapeador para crear una nueva instancia de OrderStatus
-                var orderStatus = mapper.Map<Models.OrderStatus>(orderStatusData);
+                var orderStatus = _mapper.Map<Models.OrderStatus>(orderStatusData);
                 // Mapear la orden a la entidad Orden
-                var orden = mapper.Map<Orden>(order);
+                var orden = _mapper.Map<Orden>(order);
 
                 orden.ClientOrderId = orderId.ClientOrderId;
                 orden.Proprietary = orderId.Proprietary;
