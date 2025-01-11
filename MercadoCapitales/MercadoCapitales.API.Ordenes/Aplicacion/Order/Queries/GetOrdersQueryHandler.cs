@@ -44,7 +44,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
 
                 var Ordenes = result.Orders;
 
-                var OrderBdIds = await _context.Orden
+                var OrderBdIds = await _context.Order
                     .Select(o => new { o.ClientOrderId, o.Id })
                     .ToListAsync(cancellationToken);
 
@@ -76,7 +76,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
                 await _context.SaveChangesAsync(cancellationToken); // Guardar 
 
                 // Obtener las órdenes junto con sus estados desde el contexto
-                var newOrders = await _context.Orden
+                var newOrders = await _context.Order
                     .Where(o => _context.OrderStatus.Select(os => os.OrdenId).Contains(o.Id)) // Filtrar por los IDs de las órdenes agregadas
                     .Include(o => o.StatusHistory) // Incluir el historial de estados
                     .ToListAsync(cancellationToken);

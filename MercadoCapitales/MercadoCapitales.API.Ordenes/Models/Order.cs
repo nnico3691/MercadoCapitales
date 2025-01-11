@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace MercadoCapitales.API.Ordenes.Models
 {
-    public class Orden
+    public class Order
     {
         // Identificador único del pedido
         public Guid Id { get; set; }

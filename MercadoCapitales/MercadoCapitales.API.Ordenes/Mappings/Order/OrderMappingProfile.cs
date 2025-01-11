@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using MercadoCapitales.API.Ordenes.Models;
+using Model = MercadoCapitales.API.Ordenes.Models;
 using static MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries.GetOrdersQueryHandler;
 
 namespace MercadoCapitales.API.Ordenes.Mappings.Order
@@ -8,7 +8,7 @@ namespace MercadoCapitales.API.Ordenes.Mappings.Order
     {
         public OrderMappingProfile() 
         {
-            CreateMap<Primary.Data.Orders.Order, Orden>()
+            CreateMap<Primary.Data.Orders.Order, Model.Order>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
                 .ForMember(dest => dest.Proprietary, opt => opt.Ignore()) // Ajusta según sea necesario
                 .ForMember(dest => dest.ClientOrderId, opt => opt.Ignore()) // Ajusta según sea necesario
@@ -24,7 +24,7 @@ namespace MercadoCapitales.API.Ordenes.Mappings.Order
                 .ForMember(dest => dest.Expiration, opt => opt.MapFrom(src => src.Expiration)) // Mapeo para Expiration
                 .ForMember(dest => dest.ExpirationDate, opt => opt.MapFrom(src => src.ExpirationDate)); // Mapeo para ExpirationDate
 
-            CreateMap<Primary.Data.Orders.OrderStatus, Orden>()
+            CreateMap<Primary.Data.Orders.OrderStatus, Model.Order>()
                 .ForMember(dest => dest.Id, opt => opt.Ignore()) // Ignorar si deseas generar un nuevo Id
                 .ForMember(dest => dest.Proprietary, opt => opt.MapFrom(src => src.Proprietary)) // Ajusta según sea necesario
                 .ForMember(dest => dest.ClientOrderId, opt => opt.MapFrom(src => src.ClientOrderId)); // Ajusta según sea necesario

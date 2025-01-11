@@ -17,6 +17,6 @@ namespace MercadoCapitales.API.Ordenes.Models
         public Status Status { get; set; }
         public string StatusText { get; set; }
         public Guid OrdenId { get; set; } // Este será el Id de la orden a la que pertenece
-        public virtual Orden Orden { get; set; }
+        public virtual Order Orden { get; set; }
     }
 }

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace MercadoCapitales.API.Ordenes.Migrations
 {
     [DbContext(typeof(ContextOrden))]
-    [Migration("20250110232803_VERSION15")]
-    partial class VERSION15
+    [Migration("20250110234719_VERSION1")]
+    partial class VERSION1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Models.Orden", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Ordenes.Models.Order", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Orden");
+                    b.ToTable("Order");
                 });
 
             modelBuilder.Entity("MercadoCapitales.API.Ordenes.Models.OrderStatus", b =>
@@ -119,7 +119,7 @@ namespace MercadoCapitales.API.Ordenes.Migrations
 
             modelBuilder.Entity("MercadoCapitales.API.Ordenes.Models.OrderStatus", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Ordenes.Models.Orden", "Orden")
+                    b.HasOne("MercadoCapitales.API.Ordenes.Models.Order", "Orden")
                         .WithMany("StatusHistory")
                         .HasForeignKey("OrdenId")
                         .OnDelete(DeleteBehavior.Cascade)

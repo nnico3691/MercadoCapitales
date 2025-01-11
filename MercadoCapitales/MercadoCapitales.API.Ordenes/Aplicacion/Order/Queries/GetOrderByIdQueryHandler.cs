@@ -24,7 +24,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Queries
         public async Task<OrderDto> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
         {
             // Buscar la orden en la base de datos usando el ID proporcionado en la solicitud
-            var orden = await _context.Orden
+            var orden = await _context.Order
                 .Include(o => o.StatusHistory) // Incluye el historial de estados de la orden
                 .FirstOrDefaultAsync(o => o.Id == request.Id, cancellationToken);
 

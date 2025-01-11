@@ -4,11 +4,9 @@ using System;
 using System.Threading.Tasks;
 using System.Threading;
 using AutoMapper;
-using MercadoCapitales.API.Ordenes.Models;
 using Primary;
 using System.Linq;
 using MercadoCapitales.API.Ordenes.Services;
-using MercadoCapitales.API.Ordenes.Mappings.Order;
 
 namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
 {
@@ -64,7 +62,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
                 // Usar el mapeador para crear una nueva instancia de OrderStatus
                 var orderStatus = _mapper.Map<Models.OrderStatus>(orderStatusData);
                 // Mapear la orden a la entidad Orden
-                var orden = _mapper.Map<Orden>(order);
+                var orden = _mapper.Map<MercadoCapitales.API.Ordenes.Models.Order>(order);
 
                 orden.ClientOrderId = orderId.ClientOrderId;
                 orden.Proprietary = orderId.Proprietary;
@@ -77,7 +75,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
                 // Establecer el OrdenId en OrderStatus
                 orderStatus.OrdenId = orden.Id;
 
-                _context.Orden.Add(orden);
+                _context.Order.Add(orden);
                 await _context.SaveChangesAsync();
 
                 if (retrievedOrder.Status == "OK")
