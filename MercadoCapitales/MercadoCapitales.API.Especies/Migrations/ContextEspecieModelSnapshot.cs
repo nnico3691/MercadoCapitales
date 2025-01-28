@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Especies.Migrations
 {
-    [DbContext(typeof(ContextEspecie))]
+    [DbContext(typeof(Context))]
     partial class ContextEspecieModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -19,54 +19,32 @@ namespace MercadoCapitales.API.Especies.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.InstrumentOrderType", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Models.Instrument", b =>
                 {
-                    b.Property<Guid?>("InstrumentOrderTypeId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Codigo")
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("InstrumentoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("InstrumentOrderTypeId");
-
-                    b.ToTable("InstrumentOrderType");
-                });
-
-            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.InstrumentTimeInForce", b =>
-                {
-                    b.Property<Guid?>("InstrumentTimesInForceId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("Codigo")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<Guid?>("InstrumentoId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("InstrumentTimesInForceId");
-
-                    b.ToTable("InstrumentTimeInForce");
-                });
-
-            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.Instrumento", b =>
-                {
-                    b.Property<Guid?>("InstrumentoId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Currency")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Description")
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("FechaAlta")
-                        .HasColumnType("datetime2");
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Market")
                         .HasColumnType("nvarchar(max)");
@@ -76,6 +54,12 @@ namespace MercadoCapitales.API.Especies.Migrations
 
                     b.Property<DateTime?>("MaturityDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<float>("PriceConversionFactor")
                         .HasColumnType("real");
@@ -131,49 +115,65 @@ namespace MercadoCapitales.API.Especies.Migrations
                     b.Property<float>("tickSize")
                         .HasColumnType("real");
 
-                    b.HasKey("InstrumentoId");
+                    b.HasKey("Id");
 
-                    b.ToTable("Instrumento");
+                    b.ToTable("Instrument");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.ProductGroup", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Models.InstrumentOrderType", b =>
                 {
-                    b.Property<Guid?>("ProductGroupId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Descripcion")
+                    b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Mercado")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.HasKey("ProductGroupId");
+                    b.HasKey("Id");
 
-                    b.ToTable("ProductGroup");
+                    b.HasIndex("InstrumentId");
+
+                    b.ToTable("InstrumentOrderType");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Especies.Modelo.TipoPanelPrecio", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Models.InstrumentTimeInForce", b =>
                 {
-                    b.Property<Guid?>("TipoPanelPrecioId")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Mercado")
+                    b.Property<string>("Codigo")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Tipo")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("cficode")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasKey("Id");
 
-                    b.Property<string>("marketSegmentId")
-                        .HasColumnType("nvarchar(max)");
+                    b.HasIndex("InstrumentId");
 
-                    b.HasKey("TipoPanelPrecioId");
+                    b.ToTable("InstrumentTimeInForce");
+                });
 
-                    b.ToTable("TipoPanelPrecio");
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Models.InstrumentOrderType", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Especies.Models.Instrument", "Instrument")
+                        .WithMany("InstrumentOrderType")
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Especies.Models.InstrumentTimeInForce", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Especies.Models.Instrument", "Instrument")
+                        .WithMany("InstrumentTimeInForce")
+                        .HasForeignKey("InstrumentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

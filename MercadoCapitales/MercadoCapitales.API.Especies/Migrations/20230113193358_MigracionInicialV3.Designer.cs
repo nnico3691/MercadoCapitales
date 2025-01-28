@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace MercadoCapitales.API.Especies.Migrations
 {
-    [DbContext(typeof(ContextEspecie))]
+    [DbContext(typeof(Context))]
     [Migration("20230113193358_MigracionInicialV3")]
     partial class MigracionInicialV3
     {

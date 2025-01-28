@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using MercadoCapitales.API.Especies.Aplicacion.Dto;
-using MercadoCapitales.API.Especies.Modelo;
+using Modelo = MercadoCapitales.API.Especies.Models;
+using MercadoCapitales.API.Especies.Models.Dto;
 
 namespace MercadoCapitales.API.Especies.Aplicacion
 {
@@ -8,7 +8,7 @@ namespace MercadoCapitales.API.Especies.Aplicacion
     {
         public MappingProfile()
         {
-            CreateMap<Instrumento, InstrumentoDto>();
+            CreateMap<Modelo.Instrument, InstrumentoDto>();
         }
     }
 }

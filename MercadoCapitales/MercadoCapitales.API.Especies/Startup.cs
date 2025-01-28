@@ -31,11 +31,11 @@ namespace MercadoCapitales.API.Especies
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<ContextEspecie>(opt => {
+            services.AddDbContext<Context>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
-            services.AddMediatR(typeof(CrearAllInstruments.Manejador).Assembly);
-            services.AddAutoMapper(typeof(ConsultaFuturosFinancieros.Manejador));
+            services.AddMediatR(typeof(Program).Assembly);
+            services.AddAutoMapper(typeof(Program));
 
             services.AddSwaggerGen(options =>
             {

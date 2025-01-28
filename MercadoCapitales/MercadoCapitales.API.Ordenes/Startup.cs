@@ -49,6 +49,7 @@ namespace MercadoCapitales.API.Ordenes
             {
                 client.BaseAddress = new Uri($"http://{apiIp}:{apiPort}/api/");
             });
+
             services.AddSwaggerGen(options =>
             {
                 var groupName = "v1";

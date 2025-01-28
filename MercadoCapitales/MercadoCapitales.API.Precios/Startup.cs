@@ -2,18 +2,24 @@ using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Precios.Aplicacion;
 using MercadoCapitales.API.Precios.Persistencia;
+using MercadoCapitales.API.Precios.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.WebSockets;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
+using System.Net.WebSockets;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MercadoCapitales.API.Precios
@@ -32,11 +38,29 @@ namespace MercadoCapitales.API.Precios
         {
             services.AddControllers();
 
-            services.AddDbContext<ContextPrecio>(opt => {
+            services.AddDbContext<Context>(opt =>
+            {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
-            services.AddMediatR(typeof(CrearPrecioAccion.Manejador).Assembly);
-            services.AddAutoMapper(typeof(ConsultaPreciosAccion.Manejador));
+
+            services.AddMediatR(typeof(Program).Assembly);
+            services.AddAutoMapper(typeof(Program));
+
+            // Acceder a la configuración de la API
+            var apiIp = Configuration["ApiConfig:APIPRECIO:Ip"];
+            var apiPort = Configuration["ApiConfig:APIPRECIO:Port"];
+
+            // Registrar HttpClient
+            services.AddHttpClient<IInstrumentService, InstrumentService>(client =>
+            {
+                client.BaseAddress = new Uri($"http://{apiIp}:{apiPort}/api/");
+            });
+
+            // Agregar soporte de WebSockets
+            services.AddWebSockets(options =>
+            {
+                options.KeepAliveInterval = TimeSpan.FromSeconds(120);
+            });
 
             services.AddSwaggerGen(options =>
             {
@@ -80,7 +104,7 @@ namespace MercadoCapitales.API.Precios
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IServiceScopeFactory serviceScopeFactory, IInstrumentService instrument, IMapper mapper)
         {
             if (env.IsDevelopment())
             {
@@ -95,6 +119,13 @@ namespace MercadoCapitales.API.Precios
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "API PRECIOS V1");
             });
 
+            Socket socket = new Socket(Configuration,serviceScopeFactory, instrument, mapper);
+
+            ThreadPool.QueueUserWorkItem(_ =>
+            {
+                socket.RunSocket(new object[] { }).GetAwaiter().GetResult();
+            });
+
             app.UseRouting();
             app.UseAuthorization();
 
@@ -103,5 +134,8 @@ namespace MercadoCapitales.API.Precios
                 endpoints.MapControllers();
             });
         }
+
+        
     }
+
 }

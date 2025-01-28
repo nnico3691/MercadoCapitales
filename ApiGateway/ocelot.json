@@ -362,8 +362,8 @@
     },
     /*MercadoCapitales.API.Especies*/
     {
-      "UpstreamPathTemplate": "/api/Especie/GetPanelFuturosFinancieros",
-      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/Instrument/",
+      "UpstreamHttpMethod": ["GET"],
       "DangerousAcceptAnyServerCertificateValidator": false,
       "ReRouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [
@@ -372,64 +372,7 @@
           "Port": 9542
         }
       ],
-      "DownstreamPathTemplate": "/api/Especie/GetPanelFuturosFinancieros",
-      "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "SwaggerKey": "ApiEspecies"
-    },
-    {
-      "UpstreamPathTemplate": "/api/Especie/CrearProductGroup",
-      "UpstreamHttpMethod": [],
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "ReRouteIsCaseSensitive": false,
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 9542
-        }
-      ],
-      "DownstreamPathTemplate": "/api/Especie/CrearProductGroup",
-      "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "SwaggerKey": "ApiEspecies"
-    },
-    {
-      "UpstreamPathTemplate": "/api/Especie/CrearTipoPanelPrecio",
-      "UpstreamHttpMethod": [],
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "ReRouteIsCaseSensitive": false,
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 9542
-        }
-      ],
-      "DownstreamPathTemplate": "/api/Especie/CrearTipoPanelPrecio",
-      "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "SwaggerKey": "ApiEspecies"
-    },
-    {
-      "UpstreamPathTemplate": "/api/Especie/CrearAllInstruments",
-      "UpstreamHttpMethod": [],
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "ReRouteIsCaseSensitive": false,
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 9542
-        }
-      ],
-      "DownstreamPathTemplate": "/api/Especie/CrearAllInstruments",
+      "DownstreamPathTemplate": "/api/Instrument/",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -496,8 +439,8 @@
 
     /*MercadoCapitales.API.Precios*/
     {
-      "UpstreamPathTemplate": "/api/Precio/CrearPrecioAccion",
-      "UpstreamHttpMethod": [],
+      "UpstreamPathTemplate": "/api/MarketData",
+      "UpstreamHttpMethod": [ "POST" ],
       "DangerousAcceptAnyServerCertificateValidator": false,
       "ReRouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [
@@ -506,26 +449,7 @@
           "Port": 22684
         }
       ],
-      "DownstreamPathTemplate": "/api/Precio/CrearPrecioAccion",
-      "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "SwaggerKey": "ApiPrecios"
-    },
-    {
-      "UpstreamPathTemplate": "/api/Precio/GetPreciosAccion",
-      "UpstreamHttpMethod": [],
-      "DangerousAcceptAnyServerCertificateValidator": false,
-      "ReRouteIsCaseSensitive": false,
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 22684
-        }
-      ],
-      "DownstreamPathTemplate": "/api/Precio/GetPreciosAccion",
+      "DownstreamPathTemplate": "/api/MarketData",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
