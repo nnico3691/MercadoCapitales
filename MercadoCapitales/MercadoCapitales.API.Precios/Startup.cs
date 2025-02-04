@@ -47,8 +47,8 @@ namespace MercadoCapitales.API.Precios
             services.AddAutoMapper(typeof(Program));
 
             // Acceder a la configuración de la API
-            var apiIp = Configuration["ApiConfig:APIPRECIO:Ip"];
-            var apiPort = Configuration["ApiConfig:APIPRECIO:Port"];
+            var apiIp = Configuration["ApiConfig:APIINSTRUMENTOS:Ip"];
+            var apiPort = Configuration["ApiConfig:APIINSTRUMENTOS:Port"];
 
             // Registrar HttpClient
             services.AddHttpClient<IInstrumentService, InstrumentService>(client =>

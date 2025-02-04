@@ -41,7 +41,6 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
                     throw new InvalidOperationException($"No instrument found with symbol {request.Symbol}.");
                 }
 
-
                 var today = DateTime.Today;
                 var prices = await api.GetHistoricalTrades(instrumentId, today.AddDays(-3), today);
 
@@ -62,7 +61,7 @@ namespace MercadoCapitales.API.Ordenes.Aplicacion.Order.Commands
                 // Usar el mapeador para crear una nueva instancia de OrderStatus
                 var orderStatus = _mapper.Map<Models.OrderStatus>(orderStatusData);
                 // Mapear la orden a la entidad Orden
-                var orden = _mapper.Map<MercadoCapitales.API.Ordenes.Models.Order>(order);
+                var orden = _mapper.Map<Models.Order>(order);
 
                 orden.ClientOrderId = orderId.ClientOrderId;
                 orden.Proprietary = orderId.Proprietary;

@@ -23,11 +23,11 @@ namespace MercadoCapitales.API.Clientes.Controllers
         public async Task<IActionResult> Post([FromBody] CreatePrimaryUserCommand command)
         {
             var userId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(Get), null, null);
+            return CreatedAtAction(nameof(GetById), null, null);
         }
 
         [HttpGet("{UserName}")]
-        public async Task<IActionResult> Get(String UserName)
+        public async Task<IActionResult> GetAll(String UserName)
         {
             var user = await _mediator.Send(new GetUserByUserQuery { UserName = UserName });
             if (user == null) return NotFound();
@@ -36,7 +36,7 @@ namespace MercadoCapitales.API.Clientes.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> GetById()
         {
             var users = await _mediator.Send(new GetAllUsersQuery());
             return Ok(users);

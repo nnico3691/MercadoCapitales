@@ -23,7 +23,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="JSON\" />
 	  <Folder Include="Migrations\" />
 	</ItemGroup>
 

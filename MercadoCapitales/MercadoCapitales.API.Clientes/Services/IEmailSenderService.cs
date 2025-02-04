@@ -1,4 +1,4 @@
-﻿using MercadoCapitales.API.Clientes.Modelo;
+﻿using MercadoCapitales.API.Clientes.Models;
 using System.Threading.Tasks;
 
 namespace MercadoCapitales.API.Clientes.Services

@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using System.Collections.Generic;
-using Model = MercadoCapitales.API.Clientes.Modelo;
+using Model = MercadoCapitales.API.Clientes.Models;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion.PrimaryUser.Queries
 {

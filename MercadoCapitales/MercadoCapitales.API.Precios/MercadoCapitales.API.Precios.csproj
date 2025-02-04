@@ -27,6 +27,11 @@
 	    <HintPath>bin\Debug\netcoreapp3.1\Primary.dll</HintPath>
 	  </Reference>
 	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Aplicacion\InvestmentRecommendation\Commands\" />
+	  <Folder Include="Aplicacion\InvestmentRecommendation\Queries\" />
+	</ItemGroup>
     
 
 </Project>

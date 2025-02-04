@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion;
-using MercadoCapitales.API.Clientes.Modelo;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -276,15 +276,15 @@
       "SwaggerKey": "ApiClientes"
     },
     {
-      "UpstreamPathTemplate": "/api/Position",
-      "UpstreamHttpMethod": [ "POST" ],
+      "UpstreamPathTemplate": "/api/AccountExecutive",
+      "UpstreamHttpMethod": [ "POST", "GET", "PUT" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 44373
         }
       ],
-      "DownstreamPathTemplate": "/api/Position",
+      "DownstreamPathTemplate": "/api/AccountExecutive",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -293,15 +293,15 @@
       "SwaggerKey": "ApiClientes"
     },
     {
-      "UpstreamPathTemplate": "/api/Position/{UserName}",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/api/AccountExecutive/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 44373
         }
       ],
-      "DownstreamPathTemplate": "/api/Position/{UserName}",
+      "DownstreamPathTemplate": "/api/AccountExecutive/{id}",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -310,15 +310,15 @@
       "SwaggerKey": "ApiClientes"
     },
     {
-      "UpstreamPathTemplate": "/api/Position/{id}/{username}",
-      "UpstreamHttpMethod": [ "GET" ],
+      "UpstreamPathTemplate": "/api/Recommendation",
+      "UpstreamHttpMethod": [ "POST", "GET", "PUT" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 44373
         }
       ],
-      "DownstreamPathTemplate": "/api/Position/{id}/{username}",
+      "DownstreamPathTemplate": "/api/Recommendation",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -327,32 +327,15 @@
       "SwaggerKey": "ApiClientes"
     },
     {
-      "UpstreamPathTemplate": "/api/Position",
-      "UpstreamHttpMethod": [ "PUT" ],
+      "UpstreamPathTemplate": "/api/Recommendation/{id}",
+      "UpstreamHttpMethod": [ "GET", "DELETE" ],
       "DownstreamHostAndPorts": [
         {
           "Host": "localhost",
           "Port": 44373
         }
       ],
-      "DownstreamPathTemplate": "/api/Position",
-      "DownstreamScheme": "http",
-      "AuthenticationOptions": {
-        "AuthenticationProviderKey": "Bearer",
-        "AllowedScopes": []
-      },
-      "SwaggerKey": "ApiClientes"
-    },
-    {
-      "UpstreamPathTemplate": "/api/Position/{id}",
-      "UpstreamHttpMethod": [ "DELETE" ],
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 44373
-        }
-      ],
-      "DownstreamPathTemplate": "/api/Position/{id}",
+      "DownstreamPathTemplate": "/api/Recommendation/{id}",
       "DownstreamScheme": "http",
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "Bearer",
@@ -363,7 +346,7 @@
     /*MercadoCapitales.API.Especies*/
     {
       "UpstreamPathTemplate": "/api/Instrument/",
-      "UpstreamHttpMethod": ["GET"],
+      "UpstreamHttpMethod": [ "GET" ],
       "DangerousAcceptAnyServerCertificateValidator": false,
       "ReRouteIsCaseSensitive": false,
       "DownstreamHostAndPorts": [

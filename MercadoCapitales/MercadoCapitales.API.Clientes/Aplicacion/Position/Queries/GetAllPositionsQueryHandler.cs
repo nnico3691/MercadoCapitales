@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using MercadoCapitales.API.Clientes.Persistencia;
-using Model = MercadoCapitales.API.Clientes.Modelo;
+using Model = MercadoCapitales.API.Clientes.Models;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using System.Linq;

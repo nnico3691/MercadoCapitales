@@ -1,6 +1,6 @@
 ﻿using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion.Requests;
-using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Models;
 using MercadoCapitales.API.Clientes.Persistencia;
 using System.Threading.Tasks;
 using System.Threading;

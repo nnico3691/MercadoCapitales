@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 using System.Threading;
-using Model = MercadoCapitales.API.Clientes.Modelo;
+using Model = MercadoCapitales.API.Clientes.Models;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion.PrimaryUser.Commands
 {

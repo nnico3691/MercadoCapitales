@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MercadoCapitales.API.Clientes.Modelo.Dto; // Asegúrate de que la ruta sea correcta
+using MercadoCapitales.API.Clientes.Models.Dto; // Asegúrate de que la ruta sea correcta
 using System;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion.Position.Commands

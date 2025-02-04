@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using MercadoCapitales.API.Clientes.Persistencia;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;

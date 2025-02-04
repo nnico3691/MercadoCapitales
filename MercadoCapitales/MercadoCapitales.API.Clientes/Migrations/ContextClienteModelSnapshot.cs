@@ -19,7 +19,58 @@ namespace MercadoCapitales.API.Clientes.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Cliente", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.AccountExecutive", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("DeletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("DeletedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<DateTime?>("ModifiedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ModifiedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(100)")
+                        .HasMaxLength(100);
+
+                    b.Property<int>("Organization")
+                        .HasColumnType("int");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(15)")
+                        .HasMaxLength(15);
+
+                    b.Property<bool>("Recommender")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AccountExecutive");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Cliente", b =>
                 {
                     b.Property<Guid?>("ClienteId")
                         .ValueGeneratedOnAdd()
@@ -52,7 +103,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("Cliente");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.ClienteEncuestas", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.ClienteEncuestas", b =>
                 {
                     b.Property<Guid?>("ClienteEncuestasId")
                         .ValueGeneratedOnAdd()
@@ -69,7 +120,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("ClienteEncuestas");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.ClientePerfilInversor", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.ClientePerfilInversor", b =>
                 {
                     b.Property<Guid?>("ClientePerfilInversorId")
                         .ValueGeneratedOnAdd()
@@ -86,7 +137,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("ClientePerfilInversor");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.EncuestaPregunta", b =>
                 {
                     b.Property<Guid?>("EncuestaPreguntaId")
                         .ValueGeneratedOnAdd()
@@ -103,7 +154,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("EncuestaPregunta");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.EncuestaRespuesta", b =>
                 {
                     b.Property<Guid?>("EncuestaRespuestaId")
                         .ValueGeneratedOnAdd()
@@ -131,7 +182,30 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("EncuestaRespuesta");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Login", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.InvestmentRecommendation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<decimal>("CommissionPercentage")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<Guid>("InstrumentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RecommendationId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RecommendationId")
+                        .IsUnique();
+
+                    b.ToTable("InvestmentRecommendation");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Login", b =>
                 {
                     b.Property<Guid?>("LoginId")
                         .ValueGeneratedOnAdd()
@@ -153,7 +227,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("Login");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Position", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Position", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -196,7 +270,7 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("Position");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.PrimaryUser", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -221,34 +295,87 @@ namespace MercadoCapitales.API.Clientes.Migrations
                     b.ToTable("PrimaryUser");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.EncuestaRespuesta", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Recommendation", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.EncuestaPregunta", null)
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("AccountExecutiveId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<bool>("Active")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(500)")
+                        .HasMaxLength(500);
+
+                    b.Property<int>("RiskLevel")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountExecutiveId");
+
+                    b.ToTable("Recommendation");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.EncuestaRespuesta", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.EncuestaPregunta", null)
                         .WithMany("encuestaRespuestas")
                         .HasForeignKey("EncuestaPreguntaId");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Login", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.InvestmentRecommendation", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.Cliente", "Cliente")
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.Recommendation", "Recommendation")
+                        .WithOne("InvestmentRecommendation")
+                        .HasForeignKey("MercadoCapitales.API.Clientes.Models.InvestmentRecommendation", "RecommendationId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Login", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.Cliente", "Cliente")
                         .WithMany()
                         .HasForeignKey("ClienteId");
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.Position", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Position", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", "PrimaryUser")
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.PrimaryUser", "PrimaryUser")
                         .WithMany("Positions")
                         .HasForeignKey("PrimaryUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("MercadoCapitales.API.Clientes.Modelo.PrimaryUser", b =>
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.PrimaryUser", b =>
                 {
-                    b.HasOne("MercadoCapitales.API.Clientes.Modelo.Cliente", "Cliente")
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.Cliente", "Cliente")
                         .WithMany("PrimaryUsers")
                         .HasForeignKey("ClienteId");
+                });
+
+            modelBuilder.Entity("MercadoCapitales.API.Clientes.Models.Recommendation", b =>
+                {
+                    b.HasOne("MercadoCapitales.API.Clientes.Models.AccountExecutive", "AccountExecutive")
+                        .WithMany("Recommendations")
+                        .HasForeignKey("AccountExecutiveId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

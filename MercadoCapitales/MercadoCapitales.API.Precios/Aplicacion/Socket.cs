@@ -48,7 +48,10 @@ namespace MercadoCapitales.API.Precios.Aplicacion
 
             Console.WriteLine("Connecting to market data...");
 
-            var instrumentDtos = await _instrumentService.GetAllInstrumentsAsync();
+            var instrumentDtos = (await _instrumentService.GetAllInstrumentsAsync())
+                .Where(i => i.Active == true)
+                .ToList();
+
 
             // Crear una lista para almacenar los instrumentos
             var instrumentIds = _mapper.Map<List<InstrumentId>>(instrumentDtos);

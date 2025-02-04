@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using System;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion.Position.Queries

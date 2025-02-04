@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Threading.Tasks;
 using System.Threading;
-using model = MercadoCapitales.API.Clientes.Modelo;
+using model = MercadoCapitales.API.Clientes.Models;
 using MercadoCapitales.API.Clientes.Persistencia;
 using AutoMapper; // Asegúrate de incluir esta línea
 using System;
@@ -13,7 +13,7 @@ namespace MercadoCapitales.API.Clientes.Aplicacion.Position.Commands
     public class CreatePositionCommandHandler : IRequestHandler<CreatePositionCommand, Guid>
     {
         private readonly ContextCliente _context;
-        private readonly IMapper _mapper; // Añadir IMapper como dependencia
+        private readonly IMapper _mapper; 
 
         public CreatePositionCommandHandler(ContextCliente context, IMapper mapper)
         {

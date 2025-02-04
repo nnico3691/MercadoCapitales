@@ -2,7 +2,7 @@
 using MercadoCapitales.API.Clientes.Aplicacion.Position.Commands;
 using MercadoCapitales.API.Clientes.Aplicacion.Position.Queries;
 using MercadoCapitales.API.Clientes.Aplicacion.PrimaryUser.Queries;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using Microsoft.AspNetCore.Mvc;
 using Org.BouncyCastle.Asn1.Ocsp;
 using System;
@@ -24,17 +24,17 @@ namespace MercadoCapitales.API.Clientes.Controllers
 
         // POST api/position
         [HttpPost]
-        public async Task<ActionResult<Guid>> CreatePosition(CreatePositionRequest request)
+        public async Task<ActionResult<Guid>> Create(CreatePositionRequest request)
         {
             var command = new CreatePositionCommand(request.Position);
             var positionId = await _mediator.Send(command);
-            return CreatedAtAction(nameof(Get), new { id = positionId }, positionId);
+            return CreatedAtAction(nameof(GetById), new { id = positionId }, positionId);
         }
 
 
         // GET api/position
         [HttpGet("{username}")]
-        public async Task<ActionResult<IEnumerable<PositionDto>>> Get(string UserName)
+        public async Task<ActionResult<IEnumerable<PositionDto>>> GetAll(string UserName)
         {
             var user = await _mediator.Send(new GetUserByUserQuery { UserName = UserName });
             if (user == null) return NotFound();
@@ -45,7 +45,7 @@ namespace MercadoCapitales.API.Clientes.Controllers
 
         // GET api/position/{id}
         [HttpGet("{id}/{username}")]
-        public async Task<ActionResult<PositionDto>> Get(Guid id, string username)
+        public async Task<ActionResult<PositionDto>> GetById(Guid id, string username)
         {
             var position = await _mediator.Send(new GetPositionByUserQuery(id, username));
             if (position == null)
@@ -57,7 +57,7 @@ namespace MercadoCapitales.API.Clientes.Controllers
 
         // PUT api/position/{id}
         [HttpPut]
-        public async Task<IActionResult> UpdatePosition(UpdatePositionCommand command)
+        public async Task<IActionResult> Update(UpdatePositionCommand command)
         {
             var result = await _mediator.Send(command);
             if (!result) return NotFound();
@@ -67,7 +67,7 @@ namespace MercadoCapitales.API.Clientes.Controllers
 
         // DELETE api/position/{id}
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePosition(Guid id)
+        public async Task<IActionResult> Delete(Guid id)
         {
             var result = await _mediator.Send(new DeletePositionCommand(id));
             if (!result)

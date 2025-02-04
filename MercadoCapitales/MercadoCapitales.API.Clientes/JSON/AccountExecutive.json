@@ -1,0 +1,8 @@
+﻿{
+  "accountExecutiveDto": {
+    "name": "Juan Pérez",
+    "email": "juan.perez@example.com",
+    "phoneNumber": "+123456789",
+    "organization": "Interno"
+  }
+}

@@ -1,7 +1,7 @@
 using AutoMapper;
 using MediatR;
 using MercadoCapitales.API.Clientes.Aplicacion;
-using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Models;
 using MercadoCapitales.API.Clientes.Persistencia;
 using MercadoCapitales.API.Clientes.Services;
 using Microsoft.AspNetCore.Builder;
@@ -13,9 +13,11 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Primary;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 
@@ -35,7 +37,12 @@ namespace MercadoCapitales.API.Clientes
         {
             //services.AddScoped<IEmailSenderService, EmailSenderService>();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddJsonOptions(options =>
+                    {
+                        options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
+                    });
+
             services.AddDbContext<ContextCliente>(opt => {
                 opt.UseSqlServer(Configuration.GetConnectionString("ConexionDB"));
             });
@@ -46,6 +53,16 @@ namespace MercadoCapitales.API.Clientes
             services.AddSingleton<IEmailSenderService, EmailSenderService>();
 
             services.AddScoped<IMarketConnectService, PrimaryService>();
+
+            // Acceder a la configuración de la API
+            var apiIp = Configuration["ApiConfig:APIINSTRUMENTOS:Ip"];
+            var apiPort = Configuration["ApiConfig:APIINSTRUMENTOS:Port"];
+
+            // Registrar HttpClient
+            services.AddHttpClient<IInstrumentService, InstrumentService>(client =>
+            {
+                client.BaseAddress = new Uri($"http://{apiIp}:{apiPort}/api/");
+            });
 
             services.AddSwaggerGen(options =>
             {

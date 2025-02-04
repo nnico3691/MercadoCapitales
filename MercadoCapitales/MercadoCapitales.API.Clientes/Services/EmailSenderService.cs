@@ -1,5 +1,5 @@
 ﻿using MailKit.Net.Smtp;
-using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Models;
 using Microsoft.Extensions.Options;
 using MimeKit;
 using System;

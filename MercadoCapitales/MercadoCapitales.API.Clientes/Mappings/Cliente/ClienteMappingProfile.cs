@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using Model = MercadoCapitales.API.Clientes.Modelo;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using Model = MercadoCapitales.API.Clientes.Models;
+using MercadoCapitales.API.Clientes.Models.Dto;
 
 namespace MercadoCapitales.API.Clientes.Mappings.Cliente
 {

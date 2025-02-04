@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using System.Threading.Tasks;
 using System.Threading;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 using MercadoCapitales.API.Clientes.Persistencia;
 using AutoMapper;
 using Microsoft.EntityFrameworkCore;

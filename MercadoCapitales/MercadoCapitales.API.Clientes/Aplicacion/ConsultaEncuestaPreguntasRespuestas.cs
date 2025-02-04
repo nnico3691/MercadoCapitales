@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Models;
 using MercadoCapitales.API.Clientes.Persistencia;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Threading;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
-using MercadoCapitales.API.Clientes.Modelo.Dto;
+using MercadoCapitales.API.Clientes.Models.Dto;
 
 namespace MercadoCapitales.API.Clientes.Aplicacion
 {

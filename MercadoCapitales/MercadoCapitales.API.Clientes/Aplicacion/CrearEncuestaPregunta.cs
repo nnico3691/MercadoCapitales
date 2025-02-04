@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-using MercadoCapitales.API.Clientes.Modelo;
+using MercadoCapitales.API.Clientes.Models;
 using MercadoCapitales.API.Clientes.Persistencia;
 using System.Collections.Generic;
 using MercadoCapitales.API.Clientes.Aplicacion.Requests;

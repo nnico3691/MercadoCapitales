@@ -1,0 +1,12 @@
+﻿{
+  "recommendationDto": {
+    "DateCreated": "2025-02-01T12:00:00Z",
+    "Description": "Recomendación de inversión en bonos corporativos",
+    "RiskLevel": "Medium",
+    "AccountExecutiveId": "FA120489-F6DB-405B-9B54-6345138979DE",
+    "InvestmentRecommendation": {
+      "InstrumentId": "D2A3B9E6-45F7-4B6D-AB12-2C5E8D7F9C10",
+      "CommissionPercentage": 1.5
+    }
+  }
+}

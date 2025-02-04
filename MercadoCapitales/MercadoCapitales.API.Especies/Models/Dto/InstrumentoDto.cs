@@ -6,7 +6,7 @@ namespace MercadoCapitales.API.Especies.Models.Dto
     public class InstrumentoDto
     {
         [Key]
-        public Guid? InstrumentoId { get; set; }
+        public Guid? Id { get; set; }
         public string Market { get; set; }
         public string Symbol { get; set; }
         public string MarketSegmentId { get; set; }
